@@ -57,7 +57,8 @@ namespace Supermercado {
 
 	private: System::Windows::Forms::Button^ btnConsultaProductos;
 
-	private: System::Windows::Forms::Button^ btnColaCaja;
+
+	private: System::Windows::Forms::Label^ lblRol;
 
 
 
@@ -87,13 +88,13 @@ namespace Supermercado {
 			this->btnHistorialVentas = (gcnew System::Windows::Forms::Button());
 			this->btnSalir = (gcnew System::Windows::Forms::Button());
 			this->btnConsultaProductos = (gcnew System::Windows::Forms::Button());
-			this->btnColaCaja = (gcnew System::Windows::Forms::Button());
+			this->lblRol = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->label2->BackColor = System::Drawing::SystemColors::Control;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Modern No. 20", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(90, 122);
@@ -119,7 +120,7 @@ namespace Supermercado {
 			// lblBienvenida
 			// 
 			this->lblBienvenida->AutoSize = true;
-			this->lblBienvenida->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->lblBienvenida->BackColor = System::Drawing::SystemColors::Control;
 			this->lblBienvenida->Font = (gcnew System::Drawing::Font(L"Modern No. 20", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblBienvenida->Location = System::Drawing::Point(189, 122);
@@ -131,94 +132,106 @@ namespace Supermercado {
 			// 
 			// btnVenta
 			// 
+			this->btnVenta->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->btnVenta->Location = System::Drawing::Point(82, 181);
 			this->btnVenta->Name = L"btnVenta";
 			this->btnVenta->Size = System::Drawing::Size(261, 57);
 			this->btnVenta->TabIndex = 5;
 			this->btnVenta->Text = L"Nueva Venta";
-			this->btnVenta->UseVisualStyleBackColor = true;
+			this->btnVenta->UseVisualStyleBackColor = false;
 			// 
 			// btnProductos
 			// 
+			this->btnProductos->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->btnProductos->Location = System::Drawing::Point(386, 181);
 			this->btnProductos->Name = L"btnProductos";
 			this->btnProductos->Size = System::Drawing::Size(261, 57);
 			this->btnProductos->TabIndex = 6;
 			this->btnProductos->Text = L"Productos";
-			this->btnProductos->UseVisualStyleBackColor = true;
+			this->btnProductos->UseVisualStyleBackColor = false;
 			// 
 			// btnInventario
 			// 
+			this->btnInventario->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->btnInventario->Location = System::Drawing::Point(696, 176);
 			this->btnInventario->Name = L"btnInventario";
 			this->btnInventario->Size = System::Drawing::Size(261, 57);
 			this->btnInventario->TabIndex = 7;
 			this->btnInventario->Text = L"Inventario";
-			this->btnInventario->UseVisualStyleBackColor = true;
+			this->btnInventario->UseVisualStyleBackColor = false;
 			// 
 			// btnUsuarios
 			// 
+			this->btnUsuarios->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->btnUsuarios->Location = System::Drawing::Point(696, 249);
 			this->btnUsuarios->Name = L"btnUsuarios";
 			this->btnUsuarios->Size = System::Drawing::Size(261, 57);
 			this->btnUsuarios->TabIndex = 10;
 			this->btnUsuarios->Text = L"Usuarios";
-			this->btnUsuarios->UseVisualStyleBackColor = true;
+			this->btnUsuarios->UseVisualStyleBackColor = false;
 			// 
 			// btnClientes
 			// 
+			this->btnClientes->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->btnClientes->Location = System::Drawing::Point(386, 254);
 			this->btnClientes->Name = L"btnClientes";
 			this->btnClientes->Size = System::Drawing::Size(261, 57);
 			this->btnClientes->TabIndex = 9;
 			this->btnClientes->Text = L"Clientes";
-			this->btnClientes->UseVisualStyleBackColor = true;
+			this->btnClientes->UseVisualStyleBackColor = false;
 			// 
 			// btnHistorialVentas
 			// 
+			this->btnHistorialVentas->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->btnHistorialVentas->Location = System::Drawing::Point(82, 254);
 			this->btnHistorialVentas->Name = L"btnHistorialVentas";
 			this->btnHistorialVentas->Size = System::Drawing::Size(261, 57);
 			this->btnHistorialVentas->TabIndex = 8;
 			this->btnHistorialVentas->Text = L"Historial";
-			this->btnHistorialVentas->UseVisualStyleBackColor = true;
+			this->btnHistorialVentas->UseVisualStyleBackColor = false;
 			// 
 			// btnSalir
 			// 
-			this->btnSalir->Location = System::Drawing::Point(696, 329);
+			this->btnSalir->BackColor = System::Drawing::SystemColors::ActiveBorder;
+			this->btnSalir->Location = System::Drawing::Point(550, 337);
 			this->btnSalir->Name = L"btnSalir";
 			this->btnSalir->Size = System::Drawing::Size(261, 57);
 			this->btnSalir->TabIndex = 13;
 			this->btnSalir->Text = L"Salir";
-			this->btnSalir->UseVisualStyleBackColor = true;
+			this->btnSalir->UseVisualStyleBackColor = false;
 			this->btnSalir->Click += gcnew System::EventHandler(this, &frmMenu::btnSalir_Click);
 			// 
 			// btnConsultaProductos
 			// 
-			this->btnConsultaProductos->Location = System::Drawing::Point(386, 334);
+			this->btnConsultaProductos->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->btnConsultaProductos->Location = System::Drawing::Point(240, 338);
 			this->btnConsultaProductos->Name = L"btnConsultaProductos";
 			this->btnConsultaProductos->Size = System::Drawing::Size(261, 57);
 			this->btnConsultaProductos->TabIndex = 12;
 			this->btnConsultaProductos->Text = L"Consultar";
-			this->btnConsultaProductos->UseVisualStyleBackColor = true;
+			this->btnConsultaProductos->UseVisualStyleBackColor = false;
 			// 
-			// btnColaCaja
+			// lblRol
 			// 
-			this->btnColaCaja->Location = System::Drawing::Point(82, 334);
-			this->btnColaCaja->Name = L"btnColaCaja";
-			this->btnColaCaja->Size = System::Drawing::Size(261, 57);
-			this->btnColaCaja->TabIndex = 11;
-			this->btnColaCaja->Text = L"Cola de Caja";
-			this->btnColaCaja->UseVisualStyleBackColor = true;
+			this->lblRol->AutoSize = true;
+			this->lblRol->BackColor = System::Drawing::SystemColors::Control;
+			this->lblRol->Font = (gcnew System::Drawing::Font(L"Modern No. 20", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblRol->Location = System::Drawing::Point(836, 122);
+			this->lblRol->MaximumSize = System::Drawing::Size(300, 100);
+			this->lblRol->Name = L"lblRol";
+			this->lblRol->Size = System::Drawing::Size(46, 20);
+			this->lblRol->TabIndex = 14;
+			this->lblRol->Text = L"name";
 			// 
 			// frmMenu
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1041, 452);
+			this->Controls->Add(this->lblRol);
 			this->Controls->Add(this->btnSalir);
 			this->Controls->Add(this->btnConsultaProductos);
-			this->Controls->Add(this->btnColaCaja);
 			this->Controls->Add(this->btnUsuarios);
 			this->Controls->Add(this->btnClientes);
 			this->Controls->Add(this->btnHistorialVentas);
@@ -239,9 +252,10 @@ namespace Supermercado {
 
 	private: System::Void frmMenu_Load(System::Object^ sender, System::EventArgs^ e) {
 		// Mostrar bienvenida
-		lblBienvenida->Text = Globals::Datos::nombreActivo + " (" + Globals::Datos::rolActivo + ")";
+		lblBienvenida->Text = Globals::Datos::nombreActivo;
+		lblRol->Text = " ( Rol: " + Globals::Datos::rolActivo + ")";
 
-		// Validar rol y ocultar botones si es vendedor
+		// validamos el rol para verificar qué opciones le vamos a mostrar al usuario
 		if (Globals::Datos::rolActivo == "vendedor") {
 			btnProductos->Visible = false;
 			btnInventario->Visible = false;
@@ -252,5 +266,9 @@ namespace Supermercado {
 private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();
 }
+
+
+
+
 };
 }

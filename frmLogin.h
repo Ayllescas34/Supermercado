@@ -91,7 +91,7 @@ namespace Supermercado {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->label2->BackColor = System::Drawing::SystemColors::Control;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Modern No. 20", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(254, 76);
@@ -144,7 +144,9 @@ namespace Supermercado {
 			// btnIngresar
 			// 
 			this->btnIngresar->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->btnIngresar->FlatAppearance->BorderSize = 3;
 			this->btnIngresar->Location = System::Drawing::Point(224, 289);
+			this->btnIngresar->Margin = System::Windows::Forms::Padding(5);
 			this->btnIngresar->Name = L"btnIngresar";
 			this->btnIngresar->Size = System::Drawing::Size(203, 32);
 			this->btnIngresar->TabIndex = 6;
@@ -154,18 +156,19 @@ namespace Supermercado {
 			// 
 			// lblError
 			// 
+			this->lblError->AccessibleRole = System::Windows::Forms::AccessibleRole::Cursor;
 			this->lblError->AutoSize = true;
 			this->lblError->BackColor = System::Drawing::Color::DarkSalmon;
-			this->lblError->Location = System::Drawing::Point(233, 342);
+			this->lblError->Location = System::Drawing::Point(209, 349);
 			this->lblError->Name = L"lblError";
-			this->lblError->Size = System::Drawing::Size(44, 16);
+			this->lblError->Size = System::Drawing::Size(0, 16);
 			this->lblError->TabIndex = 7;
-			this->lblError->Text = L"label5";
 			// 
 			// frmLogin
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::Control;
 			this->ClientSize = System::Drawing::Size(644, 401);
 			this->Controls->Add(this->lblError);
 			this->Controls->Add(this->btnIngresar);
