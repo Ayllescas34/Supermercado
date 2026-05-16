@@ -1,6 +1,7 @@
 #pragma once
 //#include "Globals.h"
 #include "Globals.h"
+#include "frmInventario.h"
 
 namespace Supermercado {
 
@@ -159,6 +160,7 @@ namespace Supermercado {
 			this->btnInventario->TabIndex = 7;
 			this->btnInventario->Text = L"Inventario";
 			this->btnInventario->UseVisualStyleBackColor = false;
+			this->btnInventario->Click += gcnew System::EventHandler(this, &frmMenu::btnInventario_Click);
 			// 
 			// btnUsuarios
 			// 
@@ -270,5 +272,9 @@ private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ 
 
 
 
+private: System::Void btnInventario_Click(System::Object^ sender, System::EventArgs^ e) {
+	frmInventario^ ventanaInventario = gcnew frmInventario();
+	ventanaInventario->ShowDialog();
+}
 };
 }
