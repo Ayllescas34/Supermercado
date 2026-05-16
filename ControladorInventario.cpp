@@ -45,10 +45,8 @@ List<ModeloInventario^>^ ControladorInventario::obtenerInventarioPorTienda(int i
 
 bool ControladorInventario::actualizarStockProducto(String^ nombreProducto, int nuevaCantidad, int idTienda) {
     try {
-        // 1. Verificamos si la conexión está activa tal como lo hace el grupo
         if (db->conexionActiva()) {
 
-            // 2. Consulta SQL usando la tabla INVENTARIO real de tu base de datos
             String^ consulta = "UPDATE INVENTARIO i "
                 "INNER JOIN PRODUCTO p ON i.id_producto = p.id_producto "
                 "SET i.cantidad = @cantidad "
@@ -59,10 +57,9 @@ bool ControladorInventario::actualizarStockProducto(String^ nombreProducto, int 
             cmd->Parameters->AddWithValue("@nombre", nombreProducto);
             cmd->Parameters->AddWithValue("@idTienda", idTienda);
 
-            // 3. Ejecutamos la actualización
+   
             int filasAfectadas = cmd->ExecuteNonQuery();
 
-            // 4. Cerramos con c minúscula como lo tiene Ale
             db->cerrarConexion();
 
             return (filasAfectadas > 0);
