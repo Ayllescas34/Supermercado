@@ -204,6 +204,7 @@ namespace Supermercado {
 			Globals::Datos::nombreActivo = usuarioLogueado->nombre;
 			Globals::Datos::usuarioActivo = usuarioLogueado->usuario;
 			Globals::Datos::idUsuarioActivo = usuarioLogueado->id_usuario;
+			Globals::Datos::idTiendaActiva = usuarioLogueado->id_tienda;
 
 			MessageBox::Show("Bienvenido, " + usuarioLogueado->nombre, "Login Exitoso");
 			lblError->Visible = false;
