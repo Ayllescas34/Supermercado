@@ -120,22 +120,31 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConexionBD.cpp" />
     <ClCompile Include="ControladorUsuario.cpp" />
+    <ClCompile Include="frmClienteRapido.cpp" />
     <ClCompile Include="frmLogin.cpp" />
     <ClCompile Include="frmMenu.cpp" />
+    <ClCompile Include="frmVenta.cpp" />
     <ClCompile Include="MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConexionBD.h" />
     <ClInclude Include="ControladorUsuario.h" />
+    <ClInclude Include="frmClienteRapido.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="frmLogin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmMenu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmVenta.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Globals.h" />
@@ -145,11 +154,17 @@
     <ClInclude Include="ModeloUsuario.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmClienteRapido.resx">
+      <DependentUpon>frmClienteRapido.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenu.resx">
       <DependentUpon>frmMenu.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVenta.resx">
+      <DependentUpon>frmVenta.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
