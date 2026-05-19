@@ -85,11 +85,11 @@ namespace Supermercado {
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::Label^ lblClienteActivo;
 
-	private: System::Windows::Forms::Label^ label13;
-	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::Label^ label10;
-	private: System::Windows::Forms::Label^ label11;
+
+
+
+
+
 
 	private:
 		// Estructura del item del carrito
@@ -148,37 +148,32 @@ namespace Supermercado {
 			this->lblClienteSeleccionado = (gcnew System::Windows::Forms::Label());
 			this->btnSiguientePaso1 = (gcnew System::Windows::Forms::Button());
 			this->panelProductos = (gcnew System::Windows::Forms::Panel());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->txtBuscarProducto = (gcnew System::Windows::Forms::TextBox());
-			this->btnBuscarProducto = (gcnew System::Windows::Forms::Button());
-			this->dgvProductos = (gcnew System::Windows::Forms::DataGridView());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->txtCantidad = (gcnew System::Windows::Forms::TextBox());
-			this->btnAgregar = (gcnew System::Windows::Forms::Button());
-			this->btnDeshacer = (gcnew System::Windows::Forms::Button());
-			this->lblUltimoAgregado = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->dgvCarrito = (gcnew System::Windows::Forms::DataGridView());
-			this->lblSubtotal = (gcnew System::Windows::Forms::Label());
-			this->lblIVA = (gcnew System::Windows::Forms::Label());
-			this->lblTotal = (gcnew System::Windows::Forms::Label());
-			this->btnVolverPaso1 = (gcnew System::Windows::Forms::Button());
-			this->btnLimpiarCarrito = (gcnew System::Windows::Forms::Button());
-			this->btnSiguientePaso2 = (gcnew System::Windows::Forms::Button());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->label10 = (gcnew System::Windows::Forms::Label());
-			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->lblClienteActivo = (gcnew System::Windows::Forms::Label());
-			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->btnSiguientePaso2 = (gcnew System::Windows::Forms::Button());
+			this->btnLimpiarCarrito = (gcnew System::Windows::Forms::Button());
+			this->btnVolverPaso1 = (gcnew System::Windows::Forms::Button());
+			this->lblTotal = (gcnew System::Windows::Forms::Label());
+			this->lblIVA = (gcnew System::Windows::Forms::Label());
+			this->lblSubtotal = (gcnew System::Windows::Forms::Label());
+			this->dgvCarrito = (gcnew System::Windows::Forms::DataGridView());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->lblUltimoAgregado = (gcnew System::Windows::Forms::Label());
+			this->btnDeshacer = (gcnew System::Windows::Forms::Button());
+			this->btnAgregar = (gcnew System::Windows::Forms::Button());
+			this->txtCantidad = (gcnew System::Windows::Forms::TextBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->dgvProductos = (gcnew System::Windows::Forms::DataGridView());
+			this->btnBuscarProducto = (gcnew System::Windows::Forms::Button());
+			this->txtBuscarProducto = (gcnew System::Windows::Forms::TextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvClientes))->BeginInit();
 			this->panelProductos->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProductos))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvCarrito))->BeginInit();
 			this->panel3->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvCarrito))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProductos))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -431,178 +426,26 @@ namespace Supermercado {
 			this->panelProductos->TabIndex = 15;
 			this->panelProductos->Visible = false;
 			// 
-			// label5
+			// panel3
 			// 
-			this->label5->AutoSize = true;
-			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->panel3->BackColor = System::Drawing::SystemColors::ControlLight;
+			this->panel3->Controls->Add(this->lblClienteActivo);
+			this->panel3->Location = System::Drawing::Point(25, 14);
+			this->panel3->Name = L"panel3";
+			this->panel3->Size = System::Drawing::Size(840, 30);
+			this->panel3->TabIndex = 18;
+			// 
+			// lblClienteActivo
+			// 
+			this->lblClienteActivo->AutoSize = true;
+			this->lblClienteActivo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(42, 108);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(147, 18);
-			this->label5->TabIndex = 0;
-			this->label5->Text = L"Código o Nombre:";
-			// 
-			// txtBuscarProducto
-			// 
-			this->txtBuscarProducto->Location = System::Drawing::Point(45, 145);
-			this->txtBuscarProducto->Name = L"txtBuscarProducto";
-			this->txtBuscarProducto->Size = System::Drawing::Size(138, 22);
-			this->txtBuscarProducto->TabIndex = 1;
-			// 
-			// btnBuscarProducto
-			// 
-			this->btnBuscarProducto->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->btnBuscarProducto->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnBuscarProducto->Location = System::Drawing::Point(189, 141);
-			this->btnBuscarProducto->Name = L"btnBuscarProducto";
-			this->btnBuscarProducto->Size = System::Drawing::Size(96, 26);
-			this->btnBuscarProducto->TabIndex = 2;
-			this->btnBuscarProducto->Text = L"Buscar";
-			this->btnBuscarProducto->UseVisualStyleBackColor = false;
-			// 
-			// dgvProductos
-			// 
-			this->dgvProductos->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvProductos->Location = System::Drawing::Point(20, 192);
-			this->dgvProductos->Name = L"dgvProductos";
-			this->dgvProductos->RowHeadersWidth = 51;
-			this->dgvProductos->RowTemplate->Height = 24;
-			this->dgvProductos->Size = System::Drawing::Size(265, 143);
-			this->dgvProductos->TabIndex = 3;
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(42, 360);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(68, 17);
-			this->label6->TabIndex = 4;
-			this->label6->Text = L"Cantidad:";
-			// 
-			// txtCantidad
-			// 
-			this->txtCantidad->Location = System::Drawing::Point(125, 357);
-			this->txtCantidad->Name = L"txtCantidad";
-			this->txtCantidad->Size = System::Drawing::Size(138, 22);
-			this->txtCantidad->TabIndex = 5;
-			this->txtCantidad->Text = L"1";
-			// 
-			// btnAgregar
-			// 
-			this->btnAgregar->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-				static_cast<System::Int32>(static_cast<System::Byte>(192)));
-			this->btnAgregar->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnAgregar->Location = System::Drawing::Point(25, 388);
-			this->btnAgregar->Name = L"btnAgregar";
-			this->btnAgregar->Size = System::Drawing::Size(260, 33);
-			this->btnAgregar->TabIndex = 6;
-			this->btnAgregar->Text = L"+ Agregar al carrito";
-			this->btnAgregar->UseVisualStyleBackColor = false;
-			// 
-			// btnDeshacer
-			// 
-			this->btnDeshacer->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
-				static_cast<System::Int32>(static_cast<System::Byte>(128)));
-			this->btnDeshacer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnDeshacer->Location = System::Drawing::Point(25, 428);
-			this->btnDeshacer->Name = L"btnDeshacer";
-			this->btnDeshacer->Size = System::Drawing::Size(260, 33);
-			this->btnDeshacer->TabIndex = 7;
-			this->btnDeshacer->Text = L"↩ Deshacer último";
-			this->btnDeshacer->UseVisualStyleBackColor = false;
-			// 
-			// lblUltimoAgregado
-			// 
-			this->lblUltimoAgregado->AutoSize = true;
-			this->lblUltimoAgregado->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblUltimoAgregado->Location = System::Drawing::Point(115, 471);
-			this->lblUltimoAgregado->Name = L"lblUltimoAgregado";
-			this->lblUltimoAgregado->Size = System::Drawing::Size(0, 17);
-			this->lblUltimoAgregado->TabIndex = 8;
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label7->Location = System::Drawing::Point(389, 108);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(60, 18);
-			this->label7->TabIndex = 9;
-			this->label7->Text = L"Carrito";
-			// 
-			// dgvCarrito
-			// 
-			this->dgvCarrito->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvCarrito->Location = System::Drawing::Point(392, 130);
-			this->dgvCarrito->Name = L"dgvCarrito";
-			this->dgvCarrito->RowHeadersWidth = 51;
-			this->dgvCarrito->RowTemplate->Height = 24;
-			this->dgvCarrito->Size = System::Drawing::Size(448, 150);
-			this->dgvCarrito->TabIndex = 10;
-			// 
-			// lblSubtotal
-			// 
-			this->lblSubtotal->AutoSize = true;
-			this->lblSubtotal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblSubtotal->Location = System::Drawing::Point(389, 317);
-			this->lblSubtotal->Name = L"lblSubtotal";
-			this->lblSubtotal->Size = System::Drawing::Size(130, 18);
-			this->lblSubtotal->TabIndex = 12;
-			this->lblSubtotal->Text = L"Subtotal: Q 0.00";
-			// 
-			// lblIVA
-			// 
-			this->lblIVA->AutoSize = true;
-			this->lblIVA->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblIVA->Location = System::Drawing::Point(389, 339);
-			this->lblIVA->Name = L"lblIVA";
-			this->lblIVA->Size = System::Drawing::Size(141, 18);
-			this->lblIVA->TabIndex = 13;
-			this->lblIVA->Text = L"IVA (12%): Q 0.00";
-			// 
-			// lblTotal
-			// 
-			this->lblTotal->AutoSize = true;
-			this->lblTotal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblTotal->Location = System::Drawing::Point(389, 361);
-			this->lblTotal->Name = L"lblTotal";
-			this->lblTotal->Size = System::Drawing::Size(120, 18);
-			this->lblTotal->TabIndex = 14;
-			this->lblTotal->Text = L"TOTAL: Q 0.00";
-			// 
-			// btnVolverPaso1
-			// 
-			this->btnVolverPaso1->BackColor = System::Drawing::SystemColors::ScrollBar;
-			this->btnVolverPaso1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnVolverPaso1->Location = System::Drawing::Point(392, 416);
-			this->btnVolverPaso1->Name = L"btnVolverPaso1";
-			this->btnVolverPaso1->Size = System::Drawing::Size(96, 26);
-			this->btnVolverPaso1->TabIndex = 15;
-			this->btnVolverPaso1->Text = L"← Volver";
-			this->btnVolverPaso1->UseVisualStyleBackColor = false;
-			// 
-			// btnLimpiarCarrito
-			// 
-			this->btnLimpiarCarrito->BackColor = System::Drawing::SystemColors::ControlDark;
-			this->btnLimpiarCarrito->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnLimpiarCarrito->Location = System::Drawing::Point(601, 417);
-			this->btnLimpiarCarrito->Name = L"btnLimpiarCarrito";
-			this->btnLimpiarCarrito->Size = System::Drawing::Size(120, 26);
-			this->btnLimpiarCarrito->TabIndex = 16;
-			this->btnLimpiarCarrito->Text = L"Limpiar todo";
-			this->btnLimpiarCarrito->UseVisualStyleBackColor = false;
+			this->lblClienteActivo->ForeColor = System::Drawing::SystemColors::HotTrack;
+			this->lblClienteActivo->Location = System::Drawing::Point(364, 3);
+			this->lblClienteActivo->Name = L"lblClienteActivo";
+			this->lblClienteActivo->Size = System::Drawing::Size(14, 17);
+			this->lblClienteActivo->TabIndex = 6;
+			this->lblClienteActivo->Text = L"-";
 			// 
 			// btnSiguientePaso2
 			// 
@@ -617,91 +460,184 @@ namespace Supermercado {
 			this->btnSiguientePaso2->Text = L"Ir a Pago →";
 			this->btnSiguientePaso2->UseVisualStyleBackColor = false;
 			// 
-			// panel3
+			// btnLimpiarCarrito
 			// 
-			this->panel3->BackColor = System::Drawing::SystemColors::ControlLight;
-			this->panel3->Controls->Add(this->lblClienteActivo);
-			this->panel3->Controls->Add(this->label13);
-			this->panel3->Controls->Add(this->label8);
-			this->panel3->Controls->Add(this->label9);
-			this->panel3->Controls->Add(this->label10);
-			this->panel3->Controls->Add(this->label11);
-			this->panel3->Location = System::Drawing::Point(25, 14);
-			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(840, 30);
-			this->panel3->TabIndex = 18;
-			// 
-			// label8
-			// 
-			this->label8->AutoSize = true;
-			this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnLimpiarCarrito->BackColor = System::Drawing::SystemColors::ControlDark;
+			this->btnLimpiarCarrito->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label8->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label8->Location = System::Drawing::Point(407, 7);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(14, 17);
-			this->label8->TabIndex = 4;
-			this->label8->Text = L"-";
+			this->btnLimpiarCarrito->Location = System::Drawing::Point(601, 417);
+			this->btnLimpiarCarrito->Name = L"btnLimpiarCarrito";
+			this->btnLimpiarCarrito->Size = System::Drawing::Size(120, 26);
+			this->btnLimpiarCarrito->TabIndex = 16;
+			this->btnLimpiarCarrito->Text = L"Limpiar todo";
+			this->btnLimpiarCarrito->UseVisualStyleBackColor = false;
+			this->btnLimpiarCarrito->Click += gcnew System::EventHandler(this, &frmVenta::btnLimpiarCarrito_Click);
 			// 
-			// label9
+			// btnVolverPaso1
 			// 
-			this->label9->AutoSize = true;
-			this->label9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnVolverPaso1->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->btnVolverPaso1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label9->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label9->Location = System::Drawing::Point(289, 6);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(56, 17);
-			this->label9->TabIndex = 3;
-			this->label9->Text = L"Tienda:";
+			this->btnVolverPaso1->Location = System::Drawing::Point(392, 416);
+			this->btnVolverPaso1->Name = L"btnVolverPaso1";
+			this->btnVolverPaso1->Size = System::Drawing::Size(96, 26);
+			this->btnVolverPaso1->TabIndex = 15;
+			this->btnVolverPaso1->Text = L"← Volver";
+			this->btnVolverPaso1->UseVisualStyleBackColor = false;
+			this->btnVolverPaso1->Click += gcnew System::EventHandler(this, &frmVenta::btnVolverPaso1_Click);
 			// 
-			// label10
+			// lblTotal
 			// 
-			this->label10->AutoSize = true;
-			this->label10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->lblTotal->AutoSize = true;
+			this->lblTotal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label10->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label10->Location = System::Drawing::Point(119, 6);
-			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(14, 17);
-			this->label10->TabIndex = 2;
-			this->label10->Text = L"-";
+			this->lblTotal->Location = System::Drawing::Point(389, 361);
+			this->lblTotal->Name = L"lblTotal";
+			this->lblTotal->Size = System::Drawing::Size(120, 18);
+			this->lblTotal->TabIndex = 14;
+			this->lblTotal->Text = L"TOTAL: Q 0.00";
 			// 
-			// label11
+			// lblIVA
 			// 
-			this->label11->AutoSize = true;
-			this->label11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lblIVA->AutoSize = true;
+			this->lblIVA->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label11->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label11->Location = System::Drawing::Point(22, 6);
-			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(53, 17);
-			this->label11->TabIndex = 1;
-			this->label11->Text = L"Cajero:";
+			this->lblIVA->Location = System::Drawing::Point(389, 339);
+			this->lblIVA->Name = L"lblIVA";
+			this->lblIVA->Size = System::Drawing::Size(141, 18);
+			this->lblIVA->TabIndex = 13;
+			this->lblIVA->Text = L"IVA (12%): Q 0.00";
 			// 
-			// lblClienteActivo
+			// lblSubtotal
 			// 
-			this->lblClienteActivo->AutoSize = true;
-			this->lblClienteActivo->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->lblSubtotal->AutoSize = true;
+			this->lblSubtotal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->lblClienteActivo->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->lblClienteActivo->Location = System::Drawing::Point(666, 6);
-			this->lblClienteActivo->Name = L"lblClienteActivo";
-			this->lblClienteActivo->Size = System::Drawing::Size(14, 17);
-			this->lblClienteActivo->TabIndex = 6;
-			this->lblClienteActivo->Text = L"-";
+			this->lblSubtotal->Location = System::Drawing::Point(389, 317);
+			this->lblSubtotal->Name = L"lblSubtotal";
+			this->lblSubtotal->Size = System::Drawing::Size(130, 18);
+			this->lblSubtotal->TabIndex = 12;
+			this->lblSubtotal->Text = L"Subtotal: Q 0.00";
 			// 
-			// label13
+			// dgvCarrito
 			// 
-			this->label13->AutoSize = true;
-			this->label13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->dgvCarrito->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvCarrito->Location = System::Drawing::Point(392, 130);
+			this->dgvCarrito->Name = L"dgvCarrito";
+			this->dgvCarrito->RowHeadersWidth = 51;
+			this->dgvCarrito->RowTemplate->Height = 24;
+			this->dgvCarrito->Size = System::Drawing::Size(448, 150);
+			this->dgvCarrito->TabIndex = 10;
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label13->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label13->Location = System::Drawing::Point(548, 5);
-			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(55, 17);
-			this->label13->TabIndex = 5;
-			this->label13->Text = L"Cliente:";
+			this->label7->Location = System::Drawing::Point(389, 108);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(60, 18);
+			this->label7->TabIndex = 9;
+			this->label7->Text = L"Carrito";
+			// 
+			// lblUltimoAgregado
+			// 
+			this->lblUltimoAgregado->AutoSize = true;
+			this->lblUltimoAgregado->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblUltimoAgregado->Location = System::Drawing::Point(137, 471);
+			this->lblUltimoAgregado->Name = L"lblUltimoAgregado";
+			this->lblUltimoAgregado->Size = System::Drawing::Size(0, 17);
+			this->lblUltimoAgregado->TabIndex = 8;
+			// 
+			// btnDeshacer
+			// 
+			this->btnDeshacer->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			this->btnDeshacer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnDeshacer->Location = System::Drawing::Point(47, 428);
+			this->btnDeshacer->Name = L"btnDeshacer";
+			this->btnDeshacer->Size = System::Drawing::Size(260, 33);
+			this->btnDeshacer->TabIndex = 7;
+			this->btnDeshacer->Text = L"↩ Deshacer último";
+			this->btnDeshacer->UseVisualStyleBackColor = false;
+			this->btnDeshacer->Click += gcnew System::EventHandler(this, &frmVenta::btnDeshacer_Click);
+			// 
+			// btnAgregar
+			// 
+			this->btnAgregar->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->btnAgregar->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnAgregar->Location = System::Drawing::Point(47, 388);
+			this->btnAgregar->Name = L"btnAgregar";
+			this->btnAgregar->Size = System::Drawing::Size(260, 33);
+			this->btnAgregar->TabIndex = 6;
+			this->btnAgregar->Text = L"+ Agregar al carrito";
+			this->btnAgregar->UseVisualStyleBackColor = false;
+			this->btnAgregar->Click += gcnew System::EventHandler(this, &frmVenta::btnAgregar_Click);
+			// 
+			// txtCantidad
+			// 
+			this->txtCantidad->Location = System::Drawing::Point(147, 357);
+			this->txtCantidad->Name = L"txtCantidad";
+			this->txtCantidad->Size = System::Drawing::Size(138, 22);
+			this->txtCantidad->TabIndex = 5;
+			this->txtCantidad->Text = L"1";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->Location = System::Drawing::Point(64, 360);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(68, 17);
+			this->label6->TabIndex = 4;
+			this->label6->Text = L"Cantidad:";
+			// 
+			// dgvProductos
+			// 
+			this->dgvProductos->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvProductos->Location = System::Drawing::Point(12, 192);
+			this->dgvProductos->Name = L"dgvProductos";
+			this->dgvProductos->RowHeadersWidth = 51;
+			this->dgvProductos->RowTemplate->Height = 24;
+			this->dgvProductos->Size = System::Drawing::Size(330, 143);
+			this->dgvProductos->TabIndex = 3;
+			this->dgvProductos->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &frmVenta::dgvProductos_CellClick);
+			// 
+			// btnBuscarProducto
+			// 
+			this->btnBuscarProducto->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->btnBuscarProducto->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnBuscarProducto->Location = System::Drawing::Point(189, 141);
+			this->btnBuscarProducto->Name = L"btnBuscarProducto";
+			this->btnBuscarProducto->Size = System::Drawing::Size(96, 26);
+			this->btnBuscarProducto->TabIndex = 2;
+			this->btnBuscarProducto->Text = L"Buscar";
+			this->btnBuscarProducto->UseVisualStyleBackColor = false;
+			this->btnBuscarProducto->Click += gcnew System::EventHandler(this, &frmVenta::btnBuscarProducto_Click);
+			// 
+			// txtBuscarProducto
+			// 
+			this->txtBuscarProducto->Location = System::Drawing::Point(45, 145);
+			this->txtBuscarProducto->Name = L"txtBuscarProducto";
+			this->txtBuscarProducto->Size = System::Drawing::Size(138, 22);
+			this->txtBuscarProducto->TabIndex = 1;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->Location = System::Drawing::Point(42, 108);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(147, 18);
+			this->label5->TabIndex = 0;
+			this->label5->Text = L"Código o Nombre:";
 			// 
 			// frmVenta
 			// 
@@ -733,10 +669,10 @@ namespace Supermercado {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvClientes))->EndInit();
 			this->panelProductos->ResumeLayout(false);
 			this->panelProductos->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProductos))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvCarrito))->EndInit();
 			this->panel3->ResumeLayout(false);
 			this->panel3->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvCarrito))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProductos))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -824,7 +760,7 @@ namespace Supermercado {
 		}
 	}
 	private: System::Void btnSiguientePaso1_Click(System::Object^ sender, System::EventArgs^ e) {
-		// Ocultar paso 1
+		// Ocultar controles del paso 1
 		txtBuscarCliente->Visible = false;
 		btnBuscarCliente->Visible = false;
 		btnCF->Visible = false;
@@ -833,6 +769,10 @@ namespace Supermercado {
 		lblClienteSeleccionado->Visible = false;
 		btnCrearCliente->Visible = false;
 		btnSiguientePaso1->Visible = false;
+
+		// Mostrar cliente en barra superior
+		lblClienteActivo->Text = "Cliente: " + nombreClienteSeleccionado;
+		lblClienteActivo->Visible = true;
 
 		// Mostrar paso 2
 		panelProductos->Visible = true;
@@ -845,5 +785,164 @@ namespace Supermercado {
 
 
 
+	private: System::Void btnBuscarProducto_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (txtBuscarProducto->Text->Trim() == "") return;
+
+		// TEMPORAL — tabla mock hasta que Emmanuel termine ControladorProducto
+		DataTable^ dt = gcnew DataTable();
+		dt->Columns->Add("id_producto");
+		dt->Columns->Add("codigo_barras");
+		dt->Columns->Add("nombre");
+		dt->Columns->Add("precio");
+
+		// Data mock de prueba
+		DataRow^ r1 = dt->NewRow();
+		r1["id_producto"] = "1"; r1["codigo_barras"] = "LAC001";
+		r1["nombre"] = "Leche Entera 1L"; r1["precio"] = "12.50";
+		dt->Rows->Add(r1);
+
+		DataRow^ r2 = dt->NewRow();
+		r2["id_producto"] = "4"; r2["codigo_barras"] = "PAN001";
+		r2["nombre"] = "Pan Molde"; r2["precio"] = "18.00";
+		dt->Rows->Add(r2);
+
+		DataRow^ r3 = dt->NewRow();
+		r3["id_producto"] = "7"; r3["codigo_barras"] = "GRA001";
+		r3["nombre"] = "Arroz 1lb"; r3["precio"] = "9.75";
+		dt->Rows->Add(r3);
+
+		dgvProductos->DataSource = dt;
+	}
+	private: System::Void dgvProductos_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		if (e->RowIndex >= 0) {
+			DataGridViewRow^ fila = dgvProductos->Rows[e->RowIndex];
+			idProductoSeleccionado = Convert::ToInt32(fila->Cells["id_producto"]->Value);
+			nombreProductoSeleccionado = fila->Cells["nombre"]->Value->ToString();
+			precioProductoSeleccionado = Convert::ToDouble(fila->Cells["precio"]->Value);
+		}
+	}
+	private: System::Void btnAgregar_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (idProductoSeleccionado == 0) {
+			MessageBox::Show("Selecciona un producto primero.", "Aviso");
+			return;
+		}
+
+		int cantidad = Convert::ToInt32(txtCantidad->Text);
+		if (cantidad <= 0) {
+			MessageBox::Show("La cantidad debe ser mayor a 0.", "Aviso");
+			return;
+		}
+
+		// Crear item
+		Item^ item = gcnew Item();
+		item->nombre = nombreProductoSeleccionado;
+		item->cantidad = cantidad;
+		item->precio = precioProductoSeleccionado;
+		item->subtotal = cantidad * precioProductoSeleccionado;
+
+		// Agregar al vector (carrito) y al stack (historial)
+		carrito->Add(item);
+		historial->Push(item);
+
+		// Actualizar label del stack
+		lblUltimoAgregado->Text = "stack -> ultimo: " + item->nombre + " x" + cantidad;
+
+		// Actualizar carrito visual
+		ActualizarCarrito();
+
+		// Resetear seleccion
+		idProductoSeleccionado = 0;
+		txtCantidad->Text = "1";
+	}
+
+	private: void ActualizarCarrito() {
+		DataTable^ dt = gcnew DataTable();
+		dt->Columns->Add("#");
+		dt->Columns->Add("Producto");
+		dt->Columns->Add("Cant");
+		dt->Columns->Add("Precio");
+		dt->Columns->Add("Subtotal");
+
+		double subtotal = 0;
+
+		// for recorre el vector carrito
+		for (int i = 0; i < carrito->Count; i++) {
+			Item^ item = carrito[i];
+			DataRow^ row = dt->NewRow();
+			row["#"] = i + 1;
+			row["Producto"] = item->nombre;
+			row["Cant"] = item->cantidad;
+			row["Precio"] = "Q " + item->precio.ToString("0.00");
+			row["Subtotal"] = "Q " + item->subtotal.ToString("0.00");
+			dt->Rows->Add(row);
+			subtotal += item->subtotal;
+		}
+
+		dgvCarrito->DataSource = dt;
+
+		double iva = subtotal * 0.12;
+		double total = subtotal + iva;
+
+		lblSubtotal->Text = "Subtotal: Q " + subtotal.ToString("0.00");
+		lblIVA->Text = "IVA (12%): Q " + iva.ToString("0.00");
+		lblTotal->Text = "TOTAL: Q " + total.ToString("0.00");
+	}
+	private: System::Void btnDeshacer_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (historial->Count == 0) {
+			MessageBox::Show("No hay productos para deshacer.", "Aviso");
+			return;
+		}
+
+		// Quitar del stack
+		Item^ ultimo = historial->Pop();
+
+		// Quitar del vector carrito (el ultimo)
+		carrito->RemoveAt(carrito->Count - 1);
+
+		// Actualizar label del stack
+		if (historial->Count > 0) {
+			Item^ anterior = historial->Peek();
+			lblUltimoAgregado->Text = "stack -> ultimo: " + anterior->nombre + " x" + anterior->cantidad;
+		}
+		else {
+			lblUltimoAgregado->Text = "";
+		}
+
+		// Actualizar carrito visual
+		ActualizarCarrito();
+
+		MessageBox::Show("Se quitó: " + ultimo->nombre, "Deshacer");
+	}
+	private: System::Void btnLimpiarCarrito_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (carrito->Count == 0) return;
+
+		System::Windows::Forms::DialogResult confirmacion = MessageBox::Show(
+			"¿Limpiar todo el carrito?",
+			"Confirmar",
+			MessageBoxButtons::YesNo,
+			MessageBoxIcon::Warning
+		);
+
+		if (confirmacion == System::Windows::Forms::DialogResult::Yes) {
+			carrito->Clear();
+			historial->Clear();
+			lblUltimoAgregado->Text = "";
+			ActualizarCarrito();
+		}
+	}
+	private: System::Void btnVolverPaso1_Click(System::Object^ sender, System::EventArgs^ e) {
+		panelProductos->Visible = false;
+		txtBuscarCliente->Visible = true;
+		btnBuscarCliente->Visible = true;
+		btnCF->Visible = true;
+		dgvClientes->Visible = true;
+		lblClienteSeleccionado->Visible = true;
+		btnSiguientePaso1->Visible = true;
+		btnSiguientePaso1->Enabled = true;
+		lblPaso1->BackColor = System::Drawing::Color::SteelBlue;
+		lblPaso1->ForeColor = System::Drawing::Color::White;
+		lblPaso2->BackColor = System::Drawing::SystemColors::Control;
+		lblPaso2->ForeColor = System::Drawing::SystemColors::ControlText;
+	}
 };
 }
