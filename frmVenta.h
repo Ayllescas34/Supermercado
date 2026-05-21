@@ -110,6 +110,87 @@ namespace Supermercado {
 		int idProductoSeleccionado = 0;
 		String^ nombreProductoSeleccionado = "";
 		double precioProductoSeleccionado = 0.0;
+	private: System::Windows::Forms::Panel^ panelPago;
+	private: System::Windows::Forms::Button^ btnCancelarVenta;
+	private: System::Windows::Forms::Label^ lblResumenCajero;
+	private: System::Windows::Forms::Label^ lblResumenCliente;
+	private: System::Windows::Forms::Label^ lblCambio;
+	private: System::Windows::Forms::TextBox^ txtMontoRecibido;
+	private: System::Windows::Forms::Label^ lblMontoRecibido;
+	private: System::Windows::Forms::RadioButton^ rbTarjeta;
+	private: System::Windows::Forms::RadioButton^ rbEfectivo;
+	private: System::Windows::Forms::Button^ btnConfirmarVenta;
+	private: System::Windows::Forms::Button^ btnVolverPaso2;
+	private: System::Windows::Forms::Label^ lblResumenTotal;
+	private: System::Windows::Forms::Label^ lblResumenIVA;
+	private: System::Windows::Forms::Label^ lblResumenSubtotal;
+	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::Label^ label12;
+	private: System::Windows::Forms::Label^ label14;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -167,6 +248,23 @@ namespace Supermercado {
 			this->btnBuscarProducto = (gcnew System::Windows::Forms::Button());
 			this->txtBuscarProducto = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->panelPago = (gcnew System::Windows::Forms::Panel());
+			this->btnCancelarVenta = (gcnew System::Windows::Forms::Button());
+			this->lblResumenCajero = (gcnew System::Windows::Forms::Label());
+			this->lblResumenCliente = (gcnew System::Windows::Forms::Label());
+			this->lblCambio = (gcnew System::Windows::Forms::Label());
+			this->txtMontoRecibido = (gcnew System::Windows::Forms::TextBox());
+			this->lblMontoRecibido = (gcnew System::Windows::Forms::Label());
+			this->rbTarjeta = (gcnew System::Windows::Forms::RadioButton());
+			this->rbEfectivo = (gcnew System::Windows::Forms::RadioButton());
+			this->btnConfirmarVenta = (gcnew System::Windows::Forms::Button());
+			this->btnVolverPaso2 = (gcnew System::Windows::Forms::Button());
+			this->lblResumenTotal = (gcnew System::Windows::Forms::Label());
+			this->lblResumenIVA = (gcnew System::Windows::Forms::Label());
+			this->lblResumenSubtotal = (gcnew System::Windows::Forms::Label());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvClientes))->BeginInit();
@@ -174,6 +272,7 @@ namespace Supermercado {
 			this->panel3->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvCarrito))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProductos))->BeginInit();
+			this->panelPago->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -420,9 +519,9 @@ namespace Supermercado {
 			this->panelProductos->Controls->Add(this->btnBuscarProducto);
 			this->panelProductos->Controls->Add(this->txtBuscarProducto);
 			this->panelProductos->Controls->Add(this->label5);
-			this->panelProductos->Location = System::Drawing::Point(0, 29);
+			this->panelProductos->Location = System::Drawing::Point(0, 45);
 			this->panelProductos->Name = L"panelProductos";
-			this->panelProductos->Size = System::Drawing::Size(882, 524);
+			this->panelProductos->Size = System::Drawing::Size(882, 498);
 			this->panelProductos->TabIndex = 15;
 			this->panelProductos->Visible = false;
 			// 
@@ -459,6 +558,7 @@ namespace Supermercado {
 			this->btnSiguientePaso2->TabIndex = 17;
 			this->btnSiguientePaso2->Text = L"Ir a Pago →";
 			this->btnSiguientePaso2->UseVisualStyleBackColor = false;
+			this->btnSiguientePaso2->Click += gcnew System::EventHandler(this, &frmVenta::btnSiguientePaso2_Click);
 			// 
 			// btnLimpiarCarrito
 			// 
@@ -639,12 +739,214 @@ namespace Supermercado {
 			this->label5->TabIndex = 0;
 			this->label5->Text = L"Código o Nombre:";
 			// 
+			// panelPago
+			// 
+			this->panelPago->Controls->Add(this->btnCancelarVenta);
+			this->panelPago->Controls->Add(this->lblResumenCajero);
+			this->panelPago->Controls->Add(this->lblResumenCliente);
+			this->panelPago->Controls->Add(this->lblCambio);
+			this->panelPago->Controls->Add(this->txtMontoRecibido);
+			this->panelPago->Controls->Add(this->lblMontoRecibido);
+			this->panelPago->Controls->Add(this->rbTarjeta);
+			this->panelPago->Controls->Add(this->rbEfectivo);
+			this->panelPago->Controls->Add(this->btnConfirmarVenta);
+			this->panelPago->Controls->Add(this->btnVolverPaso2);
+			this->panelPago->Controls->Add(this->lblResumenTotal);
+			this->panelPago->Controls->Add(this->lblResumenIVA);
+			this->panelPago->Controls->Add(this->lblResumenSubtotal);
+			this->panelPago->Controls->Add(this->label11);
+			this->panelPago->Controls->Add(this->label12);
+			this->panelPago->Controls->Add(this->label14);
+			this->panelPago->Location = System::Drawing::Point(1, -3);
+			this->panelPago->Name = L"panelPago";
+			this->panelPago->Size = System::Drawing::Size(879, 546);
+			this->panelPago->TabIndex = 16;
+			this->panelPago->Visible = false;
+			// 
+			// btnCancelarVenta
+			// 
+			this->btnCancelarVenta->BackColor = System::Drawing::Color::Brown;
+			this->btnCancelarVenta->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnCancelarVenta->Location = System::Drawing::Point(536, 364);
+			this->btnCancelarVenta->Name = L"btnCancelarVenta";
+			this->btnCancelarVenta->Size = System::Drawing::Size(120, 26);
+			this->btnCancelarVenta->TabIndex = 56;
+			this->btnCancelarVenta->Text = L"✕ Cancelar";
+			this->btnCancelarVenta->UseVisualStyleBackColor = false;
+			this->btnCancelarVenta->Click += gcnew System::EventHandler(this, &frmVenta::btnCancelarVenta_Click);
+			// 
+			// lblResumenCajero
+			// 
+			this->lblResumenCajero->AutoSize = true;
+			this->lblResumenCajero->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblResumenCajero->Location = System::Drawing::Point(399, 176);
+			this->lblResumenCajero->Name = L"lblResumenCajero";
+			this->lblResumenCajero->Size = System::Drawing::Size(0, 18);
+			this->lblResumenCajero->TabIndex = 55;
+			// 
+			// lblResumenCliente
+			// 
+			this->lblResumenCliente->AutoSize = true;
+			this->lblResumenCliente->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblResumenCliente->Location = System::Drawing::Point(399, 135);
+			this->lblResumenCliente->Name = L"lblResumenCliente";
+			this->lblResumenCliente->Size = System::Drawing::Size(0, 18);
+			this->lblResumenCliente->TabIndex = 54;
+			// 
+			// lblCambio
+			// 
+			this->lblCambio->AutoSize = true;
+			this->lblCambio->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->lblCambio->Location = System::Drawing::Point(62, 344);
+			this->lblCambio->Name = L"lblCambio";
+			this->lblCambio->Size = System::Drawing::Size(97, 16);
+			this->lblCambio->TabIndex = 53;
+			this->lblCambio->Text = L"Cambio: Q 0.00";
+			// 
+			// txtMontoRecibido
+			// 
+			this->txtMontoRecibido->Location = System::Drawing::Point(65, 234);
+			this->txtMontoRecibido->Name = L"txtMontoRecibido";
+			this->txtMontoRecibido->Size = System::Drawing::Size(191, 22);
+			this->txtMontoRecibido->TabIndex = 52;
+			this->txtMontoRecibido->TextChanged += gcnew System::EventHandler(this, &frmVenta::txtMontoRecibido_TextChanged);
+			// 
+			// lblMontoRecibido
+			// 
+			this->lblMontoRecibido->AutoSize = true;
+			this->lblMontoRecibido->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblMontoRecibido->Location = System::Drawing::Point(60, 207);
+			this->lblMontoRecibido->Name = L"lblMontoRecibido";
+			this->lblMontoRecibido->Size = System::Drawing::Size(121, 18);
+			this->lblMontoRecibido->TabIndex = 51;
+			this->lblMontoRecibido->Text = L"Monto recibido";
+			// 
+			// rbTarjeta
+			// 
+			this->rbTarjeta->AutoSize = true;
+			this->rbTarjeta->Location = System::Drawing::Point(185, 119);
+			this->rbTarjeta->Name = L"rbTarjeta";
+			this->rbTarjeta->Size = System::Drawing::Size(71, 20);
+			this->rbTarjeta->TabIndex = 50;
+			this->rbTarjeta->Text = L"Tarjeta";
+			this->rbTarjeta->UseVisualStyleBackColor = true;
+			// 
+			// rbEfectivo
+			// 
+			this->rbEfectivo->AutoSize = true;
+			this->rbEfectivo->Checked = true;
+			this->rbEfectivo->Location = System::Drawing::Point(65, 119);
+			this->rbEfectivo->Name = L"rbEfectivo";
+			this->rbEfectivo->Size = System::Drawing::Size(76, 20);
+			this->rbEfectivo->TabIndex = 49;
+			this->rbEfectivo->TabStop = true;
+			this->rbEfectivo->Text = L"Efectivo";
+			this->rbEfectivo->UseVisualStyleBackColor = true;
+			// 
+			// btnConfirmarVenta
+			// 
+			this->btnConfirmarVenta->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)),
+				static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			this->btnConfirmarVenta->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnConfirmarVenta->Location = System::Drawing::Point(699, 363);
+			this->btnConfirmarVenta->Name = L"btnConfirmarVenta";
+			this->btnConfirmarVenta->Size = System::Drawing::Size(120, 26);
+			this->btnConfirmarVenta->TabIndex = 48;
+			this->btnConfirmarVenta->Text = L"✓ Confirmar Venta";
+			this->btnConfirmarVenta->UseVisualStyleBackColor = false;
+			this->btnConfirmarVenta->Click += gcnew System::EventHandler(this, &frmVenta::btnConfirmarVenta_Click);
+			// 
+			// btnVolverPaso2
+			// 
+			this->btnVolverPaso2->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->btnVolverPaso2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnVolverPaso2->Location = System::Drawing::Point(404, 363);
+			this->btnVolverPaso2->Name = L"btnVolverPaso2";
+			this->btnVolverPaso2->Size = System::Drawing::Size(96, 26);
+			this->btnVolverPaso2->TabIndex = 47;
+			this->btnVolverPaso2->Text = L"← Volver";
+			this->btnVolverPaso2->UseVisualStyleBackColor = false;
+			this->btnVolverPaso2->Click += gcnew System::EventHandler(this, &frmVenta::btnVolverPaso2_Click);
+			// 
+			// lblResumenTotal
+			// 
+			this->lblResumenTotal->AutoSize = true;
+			this->lblResumenTotal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblResumenTotal->Location = System::Drawing::Point(401, 308);
+			this->lblResumenTotal->Name = L"lblResumenTotal";
+			this->lblResumenTotal->Size = System::Drawing::Size(120, 18);
+			this->lblResumenTotal->TabIndex = 46;
+			this->lblResumenTotal->Text = L"TOTAL: Q 0.00";
+			// 
+			// lblResumenIVA
+			// 
+			this->lblResumenIVA->AutoSize = true;
+			this->lblResumenIVA->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblResumenIVA->Location = System::Drawing::Point(401, 286);
+			this->lblResumenIVA->Name = L"lblResumenIVA";
+			this->lblResumenIVA->Size = System::Drawing::Size(141, 18);
+			this->lblResumenIVA->TabIndex = 45;
+			this->lblResumenIVA->Text = L"IVA (12%): Q 0.00";
+			// 
+			// lblResumenSubtotal
+			// 
+			this->lblResumenSubtotal->AutoSize = true;
+			this->lblResumenSubtotal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblResumenSubtotal->Location = System::Drawing::Point(401, 264);
+			this->lblResumenSubtotal->Name = L"lblResumenSubtotal";
+			this->lblResumenSubtotal->Size = System::Drawing::Size(130, 18);
+			this->lblResumenSubtotal->TabIndex = 44;
+			this->lblResumenSubtotal->Text = L"Subtotal: Q 0.00";
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label11->Location = System::Drawing::Point(399, 86);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(167, 18);
+			this->label11->TabIndex = 43;
+			this->label11->Text = L"Resumen de la Venta";
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label12->Location = System::Drawing::Point(149, 418);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(0, 17);
+			this->label12->TabIndex = 42;
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label14->Location = System::Drawing::Point(59, 86);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(135, 18);
+			this->label14->TabIndex = 41;
+			this->label14->Text = L"Método de pago:";
+			// 
 			// frmVenta
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(882, 553);
+			this->ClientSize = System::Drawing::Size(882, 552);
 			this->Controls->Add(this->panelProductos);
+			this->Controls->Add(this->panelPago);
 			this->Controls->Add(this->btnSiguientePaso1);
 			this->Controls->Add(this->lblClienteSeleccionado);
 			this->Controls->Add(this->btnCrearCliente);
@@ -673,6 +975,8 @@ namespace Supermercado {
 			this->panel3->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvCarrito))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProductos))->EndInit();
+			this->panelPago->ResumeLayout(false);
+			this->panelPago->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -943,6 +1247,119 @@ namespace Supermercado {
 		lblPaso1->ForeColor = System::Drawing::Color::White;
 		lblPaso2->BackColor = System::Drawing::SystemColors::Control;
 		lblPaso2->ForeColor = System::Drawing::SystemColors::ControlText;
+	}
+
+
+	private: System::Void btnSiguientePaso2_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (carrito->Count == 0) {
+			MessageBox::Show("El carrito está vacío.", "Aviso");
+			return;
+		}
+
+		lblResumenCliente->Text = "Cliente: " + nombreClienteSeleccionado;
+		lblResumenCajero->Text = "Cajero: " + Globals::Datos::nombreActivo;
+		lblResumenSubtotal->Text = lblSubtotal->Text;
+		lblResumenIVA->Text = lblIVA->Text;
+		lblResumenTotal->Text = lblTotal->Text;
+
+		panelProductos->Visible = false;
+		panelPago->Visible = true;
+		panelPago->BringToFront();
+
+		lblPaso2->BackColor = System::Drawing::Color::LightGreen;
+		lblPaso2->ForeColor = System::Drawing::Color::Black;
+		lblPaso3->BackColor = System::Drawing::Color::SteelBlue;
+		lblPaso3->ForeColor = System::Drawing::Color::White;
+
+		// DEBUG AL FINAL
+		MessageBox::Show("panelPago visible: " + panelPago->Visible.ToString() +
+			" | panelProductos visible: " + panelProductos->Visible.ToString(), "Debug");
+	}
+	private: System::Void btnVolverPaso2_Click(System::Object^ sender, System::EventArgs^ e) {
+		panelPago->Visible = false;
+		panelProductos->Visible = true;
+		lblPaso2->BackColor = System::Drawing::Color::SteelBlue;
+		lblPaso2->ForeColor = System::Drawing::Color::White;
+		lblPaso3->BackColor = System::Drawing::SystemColors::Control;
+		lblPaso3->ForeColor = System::Drawing::SystemColors::ControlText;
+	}
+	private: System::Void btnCancelarVenta_Click(System::Object^ sender, System::EventArgs^ e) {
+		System::Windows::Forms::DialogResult confirmacion = MessageBox::Show(
+			"¿Cancelar la venta?",
+			"Confirmar",
+			MessageBoxButtons::YesNo,
+			MessageBoxIcon::Warning
+		);
+		if (confirmacion == System::Windows::Forms::DialogResult::Yes) {
+			this->Close();
+		}
+	}
+	private: System::Void txtMontoRecibido_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			if (txtMontoRecibido->Text->Trim() == "") {
+				lblCambio->Text = "Cambio: Q 0.00";
+				lblCambio->BackColor = System::Drawing::Color::FromArgb(192, 255, 192);
+				return;
+			}
+
+			// Extraer total del label
+			String^ totalStr = lblResumenTotal->Text->Replace("TOTAL: Q ", "")->Trim();
+			double total = Convert::ToDouble(totalStr);
+			double monto = Convert::ToDouble(txtMontoRecibido->Text);
+
+			if (monto < total) {
+				lblCambio->Text = "⚠ Monto insuficiente. Faltan Q " + (total - monto).ToString("0.00");
+				lblCambio->BackColor = System::Drawing::Color::Tomato;
+			}
+			else {
+				double cambio = monto - total;
+				lblCambio->Text = "Cambio: Q " + cambio.ToString("0.00");
+				lblCambio->BackColor = System::Drawing::Color::FromArgb(192, 255, 192);
+			}
+		}
+		catch (...) {
+			lblCambio->Text = "Cambio: Q 0.00";
+		}
+	}
+	private: System::Void btnConfirmarVenta_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Validar método de pago
+		if (rbEfectivo->Checked) {
+			// Validar monto recibido
+			if (txtMontoRecibido->Text->Trim() == "") {
+				MessageBox::Show("Ingresa el monto recibido.", "Aviso");
+				return;
+			}
+			String^ totalStr = lblResumenTotal->Text->Replace("TOTAL: Q ", "")->Trim();
+			double total = Convert::ToDouble(totalStr);
+			double monto = Convert::ToDouble(txtMontoRecibido->Text);
+			if (monto < total) {
+				MessageBox::Show("El monto recibido es insuficiente.", "Error");
+				return;
+			}
+		}
+
+		// Determinar método de pago
+		String^ metodoPago = rbEfectivo->Checked ? "Efectivo" : "Tarjeta";
+
+		// TEMPORAL — aquí irá ControladorVenta::guardarVenta() cuando esté listo
+		// Por ahora solo mostrar resumen
+		String^ resumen = "VENTA CONFIRMADA\n\n";
+		resumen += "Cliente: " + nombreClienteSeleccionado + "\n";
+		resumen += "Cajero: " + Globals::Datos::nombreActivo + "\n";
+		resumen += "Método: " + metodoPago + "\n";
+		resumen += lblResumenSubtotal->Text + "\n";
+		resumen += lblResumenIVA->Text + "\n";
+		resumen += lblResumenTotal->Text + "\n";
+		if (rbEfectivo->Checked) {
+			resumen += lblCambio->Text;
+		}
+
+		MessageBox::Show(resumen, "Venta Exitosa");
+
+		// Limpiar y cerrar
+		carrito->Clear();
+		historial->Clear();
+		this->Close();
 	}
 };
 }
