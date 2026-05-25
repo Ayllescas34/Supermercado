@@ -1,6 +1,7 @@
 #pragma once
 //#include "Globals.h"
 #include "Globals.h"
+#include "frmHistorialVentas.h"
 
 namespace Supermercado {
 
@@ -189,6 +190,7 @@ namespace Supermercado {
 			this->btnHistorialVentas->TabIndex = 8;
 			this->btnHistorialVentas->Text = L"Historial";
 			this->btnHistorialVentas->UseVisualStyleBackColor = false;
+			this->btnHistorialVentas->Click += gcnew System::EventHandler(this, &frmMenu::btnHistorialVentas_Click);
 			// 
 			// btnSalir
 			// 
@@ -270,5 +272,9 @@ private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ 
 
 
 
+private: System::Void btnHistorialVentas_Click(System::Object^ sender, System::EventArgs^ e) {
+	Supermercado::frmHistorialVentas^ ventanaHistorial = gcnew Supermercado::frmHistorialVentas();
+	ventanaHistorial->ShowDialog();
+}
 };
 }

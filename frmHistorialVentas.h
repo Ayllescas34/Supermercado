@@ -145,6 +145,7 @@ namespace Supermercado {
 			this->btnFiltrar->TabIndex = 5;
 			this->btnFiltrar->Text = L"Filtrar";
 			this->btnFiltrar->UseVisualStyleBackColor = false;
+			this->btnFiltrar->Click += gcnew System::EventHandler(this, &frmHistorialVentas::btnFiltrar_Click);
 			// 
 			// btnVerTodo
 			// 
@@ -157,6 +158,7 @@ namespace Supermercado {
 			this->btnVerTodo->TabIndex = 6;
 			this->btnVerTodo->Text = L"Ver Todo";
 			this->btnVerTodo->UseVisualStyleBackColor = false;
+			this->btnVerTodo->Click += gcnew System::EventHandler(this, &frmHistorialVentas::btnVerTodo_Click);
 			// 
 			// dgvVentas
 			// 
@@ -269,5 +271,36 @@ namespace Supermercado {
 #pragma endregion
 	private: System::Void frmHistorialVentas_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void btnFiltrar_Click(System::Object^ sender, System::EventArgs^ e) {
+		dgvVentas->Columns->Clear();
+
+		dgvVentas->Columns->Add("id", "ID Venta");
+		dgvVentas->Columns->Add("fecha", "Fecha y Hora");
+		dgvVentas->Columns->Add("cliente", "Cliente");
+		dgvVentas->Columns->Add("total", "Total");
+		dgvVentas->Columns->Add("pago", "Método Pago");
+
+		dgvVentas->Rows->Add("2", "2026-05-18 14:35", "Carlos López", "Q 325.50", "Tarjeta");
+		dgvVentas->Rows->Add("3", "2026-05-22 09:12", "María Daniela", "Q 75.00", "Efectivo");
+
+		lblTotal->Text = "Total del periodo: Q 400.50";
+
+	}
+private: System::Void btnVerTodo_Click(System::Object^ sender, System::EventArgs^ e) {
+	dgvVentas->Columns->Clear();
+
+	dgvVentas->Columns->Add("id", "ID Venta");
+	dgvVentas->Columns->Add("fecha", "Fecha y Hora");
+	dgvVentas->Columns->Add("cliente", "Cliente");
+	dgvVentas->Columns->Add("total", "Total");
+	dgvVentas->Columns->Add("pago", "Método Pago");
+
+	dgvVentas->Rows->Add("1", "2026-05-15 10:20", "Consumidor Final", "Q 150.00", "Efectivo");
+	dgvVentas->Rows->Add("2", "2026-05-18 14:35", "Carlos López", "Q 325.50", "Tarjeta");
+	dgvVentas->Rows->Add("3", "2026-05-22 09:12", "María Daniela", "Q 75.00", "Efectivo");
+	dgvVentas->Rows->Add("4", "2026-05-23 11:40", "Consumidor Final", "Q 210.00", "Tarjeta");
+
+	lblTotal->Text = "Total del periodo: Q 760.50";
+}
+};
 }
