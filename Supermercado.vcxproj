@@ -125,7 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConexionBD.cpp" />
+    <ClCompile Include="ControladorCliente.cpp" />
     <ClCompile Include="ControladorUsuario.cpp" />
+    <ClCompile Include="ControladorVenta.cpp" />
     <ClCompile Include="frmClienteRapido.cpp" />
     <ClCompile Include="frmLogin.cpp" />
     <ClCompile Include="frmMenu.cpp" />
@@ -134,7 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConexionBD.h" />
+    <ClInclude Include="ControladorCliente.h" />
     <ClInclude Include="ControladorUsuario.h" />
+    <ClInclude Include="ControladorVenta.h" />
     <ClInclude Include="frmClienteRapido.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -151,7 +155,9 @@
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ModeloCliente.h" />
     <ClInclude Include="ModeloUsuario.h" />
+    <ClInclude Include="ModeloVenta.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmClienteRapido.resx">

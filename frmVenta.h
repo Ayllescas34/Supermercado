@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "Globals.h"
 #include "frmClienteRapido.h"
+#include "ControladorVenta.h"
+#include "ControladorCliente.h"
 
 namespace Supermercado {
 
@@ -94,6 +96,7 @@ namespace Supermercado {
 	private:
 		// Estructura del item del carrito
 		ref struct Item {
+			int idProducto;
 			String^ nombre;
 			int cantidad;
 			double precio;
@@ -1006,10 +1009,7 @@ namespace Supermercado {
 		btnSiguientePaso1->Enabled = true;
 	}
 	private: System::Void btnBuscarCliente_Click(System::Object^ sender, System::EventArgs^ e) {
-
-		if (txtBuscarCliente->Text->Trim() == "") {
-			return;
-		}
+		if (txtBuscarCliente->Text->Trim() == "") return;
 
 		// Limpiar selección anterior
 		idClienteSeleccionado = 0;
@@ -1017,17 +1017,30 @@ namespace Supermercado {
 		lblClienteSeleccionado->Visible = false;
 		btnSiguientePaso1->Enabled = false;
 
-		// Buscar en la DB — por ahora tabla vacía, se conecta cuando Majo termine ControladorCliente
-		// TEMPORAL: simular búsqueda con DataTable vacío
+		// Buscar en DB con ControladorCliente de Majo
+		ControladorCliente^ ctrl = gcnew ControladorCliente();
+		List<Cliente^>^ lista = ctrl->buscarCliente(txtBuscarCliente->Text->Trim());
+
+		// Llenar DataTable para el dgvClientes
 		DataTable^ dt = gcnew DataTable();
 		dt->Columns->Add("id_cliente");
 		dt->Columns->Add("nit");
 		dt->Columns->Add("nombre");
 		dt->Columns->Add("telefono");
 
+		for (int i = 0; i < lista->Count; i++) {
+			Cliente^ c = lista[i];
+			DataRow^ row = dt->NewRow();
+			row["id_cliente"] = c->id_cliente;
+			row["nit"] = c->nit;
+			row["nombre"] = c->nombre;
+			row["telefono"] = c->telefono;
+			dt->Rows->Add(row);
+		}
+
 		dgvClientes->DataSource = dt;
 
-		if (dt->Rows->Count == 0) {
+		if (lista->Count == 0) {
 			lblClienteNoEncontrado->Text = "NIT o nombre no encontrado.";
 			lblClienteNoEncontrado->Visible = true;
 			btnCrearCliente->Visible = true;
@@ -1037,6 +1050,7 @@ namespace Supermercado {
 			btnCrearCliente->Visible = false;
 		}
 	}
+
 	private: System::Void dgvClientes_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 		if (e->RowIndex >= 0) {
 			DataGridViewRow^ fila = dgvClientes->Rows[e->RowIndex];
@@ -1052,11 +1066,24 @@ namespace Supermercado {
 		frmClienteRapido^ popup = gcnew frmClienteRapido();
 
 		if (popup->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
-			// Cliente creado — por ahora solo lo seleccionamos en memoria
-			// Cuando Majo termine ControladorCliente, aquí llamamos guardarCliente()
-			nombreClienteSeleccionado = popup->NombreIngresado;
-			lblClienteSeleccionado->Text = "Cliente: " + popup->NombreIngresado +
-				" (NIT: " + popup->NitIngresado + ")";
+			// Buscar el cliente recién creado por NIT para obtener su ID
+			ControladorCliente^ ctrl = gcnew ControladorCliente();
+			Cliente^ clienteCreado = ctrl->buscarPorNit(popup->NitIngresado);
+
+			if (clienteCreado != nullptr) {
+				idClienteSeleccionado = clienteCreado->id_cliente;
+				nombreClienteSeleccionado = clienteCreado->nombre;
+				lblClienteSeleccionado->Text = "Cliente: " + clienteCreado->nombre +
+					" (NIT: " + clienteCreado->nit + ")";
+			}
+			else {
+				// Si no lo encontró usar los datos del popup
+				idClienteSeleccionado = 0;
+				nombreClienteSeleccionado = popup->NombreIngresado;
+				lblClienteSeleccionado->Text = "Cliente: " + popup->NombreIngresado +
+					" (NIT: " + popup->NitIngresado + ")";
+			}
+
 			lblClienteSeleccionado->Visible = true;
 			lblClienteNoEncontrado->Visible = false;
 			btnCrearCliente->Visible = false;
@@ -1139,6 +1166,7 @@ namespace Supermercado {
 
 		// Crear item
 		Item^ item = gcnew Item();
+		item->idProducto = idProductoSeleccionado;
 		item->nombre = nombreProductoSeleccionado;
 		item->cantidad = cantidad;
 		item->precio = precioProductoSeleccionado;
@@ -1271,9 +1299,9 @@ namespace Supermercado {
 		lblPaso3->BackColor = System::Drawing::Color::SteelBlue;
 		lblPaso3->ForeColor = System::Drawing::Color::White;
 
-		// DEBUG AL FINAL
-		MessageBox::Show("panelPago visible: " + panelPago->Visible.ToString() +
-			" | panelProductos visible: " + panelProductos->Visible.ToString(), "Debug");
+		// DEBUG
+		/*MessageBox::Show("panelPago visible: " + panelPago->Visible.ToString() +
+			" | panelProductos visible: " + panelProductos->Visible.ToString(), "Debug");*/
 	}
 	private: System::Void btnVolverPaso2_Click(System::Object^ sender, System::EventArgs^ e) {
 		panelPago->Visible = false;
@@ -1324,7 +1352,6 @@ namespace Supermercado {
 	private: System::Void btnConfirmarVenta_Click(System::Object^ sender, System::EventArgs^ e) {
 		// Validar método de pago
 		if (rbEfectivo->Checked) {
-			// Validar monto recibido
 			if (txtMontoRecibido->Text->Trim() == "") {
 				MessageBox::Show("Ingresa el monto recibido.", "Aviso");
 				return;
@@ -1341,9 +1368,39 @@ namespace Supermercado {
 		// Determinar método de pago
 		String^ metodoPago = rbEfectivo->Checked ? "Efectivo" : "Tarjeta";
 
-		// TEMPORAL — aquí irá ControladorVenta::guardarVenta() cuando esté listo
-		// Por ahora solo mostrar resumen
+		// Obtener total real
+		String^ totalStr2 = lblResumenTotal->Text->Replace("TOTAL: Q ", "")->Trim();
+		double totalFinal = Convert::ToDouble(totalStr2);
+
+		// Guardar venta en DB
+		ControladorVenta^ ctrlVenta = gcnew ControladorVenta();
+		int idVenta = ctrlVenta->guardarVenta(
+			Globals::Datos::idTiendaActiva,
+			idClienteSeleccionado,
+			Globals::Datos::idUsuarioActivo,
+			totalFinal,
+			metodoPago
+		);
+
+		if (idVenta == 0) {
+			MessageBox::Show("Error al guardar la venta.", "Error");
+			return;
+		}
+
+		// Guardar detalle — recorre el vector carrito
+		for (int i = 0; i < carrito->Count; i++) {
+			Item^ item = carrito[i];
+			ctrlVenta->guardarDetalle(
+				idVenta,
+				item->idProducto,
+				item->cantidad,
+				item->precio
+			);
+		}
+
+		// Mostrar resumen
 		String^ resumen = "VENTA CONFIRMADA\n\n";
+		resumen += "No. Venta: #" + idVenta + "\n";
 		resumen += "Cliente: " + nombreClienteSeleccionado + "\n";
 		resumen += "Cajero: " + Globals::Datos::nombreActivo + "\n";
 		resumen += "Método: " + metodoPago + "\n";

@@ -1,4 +1,5 @@
 #pragma once
+#include "ControladorCliente.h"
 
 namespace Supermercado {
 
@@ -194,11 +195,30 @@ namespace Supermercado {
 			lblError->Visible = true;
 			return;
 		}
-		lblError->Visible = false;
-		this->DialogResult = System::Windows::Forms::DialogResult::OK;
 
+		lblError->Visible = false;
+
+		// Guardar en DB usando ControladorCliente
+		ControladorCliente^ ctrl = gcnew ControladorCliente();
+		Cliente^ nuevo = gcnew Cliente();
+		nuevo->nit = txtNit->Text->Trim();
+		nuevo->nombre = txtNombre->Text->Trim();
+		nuevo->telefono = "";
+		nuevo->email = "";
+
+		bool guardado = ctrl->guardarCliente(nuevo);
+
+		if (!guardado) {
+			lblError->Text = "Error al guardar en la base de datos.";
+			lblError->Visible = true;
+			return;
+		}
+
+		// Guardar datos para que frmVenta los use
 		NitIngresado = txtNit->Text->Trim();
 		NombreIngresado = txtNombre->Text->Trim();
+
+		this->DialogResult = System::Windows::Forms::DialogResult::OK;
 		this->Close();
 	}
 };
