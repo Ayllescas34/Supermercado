@@ -14,7 +14,7 @@ namespace Supermercado {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Resumen de frmVenta
+	/// Formulario de Nueva Venta - Flujo en 3 pasos
 	/// </summary>
 	public ref class frmVenta : public System::Windows::Forms::Form
 	{
@@ -22,15 +22,9 @@ namespace Supermercado {
 		frmVenta(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: agregar código de constructor aquí
-			//
 		}
 
 	protected:
-		/// <summary>
-		/// Limpiar los recursos que se estén usando.
-		/// </summary>
 		~frmVenta()
 		{
 			if (components)
@@ -38,8 +32,8 @@ namespace Supermercado {
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::Label^ label1;
-	protected:
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Panel^ panel2;
 	private: System::Windows::Forms::Label^ lblTienda;
@@ -49,7 +43,6 @@ namespace Supermercado {
 	private: System::Windows::Forms::Label^ lblPaso1;
 	private: System::Windows::Forms::Label^ lblPaso2;
 	private: System::Windows::Forms::Label^ lblPaso3;
-
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ txtBuscarCliente;
 	private: System::Windows::Forms::Button^ btnBuscarCliente;
@@ -59,14 +52,15 @@ namespace Supermercado {
 	private: System::Windows::Forms::Button^ btnCrearCliente;
 	private: System::Windows::Forms::Label^ lblClienteSeleccionado;
 	private: System::Windows::Forms::Button^ btnSiguientePaso1;
+	private: System::Windows::Forms::Button^ btnRegresar;
 
 	private:
 		int idClienteSeleccionado = 0;
 		String^ nombreClienteSeleccionado = "";
+
 	private: System::Windows::Forms::Panel^ panelProductos;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::DataGridView^ dgvProductos;
-
 	private: System::Windows::Forms::Button^ btnBuscarProducto;
 	private: System::Windows::Forms::TextBox^ txtBuscarProducto;
 	private: System::Windows::Forms::Label^ lblUltimoAgregado;
@@ -80,18 +74,10 @@ namespace Supermercado {
 	private: System::Windows::Forms::Label^ lblIVA;
 	private: System::Windows::Forms::Label^ lblSubtotal;
 	private: System::Windows::Forms::Button^ btnSiguientePaso2;
-
 	private: System::Windows::Forms::Button^ btnLimpiarCarrito;
-
 	private: System::Windows::Forms::Button^ btnVolverPaso1;
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::Label^ lblClienteActivo;
-
-
-
-
-
-
 
 	private:
 		// Estructura del item del carrito
@@ -113,6 +99,7 @@ namespace Supermercado {
 		int idProductoSeleccionado = 0;
 		String^ nombreProductoSeleccionado = "";
 		double precioProductoSeleccionado = 0.0;
+
 	private: System::Windows::Forms::Panel^ panelPago;
 	private: System::Windows::Forms::Button^ btnCancelarVenta;
 	private: System::Windows::Forms::Label^ lblResumenCajero;
@@ -131,85 +118,10 @@ namespace Supermercado {
 	private: System::Windows::Forms::Label^ label12;
 	private: System::Windows::Forms::Label^ label14;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private:
-		/// <summary>
-		/// Variable del diseñador necesaria.
-		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido de este método con el editor de código.
-		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -231,6 +143,7 @@ namespace Supermercado {
 			this->btnCrearCliente = (gcnew System::Windows::Forms::Button());
 			this->lblClienteSeleccionado = (gcnew System::Windows::Forms::Label());
 			this->btnSiguientePaso1 = (gcnew System::Windows::Forms::Button());
+			this->btnRegresar = (gcnew System::Windows::Forms::Button());
 			this->panelProductos = (gcnew System::Windows::Forms::Panel());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->lblClienteActivo = (gcnew System::Windows::Forms::Label());
@@ -501,6 +414,20 @@ namespace Supermercado {
 			this->btnSiguientePaso1->Text = L"Siguiente →";
 			this->btnSiguientePaso1->UseVisualStyleBackColor = false;
 			this->btnSiguientePaso1->Click += gcnew System::EventHandler(this, &frmVenta::btnSiguientePaso1_Click);
+			// 
+			// btnRegresar
+			// 
+			this->btnRegresar->BackColor = System::Drawing::Color::Silver;
+			this->btnRegresar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnRegresar->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnRegresar->Location = System::Drawing::Point(20, 500);
+			this->btnRegresar->Name = L"btnRegresar";
+			this->btnRegresar->Size = System::Drawing::Size(180, 48);
+			this->btnRegresar->TabIndex = 15;
+			this->btnRegresar->Text = L"← Regresar al Menú";
+			this->btnRegresar->UseVisualStyleBackColor = false;
+			this->btnRegresar->Click += gcnew System::EventHandler(this, &frmVenta::btnRegresar_Click);
 			// 
 			// panelProductos
 			// 
@@ -859,7 +786,7 @@ namespace Supermercado {
 				static_cast<System::Byte>(0)));
 			this->btnConfirmarVenta->Location = System::Drawing::Point(699, 363);
 			this->btnConfirmarVenta->Name = L"btnConfirmarVenta";
-			this->btnConfirmarVenta->Size = System::Drawing::Size(120, 26);
+			this->btnConfirmarVenta->Size = System::Drawing::Size(140, 26);
 			this->btnConfirmarVenta->TabIndex = 48;
 			this->btnConfirmarVenta->Text = L"✓ Confirmar Venta";
 			this->btnConfirmarVenta->UseVisualStyleBackColor = false;
@@ -950,6 +877,7 @@ namespace Supermercado {
 			this->ClientSize = System::Drawing::Size(882, 552);
 			this->Controls->Add(this->panelProductos);
 			this->Controls->Add(this->panelPago);
+			this->Controls->Add(this->btnRegresar);
 			this->Controls->Add(this->btnSiguientePaso1);
 			this->Controls->Add(this->lblClienteSeleccionado);
 			this->Controls->Add(this->btnCrearCliente);
@@ -965,7 +893,7 @@ namespace Supermercado {
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
 			this->Name = L"frmVenta";
-			this->Text = L"frmVenta";
+			this->Text = L"Nueva Venta";
 			this->Load += gcnew System::EventHandler(this, &frmVenta::frmVenta_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
@@ -986,437 +914,416 @@ namespace Supermercado {
 		}
 #pragma endregion
 
-
-
-	private: System::Void frmVenta_Load(System::Object^ sender, System::EventArgs^ e) {
-		lblCajero->Text = "Cajero: " + Globals::Datos::nombreActivo;
-		lblTienda->Text = "Tienda: " + Globals::Datos::idTiendaActiva.ToString();
-		lblClienteNoEncontrado->Visible = false;
-		lblClienteSeleccionado->Visible = false;
-		btnCrearCliente->Visible = false;
-		btnSiguientePaso1->Enabled = false;
-
-		carrito = gcnew System::Collections::Generic::List<Item^>();
-		historial = gcnew System::Collections::Generic::Stack<Item^>();
-	}
-	private: System::Void btnCF_Click(System::Object^ sender, System::EventArgs^ e) {
-		idClienteSeleccionado = 1;
-		nombreClienteSeleccionado = "Consumidor Final";
-		lblClienteSeleccionado->Text = "Cliente: Consumidor Final (CF)";
-		lblClienteSeleccionado->Visible = true;
-		lblClienteNoEncontrado->Visible = false;
-		btnCrearCliente->Visible = false;
-		btnSiguientePaso1->Enabled = true;
-	}
-	private: System::Void btnBuscarCliente_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (txtBuscarCliente->Text->Trim() == "") return;
-
-		// Limpiar selección anterior
-		idClienteSeleccionado = 0;
-		nombreClienteSeleccionado = "";
-		lblClienteSeleccionado->Visible = false;
-		btnSiguientePaso1->Enabled = false;
-
-		// Buscar en DB con ControladorCliente de Majo
-		ControladorCliente^ ctrl = gcnew ControladorCliente();
-		List<Cliente^>^ lista = ctrl->buscarCliente(txtBuscarCliente->Text->Trim());
-
-		// Llenar DataTable para el dgvClientes
-		DataTable^ dt = gcnew DataTable();
-		dt->Columns->Add("id_cliente");
-		dt->Columns->Add("nit");
-		dt->Columns->Add("nombre");
-		dt->Columns->Add("telefono");
-
-		for (int i = 0; i < lista->Count; i++) {
-			Cliente^ c = lista[i];
-			DataRow^ row = dt->NewRow();
-			row["id_cliente"] = c->id_cliente;
-			row["nit"] = c->nit;
-			row["nombre"] = c->nombre;
-			row["telefono"] = c->telefono;
-			dt->Rows->Add(row);
-		}
-
-		dgvClientes->DataSource = dt;
-
-		if (lista->Count == 0) {
-			lblClienteNoEncontrado->Text = "NIT o nombre no encontrado.";
-			lblClienteNoEncontrado->Visible = true;
-			btnCrearCliente->Visible = true;
-		}
-		else {
+	private:
+		System::Void frmVenta_Load(System::Object^ sender, System::EventArgs^ e) {
+			lblCajero->Text = "Cajero: " + Globals::Datos::nombreActivo;
+			lblTienda->Text = "Tienda: " + Globals::Datos::idTiendaActiva.ToString();
 			lblClienteNoEncontrado->Visible = false;
+			lblClienteSeleccionado->Visible = false;
 			btnCrearCliente->Visible = false;
-		}
-	}
+			btnSiguientePaso1->Enabled = false;
 
-	private: System::Void dgvClientes_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-		if (e->RowIndex >= 0) {
-			DataGridViewRow^ fila = dgvClientes->Rows[e->RowIndex];
-			idClienteSeleccionado = Convert::ToInt32(fila->Cells["id_cliente"]->Value);
-			nombreClienteSeleccionado = fila->Cells["nombre"]->Value->ToString();
-			lblClienteSeleccionado->Text = "Cliente: " + nombreClienteSeleccionado +
-				" (NIT: " + fila->Cells["nit"]->Value->ToString() + ")";
-			lblClienteSeleccionado->Visible = true;
-			btnSiguientePaso1->Enabled = true;
-		}
-	}
-	private: System::Void btnCrearCliente_Click(System::Object^ sender, System::EventArgs^ e) {
-		frmClienteRapido^ popup = gcnew frmClienteRapido();
-
-		if (popup->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
-			// Buscar el cliente recién creado por NIT para obtener su ID
-			ControladorCliente^ ctrl = gcnew ControladorCliente();
-			Cliente^ clienteCreado = ctrl->buscarPorNit(popup->NitIngresado);
-
-			if (clienteCreado != nullptr) {
-				idClienteSeleccionado = clienteCreado->id_cliente;
-				nombreClienteSeleccionado = clienteCreado->nombre;
-				lblClienteSeleccionado->Text = "Cliente: " + clienteCreado->nombre +
-					" (NIT: " + clienteCreado->nit + ")";
-			}
-			else {
-				// Si no lo encontró usar los datos del popup
-				idClienteSeleccionado = 0;
-				nombreClienteSeleccionado = popup->NombreIngresado;
-				lblClienteSeleccionado->Text = "Cliente: " + popup->NombreIngresado +
-					" (NIT: " + popup->NitIngresado + ")";
-			}
-
-			lblClienteSeleccionado->Visible = true;
-			lblClienteNoEncontrado->Visible = false;
-			btnCrearCliente->Visible = false;
-			btnSiguientePaso1->Enabled = true;
-		}
-	}
-	private: System::Void btnSiguientePaso1_Click(System::Object^ sender, System::EventArgs^ e) {
-		// Ocultar controles del paso 1
-		txtBuscarCliente->Visible = false;
-		btnBuscarCliente->Visible = false;
-		btnCF->Visible = false;
-		dgvClientes->Visible = false;
-		lblClienteNoEncontrado->Visible = false;
-		lblClienteSeleccionado->Visible = false;
-		btnCrearCliente->Visible = false;
-		btnSiguientePaso1->Visible = false;
-
-		// Mostrar cliente en barra superior
-		lblClienteActivo->Text = "Cliente: " + nombreClienteSeleccionado;
-		lblClienteActivo->Visible = true;
-
-		// Mostrar paso 2
-		panelProductos->Visible = true;
-
-		// Actualizar barra de pasos
-		lblPaso1->BackColor = System::Drawing::Color::LightGreen;
-		lblPaso2->BackColor = System::Drawing::Color::SteelBlue;
-		lblPaso2->ForeColor = System::Drawing::Color::White;
-	}
-
-
-
-	private: System::Void btnBuscarProducto_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (txtBuscarProducto->Text->Trim() == "") return;
-
-		// TEMPORAL — tabla mock hasta que Emmanuel termine ControladorProducto
-		DataTable^ dt = gcnew DataTable();
-		dt->Columns->Add("id_producto");
-		dt->Columns->Add("codigo_barras");
-		dt->Columns->Add("nombre");
-		dt->Columns->Add("precio");
-
-		// Data mock de prueba
-		DataRow^ r1 = dt->NewRow();
-		r1["id_producto"] = "1"; r1["codigo_barras"] = "LAC001";
-		r1["nombre"] = "Leche Entera 1L"; r1["precio"] = "12.50";
-		dt->Rows->Add(r1);
-
-		DataRow^ r2 = dt->NewRow();
-		r2["id_producto"] = "4"; r2["codigo_barras"] = "PAN001";
-		r2["nombre"] = "Pan Molde"; r2["precio"] = "18.00";
-		dt->Rows->Add(r2);
-
-		DataRow^ r3 = dt->NewRow();
-		r3["id_producto"] = "7"; r3["codigo_barras"] = "GRA001";
-		r3["nombre"] = "Arroz 1lb"; r3["precio"] = "9.75";
-		dt->Rows->Add(r3);
-
-		dgvProductos->DataSource = dt;
-	}
-	private: System::Void dgvProductos_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-		if (e->RowIndex >= 0) {
-			DataGridViewRow^ fila = dgvProductos->Rows[e->RowIndex];
-			idProductoSeleccionado = Convert::ToInt32(fila->Cells["id_producto"]->Value);
-			nombreProductoSeleccionado = fila->Cells["nombre"]->Value->ToString();
-			precioProductoSeleccionado = Convert::ToDouble(fila->Cells["precio"]->Value);
-		}
-	}
-	private: System::Void btnAgregar_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (idProductoSeleccionado == 0) {
-			MessageBox::Show("Selecciona un producto primero.", "Aviso");
-			return;
+			carrito = gcnew System::Collections::Generic::List<Item^>();
+			historial = gcnew System::Collections::Generic::Stack<Item^>();
 		}
 
-		int cantidad = Convert::ToInt32(txtCantidad->Text);
-		if (cantidad <= 0) {
-			MessageBox::Show("La cantidad debe ser mayor a 0.", "Aviso");
-			return;
-		}
-
-		// Crear item
-		Item^ item = gcnew Item();
-		item->idProducto = idProductoSeleccionado;
-		item->nombre = nombreProductoSeleccionado;
-		item->cantidad = cantidad;
-		item->precio = precioProductoSeleccionado;
-		item->subtotal = cantidad * precioProductoSeleccionado;
-
-		// Agregar al vector (carrito) y al stack (historial)
-		carrito->Add(item);
-		historial->Push(item);
-
-		// Actualizar label del stack
-		lblUltimoAgregado->Text = "stack -> ultimo: " + item->nombre + " x" + cantidad;
-
-		// Actualizar carrito visual
-		ActualizarCarrito();
-
-		// Resetear seleccion
-		idProductoSeleccionado = 0;
-		txtCantidad->Text = "1";
-	}
-
-	private: void ActualizarCarrito() {
-		DataTable^ dt = gcnew DataTable();
-		dt->Columns->Add("#");
-		dt->Columns->Add("Producto");
-		dt->Columns->Add("Cant");
-		dt->Columns->Add("Precio");
-		dt->Columns->Add("Subtotal");
-
-		double subtotal = 0;
-
-		// for recorre el vector carrito
-		for (int i = 0; i < carrito->Count; i++) {
-			Item^ item = carrito[i];
-			DataRow^ row = dt->NewRow();
-			row["#"] = i + 1;
-			row["Producto"] = item->nombre;
-			row["Cant"] = item->cantidad;
-			row["Precio"] = "Q " + item->precio.ToString("0.00");
-			row["Subtotal"] = "Q " + item->subtotal.ToString("0.00");
-			dt->Rows->Add(row);
-			subtotal += item->subtotal;
-		}
-
-		dgvCarrito->DataSource = dt;
-
-		double iva = subtotal * 0.12;
-		double total = subtotal + iva;
-
-		lblSubtotal->Text = "Subtotal: Q " + subtotal.ToString("0.00");
-		lblIVA->Text = "IVA (12%): Q " + iva.ToString("0.00");
-		lblTotal->Text = "TOTAL: Q " + total.ToString("0.00");
-	}
-	private: System::Void btnDeshacer_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (historial->Count == 0) {
-			MessageBox::Show("No hay productos para deshacer.", "Aviso");
-			return;
-		}
-
-		// Quitar del stack
-		Item^ ultimo = historial->Pop();
-
-		// Quitar del vector carrito (el ultimo)
-		carrito->RemoveAt(carrito->Count - 1);
-
-		// Actualizar label del stack
-		if (historial->Count > 0) {
-			Item^ anterior = historial->Peek();
-			lblUltimoAgregado->Text = "stack -> ultimo: " + anterior->nombre + " x" + anterior->cantidad;
-		}
-		else {
-			lblUltimoAgregado->Text = "";
-		}
-
-		// Actualizar carrito visual
-		ActualizarCarrito();
-
-		MessageBox::Show("Se quitó: " + ultimo->nombre, "Deshacer");
-	}
-	private: System::Void btnLimpiarCarrito_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (carrito->Count == 0) return;
-
-		System::Windows::Forms::DialogResult confirmacion = MessageBox::Show(
-			"¿Limpiar todo el carrito?",
-			"Confirmar",
-			MessageBoxButtons::YesNo,
-			MessageBoxIcon::Warning
-		);
-
-		if (confirmacion == System::Windows::Forms::DialogResult::Yes) {
-			carrito->Clear();
-			historial->Clear();
-			lblUltimoAgregado->Text = "";
-			ActualizarCarrito();
-		}
-	}
-	private: System::Void btnVolverPaso1_Click(System::Object^ sender, System::EventArgs^ e) {
-		panelProductos->Visible = false;
-		txtBuscarCliente->Visible = true;
-		btnBuscarCliente->Visible = true;
-		btnCF->Visible = true;
-		dgvClientes->Visible = true;
-		lblClienteSeleccionado->Visible = true;
-		btnSiguientePaso1->Visible = true;
-		btnSiguientePaso1->Enabled = true;
-		lblPaso1->BackColor = System::Drawing::Color::SteelBlue;
-		lblPaso1->ForeColor = System::Drawing::Color::White;
-		lblPaso2->BackColor = System::Drawing::SystemColors::Control;
-		lblPaso2->ForeColor = System::Drawing::SystemColors::ControlText;
-	}
-
-
-	private: System::Void btnSiguientePaso2_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (carrito->Count == 0) {
-			MessageBox::Show("El carrito está vacío.", "Aviso");
-			return;
-		}
-
-		lblResumenCliente->Text = "Cliente: " + nombreClienteSeleccionado;
-		lblResumenCajero->Text = "Cajero: " + Globals::Datos::nombreActivo;
-		lblResumenSubtotal->Text = lblSubtotal->Text;
-		lblResumenIVA->Text = lblIVA->Text;
-		lblResumenTotal->Text = lblTotal->Text;
-
-		panelProductos->Visible = false;
-		panelPago->Visible = true;
-		panelPago->BringToFront();
-
-		lblPaso2->BackColor = System::Drawing::Color::LightGreen;
-		lblPaso2->ForeColor = System::Drawing::Color::Black;
-		lblPaso3->BackColor = System::Drawing::Color::SteelBlue;
-		lblPaso3->ForeColor = System::Drawing::Color::White;
-
-		// DEBUG
-		/*MessageBox::Show("panelPago visible: " + panelPago->Visible.ToString() +
-			" | panelProductos visible: " + panelProductos->Visible.ToString(), "Debug");*/
-	}
-	private: System::Void btnVolverPaso2_Click(System::Object^ sender, System::EventArgs^ e) {
-		panelPago->Visible = false;
-		panelProductos->Visible = true;
-		lblPaso2->BackColor = System::Drawing::Color::SteelBlue;
-		lblPaso2->ForeColor = System::Drawing::Color::White;
-		lblPaso3->BackColor = System::Drawing::SystemColors::Control;
-		lblPaso3->ForeColor = System::Drawing::SystemColors::ControlText;
-	}
-	private: System::Void btnCancelarVenta_Click(System::Object^ sender, System::EventArgs^ e) {
-		System::Windows::Forms::DialogResult confirmacion = MessageBox::Show(
-			"¿Cancelar la venta?",
-			"Confirmar",
-			MessageBoxButtons::YesNo,
-			MessageBoxIcon::Warning
-		);
-		if (confirmacion == System::Windows::Forms::DialogResult::Yes) {
+		System::Void btnRegresar_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->Close();
 		}
-	}
-	private: System::Void txtMontoRecibido_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-		try {
-			if (txtMontoRecibido->Text->Trim() == "") {
-				lblCambio->Text = "Cambio: Q 0.00";
-				lblCambio->BackColor = System::Drawing::Color::FromArgb(192, 255, 192);
-				return;
+
+		System::Void btnCF_Click(System::Object^ sender, System::EventArgs^ e) {
+			idClienteSeleccionado = 1;
+			nombreClienteSeleccionado = "Consumidor Final";
+			lblClienteSeleccionado->Text = "Cliente: Consumidor Final (CF)";
+			lblClienteSeleccionado->Visible = true;
+			lblClienteNoEncontrado->Visible = false;
+			btnCrearCliente->Visible = false;
+			btnSiguientePaso1->Enabled = true;
+		}
+
+		System::Void btnBuscarCliente_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (txtBuscarCliente->Text->Trim() == "") return;
+
+			idClienteSeleccionado = 0;
+			nombreClienteSeleccionado = "";
+			lblClienteSeleccionado->Visible = false;
+			btnSiguientePaso1->Enabled = false;
+
+			ControladorCliente^ ctrl = gcnew ControladorCliente();
+			List<Cliente^>^ lista = ctrl->buscarCliente(txtBuscarCliente->Text->Trim());
+
+			DataTable^ dt = gcnew DataTable();
+			dt->Columns->Add("id_cliente");
+			dt->Columns->Add("nit");
+			dt->Columns->Add("nombre");
+			dt->Columns->Add("telefono");
+
+			for (int i = 0; i < lista->Count; i++) {
+				Cliente^ c = lista[i];
+				DataRow^ row = dt->NewRow();
+				row["id_cliente"] = c->id_cliente;
+				row["nit"] = c->nit;
+				row["nombre"] = c->nombre;
+				row["telefono"] = c->telefono;
+				dt->Rows->Add(row);
 			}
 
-			// Extraer total del label
-			String^ totalStr = lblResumenTotal->Text->Replace("TOTAL: Q ", "")->Trim();
-			double total = Convert::ToDouble(totalStr);
-			double monto = Convert::ToDouble(txtMontoRecibido->Text);
+			dgvClientes->DataSource = dt;
 
-			if (monto < total) {
-				lblCambio->Text = "⚠ Monto insuficiente. Faltan Q " + (total - monto).ToString("0.00");
-				lblCambio->BackColor = System::Drawing::Color::Tomato;
+			if (lista->Count == 0) {
+				lblClienteNoEncontrado->Text = "NIT o nombre no encontrado.";
+				lblClienteNoEncontrado->Visible = true;
+				btnCrearCliente->Visible = true;
 			}
 			else {
-				double cambio = monto - total;
-				lblCambio->Text = "Cambio: Q " + cambio.ToString("0.00");
-				lblCambio->BackColor = System::Drawing::Color::FromArgb(192, 255, 192);
+				lblClienteNoEncontrado->Visible = false;
+				btnCrearCliente->Visible = false;
 			}
 		}
-		catch (...) {
-			lblCambio->Text = "Cambio: Q 0.00";
+
+		System::Void dgvClientes_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+			if (e->RowIndex >= 0) {
+				DataGridViewRow^ fila = dgvClientes->Rows[e->RowIndex];
+				idClienteSeleccionado = Convert::ToInt32(fila->Cells["id_cliente"]->Value);
+				nombreClienteSeleccionado = fila->Cells["nombre"]->Value->ToString();
+				lblClienteSeleccionado->Text = "Cliente: " + nombreClienteSeleccionado +
+					" (NIT: " + fila->Cells["nit"]->Value->ToString() + ")";
+				lblClienteSeleccionado->Visible = true;
+				btnSiguientePaso1->Enabled = true;
+			}
 		}
-	}
-	private: System::Void btnConfirmarVenta_Click(System::Object^ sender, System::EventArgs^ e) {
-		// Validar método de pago
-		if (rbEfectivo->Checked) {
-			if (txtMontoRecibido->Text->Trim() == "") {
-				MessageBox::Show("Ingresa el monto recibido.", "Aviso");
+
+		System::Void btnCrearCliente_Click(System::Object^ sender, System::EventArgs^ e) {
+			frmClienteRapido^ popup = gcnew frmClienteRapido();
+
+			if (popup->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+				ControladorCliente^ ctrl = gcnew ControladorCliente();
+				Cliente^ clienteCreado = ctrl->buscarPorNit(popup->NitIngresado);
+
+				if (clienteCreado != nullptr) {
+					idClienteSeleccionado = clienteCreado->id_cliente;
+					nombreClienteSeleccionado = clienteCreado->nombre;
+					lblClienteSeleccionado->Text = "Cliente: " + clienteCreado->nombre +
+						" (NIT: " + clienteCreado->nit + ")";
+				}
+				else {
+					idClienteSeleccionado = 0;
+					nombreClienteSeleccionado = popup->NombreIngresado;
+					lblClienteSeleccionado->Text = "Cliente: " + popup->NombreIngresado +
+						" (NIT: " + popup->NitIngresado + ")";
+				}
+
+				lblClienteSeleccionado->Visible = true;
+				lblClienteNoEncontrado->Visible = false;
+				btnCrearCliente->Visible = false;
+				btnSiguientePaso1->Enabled = true;
+			}
+		}
+
+		System::Void btnSiguientePaso1_Click(System::Object^ sender, System::EventArgs^ e) {
+			txtBuscarCliente->Visible = false;
+			btnBuscarCliente->Visible = false;
+			btnCF->Visible = false;
+			dgvClientes->Visible = false;
+			lblClienteNoEncontrado->Visible = false;
+			lblClienteSeleccionado->Visible = false;
+			btnCrearCliente->Visible = false;
+			btnSiguientePaso1->Visible = false;
+
+			lblClienteActivo->Text = "Cliente: " + nombreClienteSeleccionado;
+			lblClienteActivo->Visible = true;
+
+			panelProductos->Visible = true;
+
+			lblPaso1->BackColor = System::Drawing::Color::LightGreen;
+			lblPaso2->BackColor = System::Drawing::Color::SteelBlue;
+			lblPaso2->ForeColor = System::Drawing::Color::White;
+		}
+
+		System::Void btnBuscarProducto_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (txtBuscarProducto->Text->Trim() == "") return;
+
+			DataTable^ dt = gcnew DataTable();
+			dt->Columns->Add("id_producto");
+			dt->Columns->Add("codigo_barras");
+			dt->Columns->Add("nombre");
+			dt->Columns->Add("precio");
+
+			DataRow^ r1 = dt->NewRow();
+			r1["id_producto"] = "1"; r1["codigo_barras"] = "LAC001";
+			r1["nombre"] = "Leche Entera 1L"; r1["precio"] = "12.50";
+			dt->Rows->Add(r1);
+
+			DataRow^ r2 = dt->NewRow();
+			r2["id_producto"] = "4"; r2["codigo_barras"] = "PAN001";
+			r2["nombre"] = "Pan Molde"; r2["precio"] = "18.00";
+			dt->Rows->Add(r2);
+
+			DataRow^ r3 = dt->NewRow();
+			r3["id_producto"] = "7"; r3["codigo_barras"] = "GRA001";
+			r3["nombre"] = "Arroz 1lb"; r3["precio"] = "9.75";
+			dt->Rows->Add(r3);
+
+			dgvProductos->DataSource = dt;
+		}
+
+		System::Void dgvProductos_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+			if (e->RowIndex >= 0) {
+				DataGridViewRow^ fila = dgvProductos->Rows[e->RowIndex];
+				idProductoSeleccionado = Convert::ToInt32(fila->Cells["id_producto"]->Value);
+				nombreProductoSeleccionado = fila->Cells["nombre"]->Value->ToString();
+				precioProductoSeleccionado = Convert::ToDouble(fila->Cells["precio"]->Value);
+			}
+		}
+
+		System::Void btnAgregar_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (idProductoSeleccionado == 0) {
+				MessageBox::Show("Selecciona un producto primero.", "Aviso");
 				return;
 			}
-			String^ totalStr = lblResumenTotal->Text->Replace("TOTAL: Q ", "")->Trim();
-			double total = Convert::ToDouble(totalStr);
-			double monto = Convert::ToDouble(txtMontoRecibido->Text);
-			if (monto < total) {
-				MessageBox::Show("El monto recibido es insuficiente.", "Error");
+
+			int cantidad = Convert::ToInt32(txtCantidad->Text);
+			if (cantidad <= 0) {
+				MessageBox::Show("La cantidad debe ser mayor a 0.", "Aviso");
 				return;
 			}
+
+			Item^ item = gcnew Item();
+			item->idProducto = idProductoSeleccionado;
+			item->nombre = nombreProductoSeleccionado;
+			item->cantidad = cantidad;
+			item->precio = precioProductoSeleccionado;
+			item->subtotal = cantidad * precioProductoSeleccionado;
+
+			carrito->Add(item);
+			historial->Push(item);
+
+			lblUltimoAgregado->Text = "stack -> ultimo: " + item->nombre + " x" + cantidad;
+
+			ActualizarCarrito();
+
+			idProductoSeleccionado = 0;
+			txtCantidad->Text = "1";
 		}
 
-		// Determinar método de pago
-		String^ metodoPago = rbEfectivo->Checked ? "Efectivo" : "Tarjeta";
+		void ActualizarCarrito() {
+			DataTable^ dt = gcnew DataTable();
+			dt->Columns->Add("#");
+			dt->Columns->Add("Producto");
+			dt->Columns->Add("Cant");
+			dt->Columns->Add("Precio");
+			dt->Columns->Add("Subtotal");
 
-		// Obtener total real
-		String^ totalStr2 = lblResumenTotal->Text->Replace("TOTAL: Q ", "")->Trim();
-		double totalFinal = Convert::ToDouble(totalStr2);
+			double subtotal = 0;
 
-		// Guardar venta en DB
-		ControladorVenta^ ctrlVenta = gcnew ControladorVenta();
-		int idVenta = ctrlVenta->guardarVenta(
-			Globals::Datos::idTiendaActiva,
-			idClienteSeleccionado,
-			Globals::Datos::idUsuarioActivo,
-			totalFinal,
-			metodoPago
-		);
+			for (int i = 0; i < carrito->Count; i++) {
+				Item^ item = carrito[i];
+				DataRow^ row = dt->NewRow();
+				row["#"] = i + 1;
+				row["Producto"] = item->nombre;
+				row["Cant"] = item->cantidad;
+				row["Precio"] = "Q " + item->precio.ToString("0.00");
+				row["Subtotal"] = "Q " + item->subtotal.ToString("0.00");
+				dt->Rows->Add(row);
+				subtotal += item->subtotal;
+			}
 
-		if (idVenta == 0) {
-			MessageBox::Show("Error al guardar la venta.", "Error");
-			return;
+			dgvCarrito->DataSource = dt;
+
+			double iva = subtotal * 0.12;
+			double total = subtotal + iva;
+
+			lblSubtotal->Text = "Subtotal: Q " + subtotal.ToString("0.00");
+			lblIVA->Text = "IVA (12%): Q " + iva.ToString("0.00");
+			lblTotal->Text = "TOTAL: Q " + total.ToString("0.00");
 		}
 
-		// Guardar detalle — recorre el vector carrito
-		for (int i = 0; i < carrito->Count; i++) {
-			Item^ item = carrito[i];
-			ctrlVenta->guardarDetalle(
-				idVenta,
-				item->idProducto,
-				item->cantidad,
-				item->precio
+		System::Void btnDeshacer_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (historial->Count == 0) {
+				MessageBox::Show("No hay productos para deshacer.", "Aviso");
+				return;
+			}
+
+			Item^ ultimo = historial->Pop();
+			carrito->RemoveAt(carrito->Count - 1);
+
+			if (historial->Count > 0) {
+				Item^ anterior = historial->Peek();
+				lblUltimoAgregado->Text = "stack -> ultimo: " + anterior->nombre + " x" + anterior->cantidad;
+			}
+			else {
+				lblUltimoAgregado->Text = "";
+			}
+
+			ActualizarCarrito();
+
+			MessageBox::Show("Se quitó: " + ultimo->nombre, "Deshacer");
+		}
+
+		System::Void btnLimpiarCarrito_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (carrito->Count == 0) return;
+
+			System::Windows::Forms::DialogResult confirmacion = MessageBox::Show(
+				"¿Limpiar todo el carrito?",
+				"Confirmar",
+				MessageBoxButtons::YesNo,
+				MessageBoxIcon::Warning
 			);
+
+			if (confirmacion == System::Windows::Forms::DialogResult::Yes) {
+				carrito->Clear();
+				historial->Clear();
+				lblUltimoAgregado->Text = "";
+				ActualizarCarrito();
+			}
 		}
 
-		// Mostrar resumen
-		String^ resumen = "VENTA CONFIRMADA\n\n";
-		resumen += "No. Venta: #" + idVenta + "\n";
-		resumen += "Cliente: " + nombreClienteSeleccionado + "\n";
-		resumen += "Cajero: " + Globals::Datos::nombreActivo + "\n";
-		resumen += "Método: " + metodoPago + "\n";
-		resumen += lblResumenSubtotal->Text + "\n";
-		resumen += lblResumenIVA->Text + "\n";
-		resumen += lblResumenTotal->Text + "\n";
-		if (rbEfectivo->Checked) {
-			resumen += lblCambio->Text;
+		System::Void btnVolverPaso1_Click(System::Object^ sender, System::EventArgs^ e) {
+			panelProductos->Visible = false;
+			txtBuscarCliente->Visible = true;
+			btnBuscarCliente->Visible = true;
+			btnCF->Visible = true;
+			dgvClientes->Visible = true;
+			lblClienteSeleccionado->Visible = true;
+			btnSiguientePaso1->Visible = true;
+			btnSiguientePaso1->Enabled = true;
+			lblPaso1->BackColor = System::Drawing::Color::SteelBlue;
+			lblPaso1->ForeColor = System::Drawing::Color::White;
+			lblPaso2->BackColor = System::Drawing::SystemColors::Control;
+			lblPaso2->ForeColor = System::Drawing::SystemColors::ControlText;
 		}
 
-		MessageBox::Show(resumen, "Venta Exitosa");
+		System::Void btnSiguientePaso2_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (carrito->Count == 0) {
+				MessageBox::Show("El carrito está vacío.", "Aviso");
+				return;
+			}
 
-		// Limpiar y cerrar
-		carrito->Clear();
-		historial->Clear();
-		this->Close();
-	}
-};
+			lblResumenCliente->Text = "Cliente: " + nombreClienteSeleccionado;
+			lblResumenCajero->Text = "Cajero: " + Globals::Datos::nombreActivo;
+			lblResumenSubtotal->Text = lblSubtotal->Text;
+			lblResumenIVA->Text = lblIVA->Text;
+			lblResumenTotal->Text = lblTotal->Text;
+
+			panelProductos->Visible = false;
+			panelPago->Visible = true;
+			panelPago->BringToFront();
+
+			lblPaso2->BackColor = System::Drawing::Color::LightGreen;
+			lblPaso2->ForeColor = System::Drawing::Color::Black;
+			lblPaso3->BackColor = System::Drawing::Color::SteelBlue;
+			lblPaso3->ForeColor = System::Drawing::Color::White;
+		}
+
+		System::Void btnVolverPaso2_Click(System::Object^ sender, System::EventArgs^ e) {
+			panelPago->Visible = false;
+			panelProductos->Visible = true;
+			lblPaso2->BackColor = System::Drawing::Color::SteelBlue;
+			lblPaso2->ForeColor = System::Drawing::Color::White;
+			lblPaso3->BackColor = System::Drawing::SystemColors::Control;
+			lblPaso3->ForeColor = System::Drawing::SystemColors::ControlText;
+		}
+
+		System::Void btnCancelarVenta_Click(System::Object^ sender, System::EventArgs^ e) {
+			System::Windows::Forms::DialogResult confirmacion = MessageBox::Show(
+				"¿Cancelar la venta?",
+				"Confirmar",
+				MessageBoxButtons::YesNo,
+				MessageBoxIcon::Warning
+			);
+			if (confirmacion == System::Windows::Forms::DialogResult::Yes) {
+				this->Close();
+			}
+		}
+
+		System::Void txtMontoRecibido_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+			try {
+				if (txtMontoRecibido->Text->Trim() == "") {
+					lblCambio->Text = "Cambio: Q 0.00";
+					lblCambio->BackColor = System::Drawing::Color::FromArgb(192, 255, 192);
+					return;
+				}
+
+				String^ totalStr = lblResumenTotal->Text->Replace("TOTAL: Q ", "")->Trim();
+				double total = Convert::ToDouble(totalStr);
+				double monto = Convert::ToDouble(txtMontoRecibido->Text);
+
+				if (monto < total) {
+					lblCambio->Text = "⚠ Monto insuficiente. Faltan Q " + (total - monto).ToString("0.00");
+					lblCambio->BackColor = System::Drawing::Color::Tomato;
+				}
+				else {
+					double cambio = monto - total;
+					lblCambio->Text = "Cambio: Q " + cambio.ToString("0.00");
+					lblCambio->BackColor = System::Drawing::Color::FromArgb(192, 255, 192);
+				}
+			}
+			catch (...) {
+				lblCambio->Text = "Cambio: Q 0.00";
+			}
+		}
+
+		System::Void btnConfirmarVenta_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (rbEfectivo->Checked) {
+				if (txtMontoRecibido->Text->Trim() == "") {
+					MessageBox::Show("Ingresa el monto recibido.", "Aviso");
+					return;
+				}
+				String^ totalStr = lblResumenTotal->Text->Replace("TOTAL: Q ", "")->Trim();
+				double total = Convert::ToDouble(totalStr);
+				double monto = Convert::ToDouble(txtMontoRecibido->Text);
+				if (monto < total) {
+					MessageBox::Show("El monto recibido es insuficiente.", "Error");
+					return;
+				}
+			}
+
+			String^ metodoPago = rbEfectivo->Checked ? "Efectivo" : "Tarjeta";
+
+			String^ totalStr2 = lblResumenTotal->Text->Replace("TOTAL: Q ", "")->Trim();
+			double totalFinal = Convert::ToDouble(totalStr2);
+
+			ControladorVenta^ ctrlVenta = gcnew ControladorVenta();
+			int idVenta = ctrlVenta->guardarVenta(
+				Globals::Datos::idTiendaActiva,
+				idClienteSeleccionado,
+				Globals::Datos::idUsuarioActivo,
+				totalFinal,
+				metodoPago
+			);
+
+			if (idVenta == 0) {
+				MessageBox::Show("Error al guardar la venta.", "Error");
+				return;
+			}
+
+			for (int i = 0; i < carrito->Count; i++) {
+				Item^ item = carrito[i];
+				ctrlVenta->guardarDetalle(
+					idVenta,
+					item->idProducto,
+					item->cantidad,
+					item->precio
+				);
+			}
+
+			String^ resumen = "VENTA CONFIRMADA\n\n";
+			resumen += "No. Venta: #" + idVenta + "\n";
+			resumen += "Cliente: " + nombreClienteSeleccionado + "\n";
+			resumen += "Cajero: " + Globals::Datos::nombreActivo + "\n";
+			resumen += "Método: " + metodoPago + "\n";
+			resumen += lblResumenSubtotal->Text + "\n";
+			resumen += lblResumenIVA->Text + "\n";
+			resumen += lblResumenTotal->Text + "\n";
+			if (rbEfectivo->Checked) {
+				resumen += lblCambio->Text;
+			}
+
+			MessageBox::Show(resumen, "Venta Exitosa");
+
+			carrito->Clear();
+			historial->Clear();
+			this->Close();
+		}
+	};
 }

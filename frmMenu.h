@@ -4,6 +4,7 @@
 #include "frmInventario.h"
 #include "frmVenta.h"
 #include "frmHistorialVentas.h"
+#include "frmClientes.h"
 
 namespace Supermercado {
 
@@ -103,7 +104,7 @@ namespace Supermercado {
 			this->label2->Location = System::Drawing::Point(90, 122);
 			this->label2->MaximumSize = System::Drawing::Size(300, 100);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(102, 20);
+			this->label2->Size = System::Drawing::Size(84, 16);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"Bienvenid@, ";
 			// 
@@ -116,7 +117,7 @@ namespace Supermercado {
 			this->lblTitulo->Location = System::Drawing::Point(88, 64);
 			this->lblTitulo->MaximumSize = System::Drawing::Size(300, 100);
 			this->lblTitulo->Name = L"lblTitulo";
-			this->lblTitulo->Size = System::Drawing::Size(209, 35);
+			this->lblTitulo->Size = System::Drawing::Size(168, 29);
 			this->lblTitulo->TabIndex = 2;
 			this->lblTitulo->Text = L"Supermercado";
 			// 
@@ -129,7 +130,7 @@ namespace Supermercado {
 			this->lblBienvenida->Location = System::Drawing::Point(189, 122);
 			this->lblBienvenida->MaximumSize = System::Drawing::Size(300, 100);
 			this->lblBienvenida->Name = L"lblBienvenida";
-			this->lblBienvenida->Size = System::Drawing::Size(46, 20);
+			this->lblBienvenida->Size = System::Drawing::Size(38, 16);
 			this->lblBienvenida->TabIndex = 4;
 			this->lblBienvenida->Text = L"name";
 			// 
@@ -184,6 +185,7 @@ namespace Supermercado {
 			this->btnClientes->TabIndex = 9;
 			this->btnClientes->Text = L"Clientes";
 			this->btnClientes->UseVisualStyleBackColor = false;
+			this->btnClientes->Click += gcnew System::EventHandler(this, &frmMenu::btnClientes_Click);
 			// 
 			// btnHistorialVentas
 			// 
@@ -226,7 +228,7 @@ namespace Supermercado {
 			this->lblRol->Location = System::Drawing::Point(836, 122);
 			this->lblRol->MaximumSize = System::Drawing::Size(300, 100);
 			this->lblRol->Name = L"lblRol";
-			this->lblRol->Size = System::Drawing::Size(46, 20);
+			this->lblRol->Size = System::Drawing::Size(38, 16);
 			this->lblRol->TabIndex = 14;
 			this->lblRol->Text = L"name";
 			// 
@@ -278,15 +280,30 @@ namespace Supermercado {
 
 	private: System::Void btnVenta_Click(System::Object^ sender, System::EventArgs^ e) {
 		frmVenta^ venta = gcnew frmVenta();
+		this->Hide();
 		venta->ShowDialog();
+		this->Show();
 	}
-private: System::Void btnInventario_Click(System::Object^ sender, System::EventArgs^ e) {
-	frmInventario^ ventanaInventario = gcnew frmInventario();
-	ventanaInventario->ShowDialog();
-}
-private: System::Void btnHistorialVentas_Click(System::Object^ sender, System::EventArgs^ e) {
-	Supermercado::frmHistorialVentas^ ventanaHistorial = gcnew Supermercado::frmHistorialVentas();
-	ventanaHistorial->ShowDialog();
-}
+
+	private: System::Void btnInventario_Click(System::Object^ sender, System::EventArgs^ e) {
+		frmInventario^ ventanaInventario = gcnew frmInventario();
+		this->Hide();
+		ventanaInventario->ShowDialog();
+		this->Show();
+	}
+
+	private: System::Void btnHistorialVentas_Click(System::Object^ sender, System::EventArgs^ e) {
+		Supermercado::frmHistorialVentas^ ventanaHistorial = gcnew Supermercado::frmHistorialVentas();
+		this->Hide();
+		ventanaHistorial->ShowDialog();
+		this->Show();
+	}
+
+	private: System::Void btnClientes_Click(System::Object^ sender, System::EventArgs^ e) {
+		frmClientes^ ventanaClientes = gcnew frmClientes();
+		this->Hide();
+		ventanaClientes->ShowDialog();
+		this->Show();
+	}
 };
 }

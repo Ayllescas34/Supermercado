@@ -1,4 +1,5 @@
 #pragma once
+#include "ControladorVenta.h"
 
 namespace Supermercado {
 
@@ -10,17 +11,19 @@ namespace Supermercado {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Resumen de frmHistorialVentas
+	/// Formulario de Historial de Ventas
+	/// Muestra todas las ventas o filtra por rango de fechas
 	/// </summary>
 	public ref class frmHistorialVentas : public System::Windows::Forms::Form
 	{
+	private:
+		ControladorVenta^ controlador;
+
 	public:
 		frmHistorialVentas(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: agregar código de constructor aquí
-			//
+			controlador = gcnew ControladorVenta();
 		}
 
 	protected:
@@ -34,6 +37,7 @@ namespace Supermercado {
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::DateTimePicker^ dtpDesde;
@@ -50,7 +54,6 @@ namespace Supermercado {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ colMetodo;
 	private: System::Windows::Forms::Label^ lblTotal;
 	private: System::Windows::Forms::Button^ btnRegresar;
-	protected:
 
 	private:
 		/// <summary>
@@ -92,7 +95,7 @@ namespace Supermercado {
 				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(48, 37);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(276, 34);
+			this->label1->Size = System::Drawing::Size(229, 29);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Historial de Ventas";
 			// 
@@ -103,7 +106,7 @@ namespace Supermercado {
 				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(33, 118);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(61, 23);
+			this->label2->Size = System::Drawing::Size(50, 19);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Desde:";
 			// 
@@ -122,7 +125,7 @@ namespace Supermercado {
 				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(33, 159);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(53, 23);
+			this->label3->Size = System::Drawing::Size(44, 19);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Hasta";
 			// 
@@ -180,6 +183,7 @@ namespace Supermercado {
 			// 
 			// colID
 			// 
+			this->colID->DataPropertyName = L"id_venta";
 			this->colID->HeaderText = L"ID";
 			this->colID->MinimumWidth = 6;
 			this->colID->Name = L"colID";
@@ -187,6 +191,7 @@ namespace Supermercado {
 			// 
 			// colFecha
 			// 
+			this->colFecha->DataPropertyName = L"fecha";
 			this->colFecha->HeaderText = L"Fecha";
 			this->colFecha->MinimumWidth = 6;
 			this->colFecha->Name = L"colFecha";
@@ -194,6 +199,7 @@ namespace Supermercado {
 			// 
 			// colCliente
 			// 
+			this->colCliente->DataPropertyName = L"cliente";
 			this->colCliente->HeaderText = L"Cliente";
 			this->colCliente->MinimumWidth = 6;
 			this->colCliente->Name = L"colCliente";
@@ -201,6 +207,7 @@ namespace Supermercado {
 			// 
 			// colCajero
 			// 
+			this->colCajero->DataPropertyName = L"cajero";
 			this->colCajero->HeaderText = L"Cajero";
 			this->colCajero->MinimumWidth = 6;
 			this->colCajero->Name = L"colCajero";
@@ -208,6 +215,7 @@ namespace Supermercado {
 			// 
 			// colTotal
 			// 
+			this->colTotal->DataPropertyName = L"total";
 			this->colTotal->HeaderText = L"Total";
 			this->colTotal->MinimumWidth = 6;
 			this->colTotal->Name = L"colTotal";
@@ -215,7 +223,8 @@ namespace Supermercado {
 			// 
 			// colMetodo
 			// 
-			this->colMetodo->HeaderText = L"Metodo";
+			this->colMetodo->DataPropertyName = L"metodo_pago";
+			this->colMetodo->HeaderText = L"Método";
 			this->colMetodo->MinimumWidth = 6;
 			this->colMetodo->Name = L"colMetodo";
 			this->colMetodo->ReadOnly = true;
@@ -229,7 +238,7 @@ namespace Supermercado {
 				static_cast<System::Byte>(0)));
 			this->lblTotal->Location = System::Drawing::Point(805, 399);
 			this->lblTotal->Name = L"lblTotal";
-			this->lblTotal->Size = System::Drawing::Size(194, 22);
+			this->lblTotal->Size = System::Drawing::Size(168, 19);
 			this->lblTotal->TabIndex = 8;
 			this->lblTotal->Text = L"Total del periodo: Q 0.00";
 			// 
@@ -244,12 +253,13 @@ namespace Supermercado {
 			this->btnRegresar->TabIndex = 9;
 			this->btnRegresar->Text = L"Regresar al Menú";
 			this->btnRegresar->UseVisualStyleBackColor = false;
+			this->btnRegresar->Click += gcnew System::EventHandler(this, &frmHistorialVentas::btnRegresar_Click);
 			// 
 			// frmHistorialVentas
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1041, 452);
+			this->ClientSize = System::Drawing::Size(1091, 469);
 			this->Controls->Add(this->btnRegresar);
 			this->Controls->Add(this->lblTotal);
 			this->Controls->Add(this->dgvVentas);
@@ -261,7 +271,7 @@ namespace Supermercado {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"frmHistorialVentas";
-			this->Text = L"frmHistorialVentas";
+			this->Text = L"Historial de Ventas";
 			this->Load += gcnew System::EventHandler(this, &frmHistorialVentas::frmHistorialVentas_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVentas))->EndInit();
 			this->ResumeLayout(false);
@@ -269,38 +279,74 @@ namespace Supermercado {
 
 		}
 #pragma endregion
-	private: System::Void frmHistorialVentas_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void btnFiltrar_Click(System::Object^ sender, System::EventArgs^ e) {
-		dgvVentas->Columns->Clear();
 
-		dgvVentas->Columns->Add("id", "ID Venta");
-		dgvVentas->Columns->Add("fecha", "Fecha y Hora");
-		dgvVentas->Columns->Add("cliente", "Cliente");
-		dgvVentas->Columns->Add("total", "Total");
-		dgvVentas->Columns->Add("pago", "Método Pago");
+	private:
+		// ============================================================
+		// MÉTODO PRINCIPAL: Carga datos desde la DB al DataGridView
+		// ============================================================
+		void CargarVentas(DataTable^ datos) {
+			if (datos == nullptr || datos->Rows->Count == 0) {
+				dgvVentas->DataSource = nullptr;
+				lblTotal->Text = "Total del periodo: Q 0.00";
+				MessageBox::Show("No se encontraron ventas.", "Información",
+					MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
 
-		dgvVentas->Rows->Add("2", "2026-05-18 14:35", "Carlos López", "Q 325.50", "Tarjeta");
-		dgvVentas->Rows->Add("3", "2026-05-22 09:12", "María Daniela", "Q 75.00", "Efectivo");
+			// Asignar datos al DataGridView
+			dgvVentas->DataSource = datos;
 
-		lblTotal->Text = "Total del periodo: Q 400.50";
+			// Calcular el total sumando la columna "total"
+			double totalPeriodo = 0.0;
+			for each (DataRow ^ fila in datos->Rows) {
+				totalPeriodo += Convert::ToDouble(fila["total"]);
+			}
 
-	}
-private: System::Void btnVerTodo_Click(System::Object^ sender, System::EventArgs^ e) {
-	dgvVentas->Columns->Clear();
+			// Mostrar total con formato Q ###.##
+			lblTotal->Text = String::Format("Total del periodo: Q {0:N2}", totalPeriodo);
+		}
 
-	dgvVentas->Columns->Add("id", "ID Venta");
-	dgvVentas->Columns->Add("fecha", "Fecha y Hora");
-	dgvVentas->Columns->Add("cliente", "Cliente");
-	dgvVentas->Columns->Add("total", "Total");
-	dgvVentas->Columns->Add("pago", "Método Pago");
+		// ============================================================
+		// Al cargar el formulario, muestra todas las ventas
+		// ============================================================
+		System::Void frmHistorialVentas_Load(System::Object^ sender, System::EventArgs^ e) {
+			DataTable^ todasVentas = controlador->listarVentas();
+			CargarVentas(todasVentas);
+		}
 
-	dgvVentas->Rows->Add("1", "2026-05-15 10:20", "Consumidor Final", "Q 150.00", "Efectivo");
-	dgvVentas->Rows->Add("2", "2026-05-18 14:35", "Carlos López", "Q 325.50", "Tarjeta");
-	dgvVentas->Rows->Add("3", "2026-05-22 09:12", "María Daniela", "Q 75.00", "Efectivo");
-	dgvVentas->Rows->Add("4", "2026-05-23 11:40", "Consumidor Final", "Q 210.00", "Tarjeta");
+		// ============================================================
+		// Botón "Ver Todo" — recarga todas las ventas
+		// ============================================================
+		System::Void btnVerTodo_Click(System::Object^ sender, System::EventArgs^ e) {
+			DataTable^ todasVentas = controlador->listarVentas();
+			CargarVentas(todasVentas);
+		}
 
-	lblTotal->Text = "Total del periodo: Q 760.50";
-}
-};
+		// ============================================================
+		// Botón "Filtrar" — ventas por rango de fechas
+		// ============================================================
+		System::Void btnFiltrar_Click(System::Object^ sender, System::EventArgs^ e) {
+			// Validar que la fecha "Desde" sea menor o igual a "Hasta"
+			if (dtpDesde->Value > dtpHasta->Value) {
+				MessageBox::Show("La fecha 'Desde' no puede ser mayor que 'Hasta'.",
+					"Error de validación", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
+			// Convertir fechas a formato MySQL: yyyy-MM-dd
+			String^ fechaDesde = dtpDesde->Value.ToString("yyyy-MM-dd");
+			String^ fechaHasta = dtpHasta->Value.ToString("yyyy-MM-dd");
+
+			// Consultar controlador
+			DataTable^ ventasFiltradas = controlador->listarVentasPorFecha(fechaDesde, fechaHasta);
+			CargarVentas(ventasFiltradas);
+		}
+
+		// ============================================================
+		// Botón "Regresar" — cierra el formulario
+		// ============================================================
+		System::Void btnRegresar_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
+	};
 }
