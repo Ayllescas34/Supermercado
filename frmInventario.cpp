@@ -1,0 +1,2 @@
+#include "frmInventario.h"
+

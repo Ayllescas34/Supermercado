@@ -21,6 +21,7 @@ public:
 		cnn = nullptr;
 		strConexion = "Database = " + basededatos +
 			"; DataSource = " + servidor +
+			"; Port = 3306" +
 			"; User id = " + usuario +
 			"; Password = " + clave;
 	}
