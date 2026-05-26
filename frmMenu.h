@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "frmInventario.h"
 #include "frmVenta.h"
+#include "frmHistorialVentas.h"
 
 namespace Supermercado {
 
@@ -193,6 +194,7 @@ namespace Supermercado {
 			this->btnHistorialVentas->TabIndex = 8;
 			this->btnHistorialVentas->Text = L"Historial";
 			this->btnHistorialVentas->UseVisualStyleBackColor = false;
+			this->btnHistorialVentas->Click += gcnew System::EventHandler(this, &frmMenu::btnHistorialVentas_Click);
 			// 
 			// btnSalir
 			// 
@@ -281,6 +283,10 @@ namespace Supermercado {
 private: System::Void btnInventario_Click(System::Object^ sender, System::EventArgs^ e) {
 	frmInventario^ ventanaInventario = gcnew frmInventario();
 	ventanaInventario->ShowDialog();
+}
+private: System::Void btnHistorialVentas_Click(System::Object^ sender, System::EventArgs^ e) {
+	Supermercado::frmHistorialVentas^ ventanaHistorial = gcnew Supermercado::frmHistorialVentas();
+	ventanaHistorial->ShowDialog();
 }
 };
 }

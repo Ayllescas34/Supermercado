@@ -131,6 +131,7 @@
     <ClCompile Include="frmInventario.cpp" />
     <ClCompile Include="ControladorVenta.cpp" />
     <ClCompile Include="frmClienteRapido.cpp" />
+    <ClCompile Include="frmHistorialVentas.cpp" />
     <ClCompile Include="frmLogin.cpp" />
     <ClCompile Include="frmMenu.cpp" />
     <ClCompile Include="frmVenta.cpp" />
@@ -146,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="ControladorVenta.h" />
     <ClInclude Include="frmClienteRapido.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmHistorialVentas.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmLogin.h">
@@ -172,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInventario.resx">
       <DependentUpon>frmInventario.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHistorialVentas.resx">
+      <DependentUpon>frmHistorialVentas.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.h</DependentUpon>
