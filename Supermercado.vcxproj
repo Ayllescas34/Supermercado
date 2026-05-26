@@ -125,7 +125,6 @@
   <ItemGroup>
     <ClCompile Include="ConexionBD.cpp" />
     <ClCompile Include="ControladorUsuario.cpp" />
-    <ClCompile Include="ControladorVenta.cpp" />
     <ClCompile Include="frmHistorialVentas.cpp" />
     <ClCompile Include="frmLogin.cpp" />
     <ClCompile Include="frmMenu.cpp" />
@@ -134,7 +133,6 @@
   <ItemGroup>
     <ClInclude Include="ConexionBD.h" />
     <ClInclude Include="ControladorUsuario.h" />
-    <ClInclude Include="ControladorVenta.h" />
     <ClInclude Include="frmHistorialVentas.h">
       <FileType>CppForm</FileType>
     </ClInclude>
