@@ -136,6 +136,7 @@
     <ClCompile Include="frmLogin.cpp" />
     <ClCompile Include="frmMenu.cpp" />
     <ClCompile Include="frmVenta.cpp" />
+    <ClCompile Include="frmUsuarios.cpp" />
     <ClCompile Include="MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmVenta.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmUsuarios.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Globals.h" />
