@@ -1,6 +1,7 @@
 #pragma once
 //#include "Globals.h"
 #include "Globals.h"
+#include "frmUsuarios.h"
 
 namespace Supermercado {
 
@@ -100,7 +101,7 @@ namespace Supermercado {
 			this->label2->Location = System::Drawing::Point(90, 122);
 			this->label2->MaximumSize = System::Drawing::Size(300, 100);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(102, 20);
+			this->label2->Size = System::Drawing::Size(84, 16);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"Bienvenid@, ";
 			// 
@@ -113,7 +114,7 @@ namespace Supermercado {
 			this->lblTitulo->Location = System::Drawing::Point(88, 64);
 			this->lblTitulo->MaximumSize = System::Drawing::Size(300, 100);
 			this->lblTitulo->Name = L"lblTitulo";
-			this->lblTitulo->Size = System::Drawing::Size(209, 35);
+			this->lblTitulo->Size = System::Drawing::Size(168, 29);
 			this->lblTitulo->TabIndex = 2;
 			this->lblTitulo->Text = L"Supermercado";
 			// 
@@ -126,7 +127,7 @@ namespace Supermercado {
 			this->lblBienvenida->Location = System::Drawing::Point(189, 122);
 			this->lblBienvenida->MaximumSize = System::Drawing::Size(300, 100);
 			this->lblBienvenida->Name = L"lblBienvenida";
-			this->lblBienvenida->Size = System::Drawing::Size(46, 20);
+			this->lblBienvenida->Size = System::Drawing::Size(38, 16);
 			this->lblBienvenida->TabIndex = 4;
 			this->lblBienvenida->Text = L"name";
 			// 
@@ -169,6 +170,7 @@ namespace Supermercado {
 			this->btnUsuarios->TabIndex = 10;
 			this->btnUsuarios->Text = L"Usuarios";
 			this->btnUsuarios->UseVisualStyleBackColor = false;
+			this->btnUsuarios->Click += gcnew System::EventHandler(this, &frmMenu::btnUsuarios_Click);
 			// 
 			// btnClientes
 			// 
@@ -220,7 +222,7 @@ namespace Supermercado {
 			this->lblRol->Location = System::Drawing::Point(836, 122);
 			this->lblRol->MaximumSize = System::Drawing::Size(300, 100);
 			this->lblRol->Name = L"lblRol";
-			this->lblRol->Size = System::Drawing::Size(46, 20);
+			this->lblRol->Size = System::Drawing::Size(38, 16);
 			this->lblRol->TabIndex = 14;
 			this->lblRol->Text = L"name";
 			// 
@@ -270,5 +272,11 @@ private: System::Void btnSalir_Click(System::Object^ sender, System::EventArgs^ 
 
 
 
+	private: System::Void btnUsuarios_Click(System::Object^ sender, System::EventArgs^ e) {
+		frmUsuarios^ ventana = gcnew frmUsuarios();
+		this->Hide();
+		ventana->ShowDialog();
+		this->Show();
+	}
 };
 }
