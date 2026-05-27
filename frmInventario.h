@@ -11,10 +11,8 @@ namespace Supermercado {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Collections::Generic;
 
-	/// <summary>
-	/// Resumen de frmInventario
-	/// </summary>
 	public ref class frmInventario : public System::Windows::Forms::Form
 	{
 	public:
@@ -37,11 +35,7 @@ namespace Supermercado {
 	private: System::Windows::Forms::ComboBox^ cmbTienda;
 	private: System::Windows::Forms::Button^ btnVerificar;
 	private: System::Windows::Forms::DataGridView^ dgvInventario;
-	private: System::Windows::Forms::Label^ label3; // Este funciona como lblAlerta
-
-
-
-
+	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Button^ btnRegresar;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ colProducto;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ colCantidad;
@@ -49,11 +43,9 @@ namespace Supermercado {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ colEstado;
 	private: System::Windows::Forms::Button^ btnActualizar;
 
+	private: Dictionary<String^, int>^ mapaTiendas;
 
 	private:
-		/// <summary>
-		/// Variable del diseñador necesaria.
-		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
@@ -73,44 +65,36 @@ namespace Supermercado {
 			this->btnActualizar = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvInventario))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// label1
-			// 
+
+			// label1 — Título
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Modern No. 20", 19.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(44)), static_cast<System::Int32>(static_cast<System::Byte>(62)),
-				static_cast<System::Int32>(static_cast<System::Byte>(80)));
+			this->label1->Font = (gcnew System::Drawing::Font(L"Modern No. 20", 19.8F, System::Drawing::FontStyle::Bold,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->label1->ForeColor = System::Drawing::Color::FromArgb(44, 62, 80);
 			this->label1->Location = System::Drawing::Point(40, 30);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(475, 34);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Control de Inventarios y Alertas";
-			// 
-			// label2
-			// 
+
+			// label2 — "Seleccionar tienda:"
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
 			this->label2->Location = System::Drawing::Point(31, 100);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(153, 23);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Seleccionar tienda:";
-			// 
-			// cmbTienda
-			// 
+
+			// cmbTienda — SIN items hardcodeados, se llena desde DB en Load
 			this->cmbTienda->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cmbTienda->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
 			this->cmbTienda->FormattingEnabled = true;
-			this->cmbTienda->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Tienda Central", L"Tienda Norte" });
 			this->cmbTienda->Location = System::Drawing::Point(31, 130);
 			this->cmbTienda->Name = L"cmbTienda";
 			this->cmbTienda->Size = System::Drawing::Size(207, 31);
 			this->cmbTienda->TabIndex = 2;
-			// 
+
 			// btnVerificar
-			// 
 			this->btnVerificar->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->btnVerificar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
 			this->btnVerificar->ForeColor = System::Drawing::Color::Black;
@@ -121,17 +105,16 @@ namespace Supermercado {
 			this->btnVerificar->Text = L"Cargar Inventario";
 			this->btnVerificar->UseVisualStyleBackColor = false;
 			this->btnVerificar->Click += gcnew System::EventHandler(this, &frmInventario::btnVerificar_Click);
-			// 
+
 			// dgvInventario
-			// 
 			this->dgvInventario->AllowUserToAddRows = false;
 			this->dgvInventario->AllowUserToDeleteRows = false;
 			this->dgvInventario->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dgvInventario->BackgroundColor = System::Drawing::SystemColors::Window;
-			this->dgvInventario->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgvInventario->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
-				this->colProducto,
-					this->colCantidad, this->colMinimo, this->colEstado
+			this->dgvInventario->ColumnHeadersHeightSizeMode =
+				System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvInventario->Columns->AddRange(gcnew cli::array<System::Windows::Forms::DataGridViewColumn^>(4) {
+				this->colProducto, this->colCantidad, this->colMinimo, this->colEstado
 			});
 			this->dgvInventario->Location = System::Drawing::Point(278, 100);
 			this->dgvInventario->Name = L"dgvInventario";
@@ -140,63 +123,54 @@ namespace Supermercado {
 			this->dgvInventario->RowTemplate->Height = 24;
 			this->dgvInventario->Size = System::Drawing::Size(730, 280);
 			this->dgvInventario->TabIndex = 4;
-			// 
-			// label3
-			// 
+
+			// label3 — alerta
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Bold));
 			this->label3->Location = System::Drawing::Point(278, 400);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(0, 25);
 			this->label3->TabIndex = 5;
-			this->label3->Click += gcnew System::EventHandler(this, &frmInventario::label3_Click);
-			// 
+
 			// btnRegresar
-			// 
 			this->btnRegresar->BackColor = System::Drawing::SystemColors::ScrollBar;
 			this->btnRegresar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnRegresar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->btnRegresar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Bold,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->btnRegresar->Location = System::Drawing::Point(35, 362);
 			this->btnRegresar->Name = L"btnRegresar";
 			this->btnRegresar->Size = System::Drawing::Size(203, 63);
 			this->btnRegresar->TabIndex = 6;
-			this->btnRegresar->Text = L"Regresar al menu ";
+			this->btnRegresar->Text = L"Regresar al Menú";
 			this->btnRegresar->UseVisualStyleBackColor = false;
 			this->btnRegresar->Click += gcnew System::EventHandler(this, &frmInventario::btnRegresar_Click);
-			// 
+
 			// colProducto
-			// 
 			this->colProducto->HeaderText = L"Producto";
 			this->colProducto->MinimumWidth = 6;
 			this->colProducto->Name = L"colProducto";
 			this->colProducto->ReadOnly = true;
-			// 
+
 			// colCantidad
-			// 
 			this->colCantidad->HeaderText = L"Cantidad Disponible";
 			this->colCantidad->MinimumWidth = 6;
 			this->colCantidad->Name = L"colCantidad";
-			// 
+
 			// colMinimo
-			// 
 			this->colMinimo->HeaderText = L"Stock Mínimo";
 			this->colMinimo->MinimumWidth = 6;
 			this->colMinimo->Name = L"colMinimo";
 			this->colMinimo->ReadOnly = true;
-			// 
+
 			// colEstado
-			// 
 			this->colEstado->HeaderText = L"Estado";
 			this->colEstado->MinimumWidth = 6;
 			this->colEstado->Name = L"colEstado";
 			this->colEstado->ReadOnly = true;
-			// 
+
 			// btnActualizar
-			// 
 			this->btnActualizar->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->btnActualizar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->btnActualizar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Bold,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->btnActualizar->Location = System::Drawing::Point(31, 244);
 			this->btnActualizar->Name = L"btnActualizar";
 			this->btnActualizar->Size = System::Drawing::Size(205, 53);
@@ -204,9 +178,8 @@ namespace Supermercado {
 			this->btnActualizar->Text = L"Actualizar Stock";
 			this->btnActualizar->UseVisualStyleBackColor = false;
 			this->btnActualizar->Click += gcnew System::EventHandler(this, &frmInventario::btnActualizar_Click);
-			// 
+
 			// frmInventario
-			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1041, 452);
@@ -224,103 +197,131 @@ namespace Supermercado {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvInventario))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
 		}
 #pragma endregion
 
-	private:
-		System::Void frmInventario_Load(System::Object^ sender, System::EventArgs^ e) {
-		
-			if (this->cmbTienda->Items->Count > 0) {
-				this->cmbTienda->SelectedIndex = 0;
+
+	private: System::Void frmInventario_Load(System::Object^ sender, System::EventArgs^ e) {
+
+		mapaTiendas = gcnew Dictionary<String^, int>();
+
+		try {
+			ConexionBD^ db = gcnew ConexionBD();
+			if (db->conexionActiva()) {
+				String^ sql = "SELECT id_tienda, nombre FROM TIENDA ORDER BY nombre";
+				MySql::Data::MySqlClient::MySqlCommand^ cmd =
+					gcnew MySql::Data::MySqlClient::MySqlCommand(sql, db->getConexion());
+				MySql::Data::MySqlClient::MySqlDataReader^ reader = cmd->ExecuteReader();
+
+				cmbTienda->Items->Clear();
+
+				while (reader->Read()) {
+					String^ nombre = reader["nombre"]->ToString();
+					int     id = Convert::ToInt32(reader["id_tienda"]);
+					mapaTiendas->Add(nombre, id);
+					cmbTienda->Items->Add(nombre);
+				}
+				reader->Close();
+				db->cerrarConexion();
+
+				if (cmbTienda->Items->Count > 0)
+					cmbTienda->SelectedIndex = 0;
 			}
 		}
+		catch (Exception^ ex) {
+			MessageBox::Show("Error al cargar tiendas: " + ex->Message, "Error",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
 
-	private:
-		System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: int GetIdTiendaSeleccionada() {
+		if (cmbTienda->SelectedItem == nullptr) return 1;
+		String^ nombre = cmbTienda->SelectedItem->ToString();
+		if (mapaTiendas->ContainsKey(nombre))
+			return mapaTiendas[nombre];
+		return 1;
+	}
+
+	private: System::Void btnVerificar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		if (cmbTienda->SelectedIndex < 0) {
+			MessageBox::Show("Selecciona una tienda primero.", "Aviso");
+			return;
 		}
 
-	private:
-		System::Void btnVerificar_Click(System::Object^ sender, System::EventArgs^ e) {
+		int idTienda = GetIdTiendaSeleccionada();
 
-			
-			if (this->cmbTienda->SelectedIndex < 0) return;
+		ControladorInventario^ controlador = gcnew ControladorInventario();
+		List<ModeloInventario^>^ lista = controlador->obtenerInventarioPorTienda(idTienda);
 
-			ControladorInventario^ controlador = gcnew ControladorInventario();
+		dgvInventario->Rows->Clear();
+		label3->Text = "";
+		bool tieneStockBajo = false;
 
-			
-			int idTiendaSeleccionada = (this->cmbTienda->SelectedIndex == 0) ? 1 : 2;
+		for (int i = 0; i < lista->Count; i++) {
+			int fila = dgvInventario->Rows->Add();
 
-			
-			System::Collections::Generic::List<ModeloInventario^>^ listaInventario = controlador->obtenerInventarioPorTienda(idTiendaSeleccionada);
+			dgvInventario->Rows[fila]->Cells["colProducto"]->Value = lista[i]->nombre_producto;
+			dgvInventario->Rows[fila]->Cells["colCantidad"]->Value = lista[i]->cantidad;
+			dgvInventario->Rows[fila]->Cells["colMinimo"]->Value = lista[i]->stock_minimo;
 
-			this->dgvInventario->Rows->Clear();
-			bool tieneStockBajo = false;
-
-			for (int i = 0; i < listaInventario->Count; i++) {
-				int renglon = this->dgvInventario->Rows->Add();
-
-				this->dgvInventario->Rows[renglon]->Cells[0]->Value = listaInventario[i]->nombre_producto;
-				this->dgvInventario->Rows[renglon]->Cells[1]->Value = listaInventario[i]->cantidad;
-				this->dgvInventario->Rows[renglon]->Cells[2]->Value = listaInventario[i]->stock_minimo;
-
-				if (listaInventario[i]->cantidad <= listaInventario[i]->stock_minimo) {
-					this->dgvInventario->Rows[renglon]->Cells[3]->Value = L"⚠️ ¡BAJO STOCK!";
-					this->dgvInventario->Rows[renglon]->Cells[1]->Style->BackColor = System::Drawing::Color::MistyRose;
-					this->dgvInventario->Rows[renglon]->Cells[3]->Style->ForeColor = System::Drawing::Color::Red;
-					tieneStockBajo = true;
-				}
-				else {
-					this->dgvInventario->Rows[renglon]->Cells[3]->Value = L"Normal";
-					this->dgvInventario->Rows[renglon]->Cells[1]->Style->BackColor = System::Drawing::Color::Honeydew;
-				}
-			}
-
-			if (tieneStockBajo) {
-				this->label3->ForeColor = System::Drawing::Color::Crimson;
-				this->label3->Text = L"Atención: Se detectaron productos que necesitan reabastecimiento urgente.";
+			if (lista[i]->cantidad <= lista[i]->stock_minimo) {
+				dgvInventario->Rows[fila]->Cells["colEstado"]->Value = L"⚠ BAJO STOCK";
+				dgvInventario->Rows[fila]->Cells["colCantidad"]->Style->BackColor = System::Drawing::Color::MistyRose;
+				dgvInventario->Rows[fila]->Cells["colEstado"]->Style->ForeColor = System::Drawing::Color::Red;
+				tieneStockBajo = true;
 			}
 			else {
-				this->label3->ForeColor = System::Drawing::Color::DarkGreen;
-				this->label3->Text = L"¡Todo perfecto! El inventario de esta tienda se encuentra estable.";
+				dgvInventario->Rows[fila]->Cells["colEstado"]->Value = L"Normal";
+				dgvInventario->Rows[fila]->Cells["colCantidad"]->Style->BackColor = System::Drawing::Color::Honeydew;
 			}
 		}
+
+		if (tieneStockBajo) {
+			label3->ForeColor = System::Drawing::Color::Crimson;
+			label3->Text = L"Atención: Se detectaron productos que necesitan reabastecimiento urgente.";
+		}
+		else {
+			label3->ForeColor = System::Drawing::Color::DarkGreen;
+			label3->Text = L"¡Todo bien! El inventario de esta tienda se encuentra estable.";
+		}
+	}
+
+	private: System::Void btnActualizar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		if (dgvInventario->Rows->Count == 0) {
+			MessageBox::Show("No hay datos en la tabla. Carga el inventario primero.",
+				"Aviso", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return;
+		}
+
+		int idTienda = GetIdTiendaSeleccionada();
+
+		ControladorInventario^ controlador = gcnew ControladorInventario();
+		int filasActualizadas = 0;
+
+		for (int i = 0; i < dgvInventario->Rows->Count; i++) {
+			String^ nombreProducto = dgvInventario->Rows[i]->Cells["colProducto"]->Value->ToString();
+			int     nuevaCantidad = Convert::ToInt32(dgvInventario->Rows[i]->Cells["colCantidad"]->Value);
+
+			if (controlador->actualizarStockProducto(nombreProducto, nuevaCantidad, idTienda))
+				filasActualizadas++;
+		}
+
+		if (filasActualizadas > 0) {
+			MessageBox::Show("¡Inventario actualizado correctamente en la base de datos!",
+				"Éxito", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			btnVerificar_Click(sender, e);
+		}
+		else {
+			MessageBox::Show("No se pudieron guardar los cambios. Revisa la conexión.",
+				"Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+
 	private: System::Void btnRegresar_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
-private: System::Void btnActualizar_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (this->dgvInventario->Rows->Count == 0) {
-		MessageBox::Show("No hay datos en la tabla para actualizar.", "Aviso", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-		return;
-	}
 
-	ControladorInventario^ controlador = gcnew ControladorInventario();
-	int filasActualizadas = 0;
-
-
-	for (int i = 0; i < this->dgvInventario->Rows->Count; i++) {
-		
-		String^ nombreProducto = this->dgvInventario->Rows[i]->Cells[0]->Value->ToString();
-		int nuevaCantidad = Convert::ToInt32(this->dgvInventario->Rows[i]->Cells[1]->Value);
-
-		
-		int idTiendaSeleccionada = (this->cmbTienda->SelectedIndex == 0) ? 1 : 2;
-
-		
-		bool exito = controlador->actualizarStockProducto(nombreProducto, nuevaCantidad, idTiendaSeleccionada);
-
-		if (exito) {
-			filasActualizadas++;
-		}
-	}
-
-	if (filasActualizadas > 0) {
-		MessageBox::Show("¡Inventario actualizado con éxito en la Base de Datos!", "Éxito", MessageBoxButtons::OK, MessageBoxIcon::Information);
-		btnVerificar_Click(sender, e);
-	}
-	else {
-		MessageBox::Show("No se pudieron guardar los cambios. Revisa la conexión.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-	}
-}
-};
+	};
 }
