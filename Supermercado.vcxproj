@@ -123,6 +123,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\frmConsultaProductos\frmConsultaProductos\frmConsultaProductos.cpp" />
     <ClCompile Include="ConexionBD.cpp" />
     <ClCompile Include="ControladorUsuario.cpp" />
     <ClCompile Include="frmLogin.cpp" />
@@ -130,6 +131,10 @@
     <ClCompile Include="MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\OneDrive\Escritorio\Java\frmConsultaProductos\ControladorProducto.h" />
+    <ClInclude Include="..\..\..\OneDrive\Escritorio\Java\frmConsultaProductos\frmConsultaProductos.h" />
+    <ClInclude Include="..\..\..\OneDrive\Escritorio\Java\frmConsultaProductos\ModeloProducto.h" />
+    <ClInclude Include="..\frmConsultaProductos\frmConsultaProductos\frmConsultaProductos.h" />
     <ClInclude Include="ConexionBD.h" />
     <ClInclude Include="ControladorUsuario.h" />
     <ClInclude Include="frmLogin.h">
