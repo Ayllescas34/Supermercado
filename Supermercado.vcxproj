@@ -127,6 +127,7 @@
     <ClCompile Include="ConexionBD.cpp" />
     <ClCompile Include="ControladorCliente.cpp" />
     <ClCompile Include="ControladorInventario.cpp" />
+    <ClCompile Include="ControladorProducto.cpp" />
     <ClCompile Include="ControladorUsuario.cpp" />
     <ClCompile Include="frmClientes.cpp" />
     <ClCompile Include="frmInventario.cpp" />
@@ -137,10 +138,12 @@
     <ClCompile Include="frmMenu.cpp" />
     <ClCompile Include="frmVenta.cpp" />
     <ClCompile Include="frmUsuarios.cpp" />
+    <ClCompile Include="frmProductos.cpp" />
     <ClCompile Include="MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConexionBD.h" />
+    <ClInclude Include="ControladorProducto.h" />
     <ClInclude Include="ControladorCliente.h" />
     <ClInclude Include="ControladorInventario.h" />
     <ClInclude Include="ControladorUsuario.h" />
@@ -169,10 +172,15 @@
     <ClInclude Include="frmUsuarios.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="frmProductos.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ModeloCategoria.h" />
+    <ClInclude Include="ModeloProducto.h" />
     <ClInclude Include="ModeloCliente.h" />
     <ClInclude Include="ModeloInventario.h" />
     <ClInclude Include="ModeloUsuario.h" />
