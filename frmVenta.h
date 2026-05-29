@@ -3,6 +3,7 @@
 #include "frmClienteRapido.h"
 #include "ControladorVenta.h"
 #include "ControladorCliente.h"
+#include "ControladorProducto.h"
 
 namespace Supermercado {
 
@@ -634,7 +635,7 @@ namespace Supermercado {
 			this->dgvProductos->Name = L"dgvProductos";
 			this->dgvProductos->RowHeadersWidth = 51;
 			this->dgvProductos->RowTemplate->Height = 24;
-			this->dgvProductos->Size = System::Drawing::Size(330, 143);
+			this->dgvProductos->Size = System::Drawing::Size(360, 160);
 			this->dgvProductos->TabIndex = 3;
 			this->dgvProductos->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &frmVenta::dgvProductos_CellClick);
 			// 
@@ -1043,28 +1044,56 @@ namespace Supermercado {
 		System::Void btnBuscarProducto_Click(System::Object^ sender, System::EventArgs^ e) {
 			if (txtBuscarProducto->Text->Trim() == "") return;
 
-			DataTable^ dt = gcnew DataTable();
-			dt->Columns->Add("id_producto");
-			dt->Columns->Add("codigo_barras");
-			dt->Columns->Add("nombre");
-			dt->Columns->Add("precio");
+			try {
+				ControladorProducto^ ctrl = gcnew ControladorProducto();
+				List<Producto^>^ lista = ctrl->buscarProducto(txtBuscarProducto->Text->Trim());
 
-			DataRow^ r1 = dt->NewRow();
-			r1["id_producto"] = "1"; r1["codigo_barras"] = "LAC001";
-			r1["nombre"] = "Leche Entera 1L"; r1["precio"] = "12.50";
-			dt->Rows->Add(r1);
+				DataTable^ dt = gcnew DataTable();
+				dt->Columns->Add("id_producto");
+				dt->Columns->Add("codigo_barras");
+				dt->Columns->Add("nombre");
+				dt->Columns->Add("precio");
 
-			DataRow^ r2 = dt->NewRow();
-			r2["id_producto"] = "4"; r2["codigo_barras"] = "PAN001";
-			r2["nombre"] = "Pan Molde"; r2["precio"] = "18.00";
-			dt->Rows->Add(r2);
+				for each (Producto ^ p in lista) {
+					DataRow^ row = dt->NewRow();
+					row["id_producto"] = p->id_producto;
+					row["codigo_barras"] = p->codigo_barras;
+					row["nombre"] = p->nombre;
+					row["precio"] = p->precio.ToString("0.00");
+					dt->Rows->Add(row);
+				}
 
-			DataRow^ r3 = dt->NewRow();
-			r3["id_producto"] = "7"; r3["codigo_barras"] = "GRA001";
-			r3["nombre"] = "Arroz 1lb"; r3["precio"] = "9.75";
-			dt->Rows->Add(r3);
+				dgvProductos->DataSource = dt;
 
-			dgvProductos->DataSource = dt;
+				dgvProductos->Columns["id_producto"]->Visible = false;
+
+				
+				dgvProductos->AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode::None;
+				dgvProductos->RowTemplate->Height = 25;
+				dgvProductos->ColumnHeadersHeight = 30;
+
+				
+				dgvProductos->ColumnHeadersDefaultCellStyle->BackColor = System::Drawing::Color::SteelBlue;
+				dgvProductos->ColumnHeadersDefaultCellStyle->ForeColor = System::Drawing::Color::White;
+				dgvProductos->ColumnHeadersDefaultCellStyle->Font =
+					gcnew System::Drawing::Font("Arial", 10, System::Drawing::FontStyle::Bold);
+
+				
+				dgvProductos->AlternatingRowsDefaultCellStyle->BackColor = System::Drawing::Color::FromArgb(240, 248, 255);
+				dgvProductos->DefaultCellStyle->Font = gcnew System::Drawing::Font("Arial", 10);
+
+				
+				dgvProductos->Columns["id_producto"]->Width = 60;
+				dgvProductos->Columns["codigo_barras"]->Width = 90;
+				dgvProductos->Columns["nombre"]->Width = 150;
+				dgvProductos->Columns["precio"]->Width = 70;
+
+				if (lista->Count == 0)
+					MessageBox::Show("Producto no encontrado.", "Aviso");
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show("Error en búsqueda: " + ex->Message);
+			}
 		}
 
 		System::Void dgvProductos_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
