@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 
 // ============================================================
 //  ControladorProducto.h  —  Declaraciones del controlador

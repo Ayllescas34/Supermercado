@@ -23,10 +23,10 @@ public:
     // Constructor por defecto
     Producto() {
 
-        id_producto   = 0;
-        id_categoria  = 0;
-        precio        = 0.0;
-        nombre        = "";
+        id_producto = 0;
+        id_categoria = 0;
+        precio = 0.0;
+        nombre = "";
         codigo_barras = "";
         nombre_categoria = "";
     }
@@ -40,11 +40,11 @@ public:
         String^ _codigo_barras,
         String^ _nombre_categoria
     ) {
-        id_producto      = id;
-        id_categoria     = _id_categoria;
-        nombre           = _nombre;
-        precio           = _precio;
-        codigo_barras    = _codigo_barras;
+        id_producto = id;
+        id_categoria = _id_categoria;
+        nombre = _nombre;
+        precio = _precio;
+        codigo_barras = _codigo_barras;
         nombre_categoria = _nombre_categoria;
     }
 };
