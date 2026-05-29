@@ -130,6 +130,7 @@
     <ClCompile Include="ControladorProducto.cpp" />
     <ClCompile Include="ControladorUsuario.cpp" />
     <ClCompile Include="frmClientes.cpp" />
+    <ClCompile Include="frmConsultaProductos.cpp" />
     <ClCompile Include="frmInventario.cpp" />
     <ClCompile Include="ControladorVenta.cpp" />
     <ClCompile Include="frmClienteRapido.cpp" />
@@ -148,6 +149,9 @@
     <ClInclude Include="ControladorInventario.h" />
     <ClInclude Include="ControladorUsuario.h" />
     <ClInclude Include="frmClientes.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmConsultaProductos.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmInventario.h">

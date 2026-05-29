@@ -7,6 +7,7 @@
 #include "frmVenta.h"
 #include "frmHistorialVentas.h"
 #include "frmClientes.h"
+#include "frmConsultaProductos.h"
 
 namespace Supermercado {
 
@@ -143,7 +144,7 @@ namespace Supermercado {
 			// 
 			this->btnVenta->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->btnVenta->Location = System::Drawing::Point(62, 147);
-			this->btnVenta->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnVenta->Margin = System::Windows::Forms::Padding(2);
 			this->btnVenta->Name = L"btnVenta";
 			this->btnVenta->Size = System::Drawing::Size(196, 46);
 			this->btnVenta->TabIndex = 5;
@@ -155,7 +156,7 @@ namespace Supermercado {
 			// 
 			this->btnProductos->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->btnProductos->Location = System::Drawing::Point(290, 147);
-			this->btnProductos->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnProductos->Margin = System::Windows::Forms::Padding(2);
 			this->btnProductos->Name = L"btnProductos";
 			this->btnProductos->Size = System::Drawing::Size(196, 46);
 			this->btnProductos->TabIndex = 6;
@@ -167,7 +168,7 @@ namespace Supermercado {
 			// 
 			this->btnInventario->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->btnInventario->Location = System::Drawing::Point(522, 143);
-			this->btnInventario->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnInventario->Margin = System::Windows::Forms::Padding(2);
 			this->btnInventario->Name = L"btnInventario";
 			this->btnInventario->Size = System::Drawing::Size(196, 46);
 			this->btnInventario->TabIndex = 7;
@@ -179,7 +180,7 @@ namespace Supermercado {
 			// 
 			this->btnUsuarios->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->btnUsuarios->Location = System::Drawing::Point(522, 202);
-			this->btnUsuarios->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnUsuarios->Margin = System::Windows::Forms::Padding(2);
 			this->btnUsuarios->Name = L"btnUsuarios";
 			this->btnUsuarios->Size = System::Drawing::Size(196, 46);
 			this->btnUsuarios->TabIndex = 10;
@@ -191,7 +192,7 @@ namespace Supermercado {
 			// 
 			this->btnClientes->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->btnClientes->Location = System::Drawing::Point(290, 206);
-			this->btnClientes->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnClientes->Margin = System::Windows::Forms::Padding(2);
 			this->btnClientes->Name = L"btnClientes";
 			this->btnClientes->Size = System::Drawing::Size(196, 46);
 			this->btnClientes->TabIndex = 9;
@@ -203,7 +204,7 @@ namespace Supermercado {
 			// 
 			this->btnHistorialVentas->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->btnHistorialVentas->Location = System::Drawing::Point(62, 206);
-			this->btnHistorialVentas->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnHistorialVentas->Margin = System::Windows::Forms::Padding(2);
 			this->btnHistorialVentas->Name = L"btnHistorialVentas";
 			this->btnHistorialVentas->Size = System::Drawing::Size(196, 46);
 			this->btnHistorialVentas->TabIndex = 8;
@@ -215,7 +216,7 @@ namespace Supermercado {
 			// 
 			this->btnSalir->BackColor = System::Drawing::SystemColors::ActiveBorder;
 			this->btnSalir->Location = System::Drawing::Point(412, 274);
-			this->btnSalir->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnSalir->Margin = System::Windows::Forms::Padding(2);
 			this->btnSalir->Name = L"btnSalir";
 			this->btnSalir->Size = System::Drawing::Size(196, 46);
 			this->btnSalir->TabIndex = 13;
@@ -227,12 +228,13 @@ namespace Supermercado {
 			// 
 			this->btnConsultaProductos->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->btnConsultaProductos->Location = System::Drawing::Point(180, 275);
-			this->btnConsultaProductos->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnConsultaProductos->Margin = System::Windows::Forms::Padding(2);
 			this->btnConsultaProductos->Name = L"btnConsultaProductos";
 			this->btnConsultaProductos->Size = System::Drawing::Size(196, 46);
 			this->btnConsultaProductos->TabIndex = 12;
 			this->btnConsultaProductos->Text = L"Consultar";
 			this->btnConsultaProductos->UseVisualStyleBackColor = false;
+			this->btnConsultaProductos->Click += gcnew System::EventHandler(this, &frmMenu::btnConsultaProductos_Click);
 			// 
 			// lblRol
 			// 
@@ -265,7 +267,7 @@ namespace Supermercado {
 			this->Controls->Add(this->lblBienvenida);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->lblTitulo);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"frmMenu";
 			this->Text = L"frmMenu";
 			this->Load += gcnew System::EventHandler(this, &frmMenu::frmMenu_Load);
@@ -330,6 +332,12 @@ namespace Supermercado {
 	}
 	private: System::Void btnProductos_Click(Object^ sender, EventArgs^ e) {
 		frmProductos^ ventana = gcnew frmProductos();
+		this->Hide();
+		ventana->ShowDialog();
+		this->Show();
+	}
+	private: System::Void btnConsultaProductos_Click(System::Object^ sender, System::EventArgs^ e) {
+		frmConsultaProductos^ ventana = gcnew frmConsultaProductos();
 		this->Hide();
 		ventana->ShowDialog();
 		this->Show();
