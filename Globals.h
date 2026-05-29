@@ -8,5 +8,6 @@ namespace Globals {
         static String^ nombreActivo = "";
         static String^ usuarioActivo = "";
         static int idUsuarioActivo = 0;
+        static int idTiendaActiva = 0;
     };
 }
