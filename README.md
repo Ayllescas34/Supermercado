@@ -353,7 +353,7 @@ Solución:
 
 ### 🌟 Desarrollado con ❤️ por Grupo 8
 
-**Supermercado Grupo 8 © 2024-2025**
+**Supermercado Grupo 8 © 2026**
 
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=flat-square)
 ![Build](https://img.shields.io/badge/Build-Passing-success?style=flat-square)
