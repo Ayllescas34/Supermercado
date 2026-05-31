@@ -14,14 +14,14 @@ private:
 	String^ servidor = "localhost";
 	String^ basededatos = "supermercado_g8";
 	String^ usuario = "root";
-	String^ clave = "Dani.2006";
+	String^ clave = "NFRmtc/*";
 	String^ strConexion;
 public:
 	ConexionBD() {
 		cnn = nullptr;
 		strConexion = "Database = " + basededatos +
 			"; DataSource = " + servidor +
-			"; Port = 3307" +
+			"; Port = 3306" +
 			"; User id = " + usuario +
 			"; Password = " + clave;
 	}

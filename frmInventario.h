@@ -75,12 +75,12 @@ namespace Supermercado {
 			// 
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::Color::Transparent;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Century Schoolbook", 19.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Century Schoolbook", 20, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->ForeColor = System::Drawing::Color::Black;
-			this->label1->Location = System::Drawing::Point(58, 36);
+			this->label1->ForeColor = System::Drawing::Color::FromArgb(30, 30, 30);
+			this->label1->Location = System::Drawing::Point(70, 20);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(590, 40);
+			this->label1->Size = System::Drawing::Size(500, 40);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Control de Inventarios y Alertas";
 			this->label1->Click += gcnew System::EventHandler(this, &frmInventario::label1_Click);
@@ -107,8 +107,9 @@ namespace Supermercado {
 			// 
 			// btnVerificar
 			// 
-			this->btnVerificar->BackColor = System::Drawing::Color::MediumPurple;
+			this->btnVerificar->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
 			this->btnVerificar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnVerificar->FlatAppearance->BorderSize = 0;
 			this->btnVerificar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
 			this->btnVerificar->ForeColor = System::Drawing::Color::White;
 			this->btnVerificar->Location = System::Drawing::Point(35, 196);
@@ -124,17 +125,26 @@ namespace Supermercado {
 			this->dgvInventario->AllowUserToAddRows = false;
 			this->dgvInventario->AllowUserToDeleteRows = false;
 			this->dgvInventario->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
-			this->dgvInventario->BackgroundColor = System::Drawing::Color::Lavender;
+			this->dgvInventario->BackgroundColor = System::Drawing::Color::White;
 			this->dgvInventario->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvInventario->ColumnHeadersHeight = 34;
+			this->dgvInventario->ColumnHeadersDefaultCellStyle->BackColor = System::Drawing::Color::FromArgb(84, 153, 211);
+			this->dgvInventario->ColumnHeadersDefaultCellStyle->ForeColor = System::Drawing::Color::White;
+			this->dgvInventario->ColumnHeadersDefaultCellStyle->Font = gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold);
 			this->dgvInventario->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->colProducto,
 					this->colCantidad, this->colMinimo, this->colEstado
 			});
-			this->dgvInventario->Location = System::Drawing::Point(272, 145);
+			this->dgvInventario->Location = System::Drawing::Point(272, 90);
 			this->dgvInventario->Name = L"dgvInventario";
 			this->dgvInventario->RowHeadersVisible = false;
 			this->dgvInventario->RowHeadersWidth = 51;
-			this->dgvInventario->RowTemplate->Height = 24;
+			this->dgvInventario->RowTemplate->Height = 28;
+			this->dgvInventario->DefaultCellStyle->Font = gcnew System::Drawing::Font(L"Segoe UI", 10);
+			this->dgvInventario->AlternatingRowsDefaultCellStyle->BackColor = System::Drawing::Color::FromArgb(220, 233, 245);
+			this->dgvInventario->DefaultCellStyle->SelectionBackColor = System::Drawing::Color::FromArgb(110, 181, 232);
+			this->dgvInventario->DefaultCellStyle->SelectionForeColor = System::Drawing::Color::White;
+			this->dgvInventario->EnableHeadersVisualStyles = false;
 			this->dgvInventario->Size = System::Drawing::Size(730, 280);
 			this->dgvInventario->TabIndex = 4;
 			// 
@@ -176,9 +186,10 @@ namespace Supermercado {
 			// 
 			// btnRegresar
 			// 
-			this->btnRegresar->BackColor = System::Drawing::Color::MediumSlateBlue;
-			this->btnRegresar->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->btnRegresar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnRegresar->BackColor = System::Drawing::Color::FromArgb(84, 153, 211);
+			this->btnRegresar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnRegresar->FlatAppearance->BorderSize = 0;
+			this->btnRegresar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnRegresar->ForeColor = System::Drawing::Color::White;
 			this->btnRegresar->Location = System::Drawing::Point(35, 380);
@@ -191,9 +202,10 @@ namespace Supermercado {
 			// 
 			// btnActualizar
 			// 
-			this->btnActualizar->BackColor = System::Drawing::Color::MediumPurple;
+			this->btnActualizar->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
 			this->btnActualizar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnActualizar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnActualizar->FlatAppearance->BorderSize = 0;
+			this->btnActualizar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnActualizar->ForeColor = System::Drawing::Color::White;
 			this->btnActualizar->Location = System::Drawing::Point(35, 264);
@@ -206,7 +218,7 @@ namespace Supermercado {
 			// 
 			// panel1
 			// 
-			this->panel1->BackColor = System::Drawing::Color::MediumSlateBlue;
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
 			this->panel1->ForeColor = System::Drawing::Color::White;
 			this->panel1->Location = System::Drawing::Point(518, 52);
 			this->panel1->Name = L"panel1";
@@ -215,7 +227,7 @@ namespace Supermercado {
 			// 
 			// panel2
 			// 
-			this->panel2->BackColor = System::Drawing::Color::MediumSlateBlue;
+			this->panel2->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
 			this->panel2->ForeColor = System::Drawing::Color::White;
 			this->panel2->Location = System::Drawing::Point(-5, 52);
 			this->panel2->Name = L"panel2";
@@ -226,8 +238,7 @@ namespace Supermercado {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(245)), static_cast<System::Int32>(static_cast<System::Byte>(247)),
-				static_cast<System::Int32>(static_cast<System::Byte>(250)));
+			this->BackColor = System::Drawing::Color::FromArgb(245, 247, 250);
 			this->ClientSize = System::Drawing::Size(1041, 452);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->label1);
@@ -374,5 +385,5 @@ namespace Supermercado {
 
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-};
+	};
 }
