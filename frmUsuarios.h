@@ -28,7 +28,9 @@ namespace Supermercado {
         DataGridView^ dgvUsuarios;
         Label^ lblConteo;
 
-        // Mapeo tienda nombre -> id
+        Panel^ panel1;
+        Panel^ panel2;
+
         System::Collections::Generic::Dictionary<String^, int>^ mapaTiendas;
 
     public:
@@ -48,45 +50,83 @@ namespace Supermercado {
         void CrearInterfaz() {
 
             this->Text = "Usuarios";
-            this->Size = Drawing::Size(900, 550);
+            this->Size = Drawing::Size(950, 580);
             this->StartPosition = FormStartPosition::CenterScreen;
-            this->BackColor = Color::Gainsboro;
+            this->BackColor = Color::FromArgb(245, 247, 250);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
             this->MaximizeBox = false;
 
+            // ── FRANJA IZQUIERDA ──
+            panel2 = gcnew Panel();
+            panel2->BackColor = Color::FromArgb(110, 181, 232);
+            panel2->Location = Point(0, 52);
+            panel2->Size = Drawing::Size(57, 22);
+            this->Controls->Add(panel2);
+
+            // ── FRANJA DERECHA ──
+            panel1 = gcnew Panel();
+            panel1->BackColor = Color::FromArgb(110, 181, 232);
+            panel1->Location = Point(280, 52);
+            panel1->Size = Drawing::Size(670, 22);
+            this->Controls->Add(panel1);
+
             // ── TITULO ──
             Label^ lblTitulo = gcnew Label();
-            lblTitulo->Text = "Usuarios";
-            lblTitulo->Font = gcnew Drawing::Font("Times New Roman", 16, FontStyle::Bold);
-            lblTitulo->BackColor = Color::LightSteelBlue;
-            lblTitulo->Location = Point(30, 20);
+            lblTitulo->Text = "Gestión de Usuarios";
+            lblTitulo->Font = gcnew Drawing::Font("Century Schoolbook", 20, FontStyle::Bold);
+            lblTitulo->BackColor = Color::Transparent;
+            lblTitulo->ForeColor = Color::FromArgb(30, 30, 30);
+            lblTitulo->Location = Point(70, 15);
             lblTitulo->AutoSize = true;
 
             // ── LABELS ──
-            Label^ lblNombre = gcnew Label(); lblNombre->Text = "Nombre:";     lblNombre->Location = Point(30, 80);
-            Label^ lblUsuario = gcnew Label(); lblUsuario->Text = "Usuario:";    lblUsuario->Location = Point(30, 140);
-            Label^ lblPassword = gcnew Label(); lblPassword->Text = "Contraseña:"; lblPassword->Location = Point(30, 200);
-            Label^ lblRol = gcnew Label(); lblRol->Text = "Rol:";        lblRol->Location = Point(30, 260);
-            Label^ lblTienda = gcnew Label(); lblTienda->Text = "Tienda:";     lblTienda->Location = Point(30, 310);
+            Label^ lblNombre = gcnew Label();
+            lblNombre->Text = "Nombre:";
+            lblNombre->Location = Point(30, 100);
+            lblNombre->Font = gcnew Drawing::Font("Segoe UI", 10, FontStyle::Bold);
+
+            Label^ lblUsuario = gcnew Label();
+            lblUsuario->Text = "Usuario:";
+            lblUsuario->Location = Point(30, 160);
+            lblUsuario->Font = gcnew Drawing::Font("Segoe UI", 10, FontStyle::Bold);
+
+            Label^ lblPassword = gcnew Label();
+            lblPassword->Text = "Contraseña:";
+            lblPassword->Location = Point(30, 220);
+            lblPassword->Font = gcnew Drawing::Font("Segoe UI", 10, FontStyle::Bold);
+
+            Label^ lblRol = gcnew Label();
+            lblRol->Text = "Rol:";
+            lblRol->Location = Point(30, 275);
+            lblRol->Font = gcnew Drawing::Font("Segoe UI", 10, FontStyle::Bold);
+
+            Label^ lblTienda = gcnew Label();
+            lblTienda->Text = "Tienda:";
+            lblTienda->Location = Point(30, 330);
+            lblTienda->Font = gcnew Drawing::Font("Segoe UI", 10, FontStyle::Bold);
 
             // ── TEXTBOX ──
             txtNombre = gcnew TextBox();
-            txtNombre->Location = Point(30, 100);
-            txtNombre->Size = Drawing::Size(180, 22);
+            txtNombre->Location = Point(30, 125);
+            txtNombre->Size = Drawing::Size(220, 28);
+            txtNombre->Font = gcnew Drawing::Font("Segoe UI", 10);
 
             txtUsuario = gcnew TextBox();
-            txtUsuario->Location = Point(30, 160);
-            txtUsuario->Size = Drawing::Size(180, 22);
+            txtUsuario->Location = Point(30, 185);
+            txtUsuario->Size = Drawing::Size(220, 28);
+            txtUsuario->Font = gcnew Drawing::Font("Segoe UI", 10);
 
             txtPassword = gcnew TextBox();
-            txtPassword->Location = Point(30, 220);
-            txtPassword->Size = Drawing::Size(180, 22);
+            txtPassword->Location = Point(30, 245);
+            txtPassword->Size = Drawing::Size(220, 28);
+            txtPassword->Font = gcnew Drawing::Font("Segoe UI", 10);
             txtPassword->PasswordChar = '*';
 
             // ── COMBOBOX ROL ──
             cmbRol = gcnew ComboBox();
-            cmbRol->Location = Point(30, 278);
-            cmbRol->Size = Drawing::Size(180, 22);
+            cmbRol->Location = Point(30, 300);
+            cmbRol->Size = Drawing::Size(220, 28);
+            cmbRol->Font = gcnew Drawing::Font("Segoe UI", 10);
             cmbRol->DropDownStyle = ComboBoxStyle::DropDownList;
             cmbRol->Items->Add("vendedor");
             cmbRol->Items->Add("admin");
@@ -94,43 +134,62 @@ namespace Supermercado {
 
             // ── COMBOBOX TIENDA ──
             cmbTienda = gcnew ComboBox();
-            cmbTienda->Location = Point(30, 328);
-            cmbTienda->Size = Drawing::Size(180, 22);
+            cmbTienda->Location = Point(30, 355);
+            cmbTienda->Size = Drawing::Size(220, 28);
+            cmbTienda->Font = gcnew Drawing::Font("Segoe UI", 10);
             cmbTienda->DropDownStyle = ComboBoxStyle::DropDownList;
 
             // ── BOTÓN GUARDAR ──
             btnGuardar = gcnew Button();
             btnGuardar->Text = "Guardar";
-            btnGuardar->Location = Point(30, 390);
-            btnGuardar->Size = Drawing::Size(90, 35);
-            btnGuardar->BackColor = Color::LightSteelBlue;
+            btnGuardar->Location = Point(30, 410);
+            btnGuardar->Size = Drawing::Size(105, 40);
+            btnGuardar->BackColor = Color::FromArgb(110, 181, 232);
+            btnGuardar->ForeColor = Color::White;
+            btnGuardar->Font = gcnew Drawing::Font("Segoe UI", 11, FontStyle::Bold);
             btnGuardar->FlatStyle = FlatStyle::Flat;
+            btnGuardar->FlatAppearance->BorderSize = 0;
             btnGuardar->Click += gcnew EventHandler(this, &frmUsuarios::btnGuardar_Click);
 
             // ── BOTÓN ELIMINAR ──
             btnEliminar = gcnew Button();
             btnEliminar->Text = "Eliminar";
-            btnEliminar->Location = Point(140, 390);
-            btnEliminar->Size = Drawing::Size(90, 35);
-            btnEliminar->BackColor = Color::LightGray;
+            btnEliminar->Location = Point(145, 410);
+            btnEliminar->Size = Drawing::Size(105, 40);
+            btnEliminar->BackColor = Color::FromArgb(75, 143, 179);
+            btnEliminar->ForeColor = Color::White;
+            btnEliminar->Font = gcnew Drawing::Font("Segoe UI", 11, FontStyle::Bold);
             btnEliminar->FlatStyle = FlatStyle::Flat;
+            btnEliminar->FlatAppearance->BorderSize = 0;
             btnEliminar->Click += gcnew EventHandler(this, &frmUsuarios::btnEliminar_Click);
 
             // ── BOTÓN REGRESAR ──
             btnRegresar = gcnew Button();
             btnRegresar->Text = "Regresar al Menú";
-            btnRegresar->Location = Point(30, 445);
-            btnRegresar->Size = Drawing::Size(200, 35);
-            btnRegresar->BackColor = Color::Silver;
+            btnRegresar->Location = Point(30, 470);
+            btnRegresar->Size = Drawing::Size(220, 40);
+            btnRegresar->BackColor = Color::FromArgb(84, 153, 211);
+            btnRegresar->ForeColor = Color::White;
+            btnRegresar->Font = gcnew Drawing::Font("Segoe UI", 11, FontStyle::Bold);
             btnRegresar->FlatStyle = FlatStyle::Flat;
+            btnRegresar->FlatAppearance->BorderSize = 0;
             btnRegresar->Click += gcnew EventHandler(this, &frmUsuarios::btnRegresar_Click);
 
             // ── DATAGRIDVIEW ──
             dgvUsuarios = gcnew DataGridView();
-            dgvUsuarios->Location = Point(280, 40);
-            dgvUsuarios->Size = Drawing::Size(570, 400);
-            dgvUsuarios->BackgroundColor = Color::WhiteSmoke;
+            dgvUsuarios->Location = Point(280, 90);
+            dgvUsuarios->Size = Drawing::Size(650, 430);
+            dgvUsuarios->BackgroundColor = Color::White;
             dgvUsuarios->BorderStyle = BorderStyle::FixedSingle;
+            dgvUsuarios->ColumnHeadersHeight = 34;
+            dgvUsuarios->ColumnHeadersDefaultCellStyle->BackColor = Color::FromArgb(84, 153, 211);
+            dgvUsuarios->ColumnHeadersDefaultCellStyle->ForeColor = Color::White;
+            dgvUsuarios->ColumnHeadersDefaultCellStyle->Font = gcnew Drawing::Font("Segoe UI", 10, FontStyle::Bold);
+            dgvUsuarios->EnableHeadersVisualStyles = false;
+            dgvUsuarios->DefaultCellStyle->Font = gcnew Drawing::Font("Segoe UI", 10);
+            dgvUsuarios->DefaultCellStyle->SelectionBackColor = Color::FromArgb(110, 181, 232);
+            dgvUsuarios->DefaultCellStyle->SelectionForeColor = Color::White;
+            dgvUsuarios->AlternatingRowsDefaultCellStyle->BackColor = Color::FromArgb(220, 233, 245);
             dgvUsuarios->AllowUserToAddRows = false;
             dgvUsuarios->AllowUserToDeleteRows = false;
             dgvUsuarios->ReadOnly = true;
@@ -138,11 +197,14 @@ namespace Supermercado {
             dgvUsuarios->MultiSelect = false;
             dgvUsuarios->AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode::Fill;
             dgvUsuarios->RowHeadersVisible = false;
+            dgvUsuarios->RowTemplate->Height = 28;
             dgvUsuarios->CellClick += gcnew DataGridViewCellEventHandler(this, &frmUsuarios::dgvUsuarios_CellClick);
 
             // ── LABEL CONTEO ──
             lblConteo = gcnew Label();
-            lblConteo->Location = Point(280, 460);
+            lblConteo->Location = Point(280, 530);
+            lblConteo->Font = gcnew Drawing::Font("Segoe UI", 10, FontStyle::Bold);
+            lblConteo->ForeColor = Color::FromArgb(84, 153, 211);
             lblConteo->AutoSize = true;
 
             // ── AGREGAR CONTROLES ──
@@ -164,9 +226,6 @@ namespace Supermercado {
             this->Controls->Add(lblConteo);
         }
 
-        // =====================================================
-        // CARGAR TIENDAS al ComboBox desde DB
-        // =====================================================
         void CargarTiendas() {
             try {
                 ConexionBD^ db = gcnew ConexionBD();
@@ -197,9 +256,6 @@ namespace Supermercado {
             }
         }
 
-        // =====================================================
-        // CARGAR USUARIOS en el DataGridView
-        // =====================================================
         void CargarUsuarios() {
 
             List<Usuario^>^ lista = ControladorUsuario().listarUsuarios();
@@ -229,9 +285,6 @@ namespace Supermercado {
             lblConteo->Text = lista->Count.ToString() + " usuarios";
         }
 
-        // =====================================================
-        // LIMPIAR FORMULARIO
-        // =====================================================
         void LimpiarFormulario() {
             idUsuarioSeleccionado = 0;
             txtNombre->Clear();
@@ -260,7 +313,6 @@ namespace Supermercado {
             u->password = txtPassword->Text->Trim();
             u->rol = cmbRol->SelectedItem->ToString();
 
-            // Obtener id_tienda desde el mapa
             String^ tiendaNombre = cmbTienda->SelectedItem->ToString();
             if (mapaTiendas->ContainsKey(tiendaNombre))
                 u->id_tienda = mapaTiendas[tiendaNombre];
@@ -316,10 +368,9 @@ namespace Supermercado {
             idUsuarioSeleccionado = Convert::ToInt32(fila->Cells["id"]->Value);
             txtNombre->Text = fila->Cells["nombre"]->Value->ToString();
             txtUsuario->Text = fila->Cells["usuario"]->Value->ToString();
-            txtPassword->Text = "";   // no mostramos la contraseña por seguridad
+            txtPassword->Text = "";
             cmbRol->SelectedItem = fila->Cells["rol"]->Value->ToString();
 
-            // Buscar tienda por id en el mapa inverso
             int idTienda = Convert::ToInt32(fila->Cells["id_tienda"]->Value);
             for each (System::Collections::Generic::KeyValuePair<String^, int> kvp in mapaTiendas) {
                 if (kvp.Value == idTienda) {

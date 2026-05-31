@@ -10,10 +10,6 @@ namespace Supermercado {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Formulario de Historial de Ventas
-	/// Muestra todas las ventas o filtra por rango de fechas
-	/// </summary>
 	public ref class frmHistorialVentas : public System::Windows::Forms::Form
 	{
 	private:
@@ -27,9 +23,6 @@ namespace Supermercado {
 		}
 
 	protected:
-		/// <summary>
-		/// Limpiar los recursos que se estén usando.
-		/// </summary>
 		~frmHistorialVentas()
 		{
 			if (components)
@@ -58,16 +51,9 @@ namespace Supermercado {
 	private: System::Windows::Forms::Panel^ panel2;
 
 	private:
-		/// <summary>
-		/// Variable del diseñador necesaria.
-		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Método necesario para admitir el Diseñador. No se puede modificar
-		/// el contenido de este método con el editor de código.
-		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -90,203 +76,193 @@ namespace Supermercado {
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVentas))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// label1
-			// 
+
+			//FRANJA IZQUIERDA
+			this->panel2->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
+			this->panel2->Location = System::Drawing::Point(0, 59);
+			this->panel2->Name = L"panel2";
+			this->panel2->Size = System::Drawing::Size(83, 22);
+			this->panel2->TabIndex = 11;
+
+			// TITULO
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::Color::Transparent;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Century Schoolbook", 19.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Century Schoolbook", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(86, 47);
+			this->label1->ForeColor = System::Drawing::Color::FromArgb(30, 30, 30);
+			this->label1->Location = System::Drawing::Point(100, 20);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(360, 40);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Historial de Ventas";
-			// 
-			// label2
-			// 
+
+			//FRANJA DERECHA
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
+			this->panel1->Location = System::Drawing::Point(461, 59);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(630, 22);
+			this->panel1->TabIndex = 10;
+
+			//LABEL DESDE
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(33, 143);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+			this->label2->Location = System::Drawing::Point(33, 120);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(61, 23);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Desde:";
-			// 
-			// dtpDesde
-			// 
+
+			//DATE PICKER DESDE
+			this->dtpDesde->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
 			this->dtpDesde->Format = System::Windows::Forms::DateTimePickerFormat::Short;
-			this->dtpDesde->Location = System::Drawing::Point(109, 144);
+			this->dtpDesde->Location = System::Drawing::Point(109, 120);
 			this->dtpDesde->Name = L"dtpDesde";
-			this->dtpDesde->Size = System::Drawing::Size(100, 22);
+			this->dtpDesde->Size = System::Drawing::Size(140, 28);
 			this->dtpDesde->TabIndex = 2;
-			// 
-			// label3
-			// 
+
+			//LABEL HASTA
 			this->label3->AutoSize = true;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(33, 203);
+			this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+			this->label3->Location = System::Drawing::Point(33, 165);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(53, 23);
 			this->label3->TabIndex = 3;
-			this->label3->Text = L"Hasta";
-			// 
-			// dtpHasta
-			// 
+			this->label3->Text = L"Hasta:";
+
+			// DATE PICKER HASTa
+			this->dtpHasta->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
 			this->dtpHasta->Format = System::Windows::Forms::DateTimePickerFormat::Short;
-			this->dtpHasta->Location = System::Drawing::Point(109, 204);
+			this->dtpHasta->Location = System::Drawing::Point(109, 165);
 			this->dtpHasta->Name = L"dtpHasta";
-			this->dtpHasta->Size = System::Drawing::Size(100, 22);
+			this->dtpHasta->Size = System::Drawing::Size(140, 28);
 			this->dtpHasta->TabIndex = 4;
-			// 
-			// btnFiltrar
-			// 
-			this->btnFiltrar->BackColor = System::Drawing::Color::MediumPurple;
+
+			// BUTTON FILTRAR
+			this->btnFiltrar->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
 			this->btnFiltrar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnFiltrar->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->btnFiltrar->FlatAppearance->BorderSize = 0;
+			this->btnFiltrar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Bold));
 			this->btnFiltrar->ForeColor = System::Drawing::Color::White;
-			this->btnFiltrar->Location = System::Drawing::Point(26, 253);
+			this->btnFiltrar->Location = System::Drawing::Point(26, 215);
 			this->btnFiltrar->Name = L"btnFiltrar";
-			this->btnFiltrar->Size = System::Drawing::Size(121, 46);
+			this->btnFiltrar->Size = System::Drawing::Size(121, 48);
 			this->btnFiltrar->TabIndex = 5;
 			this->btnFiltrar->Text = L"Filtrar";
 			this->btnFiltrar->UseVisualStyleBackColor = false;
 			this->btnFiltrar->Click += gcnew System::EventHandler(this, &frmHistorialVentas::btnFiltrar_Click);
-			// 
-			// btnVerTodo
-			// 
-			this->btnVerTodo->BackColor = System::Drawing::Color::MediumPurple;
+
+			// BUTTON VER TODO 
+			this->btnVerTodo->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
 			this->btnVerTodo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnVerTodo->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->btnVerTodo->FlatAppearance->BorderSize = 0;
+			this->btnVerTodo->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Bold));
 			this->btnVerTodo->ForeColor = System::Drawing::Color::White;
-			this->btnVerTodo->Location = System::Drawing::Point(170, 253);
+			this->btnVerTodo->Location = System::Drawing::Point(170, 215);
 			this->btnVerTodo->Name = L"btnVerTodo";
-			this->btnVerTodo->Size = System::Drawing::Size(121, 46);
+			this->btnVerTodo->Size = System::Drawing::Size(121, 48);
 			this->btnVerTodo->TabIndex = 6;
 			this->btnVerTodo->Text = L"Ver Todo";
 			this->btnVerTodo->UseVisualStyleBackColor = false;
 			this->btnVerTodo->Click += gcnew System::EventHandler(this, &frmHistorialVentas::btnVerTodo_Click);
-			// 
-			// dgvVentas
-			// 
+
+			//  DATAGRIDVIEW 
+			this->dgvVentas->AllowUserToAddRows = false;
+			this->dgvVentas->AllowUserToDeleteRows = false;
 			this->dgvVentas->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
-			this->dgvVentas->BackgroundColor = System::Drawing::SystemColors::Window;
+			this->dgvVentas->BackgroundColor = System::Drawing::Color::White;
+			this->dgvVentas->ColumnHeadersHeight = 34;
 			this->dgvVentas->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvVentas->ColumnHeadersDefaultCellStyle->BackColor = System::Drawing::Color::FromArgb(84, 153, 211);
+			this->dgvVentas->ColumnHeadersDefaultCellStyle->ForeColor = System::Drawing::Color::White;
+			this->dgvVentas->ColumnHeadersDefaultCellStyle->Font = gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold);
+			this->dgvVentas->EnableHeadersVisualStyles = false;
+			this->dgvVentas->DefaultCellStyle->Font = gcnew System::Drawing::Font(L"Segoe UI", 10);
+			this->dgvVentas->DefaultCellStyle->SelectionBackColor = System::Drawing::Color::FromArgb(110, 181, 232);
+			this->dgvVentas->DefaultCellStyle->SelectionForeColor = System::Drawing::Color::White;
+			this->dgvVentas->AlternatingRowsDefaultCellStyle->BackColor = System::Drawing::Color::FromArgb(220, 233, 245);
 			this->dgvVentas->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->colID, this->colFecha,
 					this->colCliente, this->colCajero, this->colTotal, this->colMetodo
 			});
-			this->dgvVentas->Location = System::Drawing::Point(317, 143);
+			this->dgvVentas->Location = System::Drawing::Point(317, 120);
 			this->dgvVentas->Name = L"dgvVentas";
 			this->dgvVentas->ReadOnly = true;
 			this->dgvVentas->RowHeadersVisible = false;
 			this->dgvVentas->RowHeadersWidth = 51;
-			this->dgvVentas->RowTemplate->Height = 24;
-			this->dgvVentas->Size = System::Drawing::Size(738, 262);
+			this->dgvVentas->RowTemplate->Height = 28;
+			this->dgvVentas->Size = System::Drawing::Size(738, 310);
 			this->dgvVentas->TabIndex = 7;
-			// 
-			// colID
-			// 
+
+			// COLUMNS 
 			this->colID->DataPropertyName = L"id_venta";
 			this->colID->HeaderText = L"ID";
 			this->colID->MinimumWidth = 6;
 			this->colID->Name = L"colID";
 			this->colID->ReadOnly = true;
-			// 
-			// colFecha
-			// 
+
 			this->colFecha->DataPropertyName = L"fecha";
 			this->colFecha->HeaderText = L"Fecha";
 			this->colFecha->MinimumWidth = 6;
 			this->colFecha->Name = L"colFecha";
 			this->colFecha->ReadOnly = true;
-			// 
-			// colCliente
-			// 
+
 			this->colCliente->DataPropertyName = L"cliente";
 			this->colCliente->HeaderText = L"Cliente";
 			this->colCliente->MinimumWidth = 6;
 			this->colCliente->Name = L"colCliente";
 			this->colCliente->ReadOnly = true;
-			// 
-			// colCajero
-			// 
+
 			this->colCajero->DataPropertyName = L"cajero";
 			this->colCajero->HeaderText = L"Cajero";
 			this->colCajero->MinimumWidth = 6;
 			this->colCajero->Name = L"colCajero";
 			this->colCajero->ReadOnly = true;
-			// 
-			// colTotal
-			// 
+
 			this->colTotal->DataPropertyName = L"total";
 			this->colTotal->HeaderText = L"Total";
 			this->colTotal->MinimumWidth = 6;
 			this->colTotal->Name = L"colTotal";
 			this->colTotal->ReadOnly = true;
-			// 
-			// colMetodo
-			// 
+
 			this->colMetodo->DataPropertyName = L"metodo_pago";
 			this->colMetodo->HeaderText = L"Método";
 			this->colMetodo->MinimumWidth = 6;
 			this->colMetodo->Name = L"colMetodo";
 			this->colMetodo->ReadOnly = true;
-			// 
-			// lblTotal
-			// 
+
+			// LABEL TOTAL
 			this->lblTotal->AutoSize = true;
-			this->lblTotal->BackColor = System::Drawing::Color::Thistle;
+			this->lblTotal->BackColor = System::Drawing::Color::FromArgb(220, 233, 245);
 			this->lblTotal->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->lblTotal->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblTotal->Location = System::Drawing::Point(757, 418);
+			this->lblTotal->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Bold));
+			this->lblTotal->ForeColor = System::Drawing::Color::FromArgb(84, 153, 211);
+			this->lblTotal->Location = System::Drawing::Point(650, 445);
 			this->lblTotal->Name = L"lblTotal";
-			this->lblTotal->Size = System::Drawing::Size(194, 22);
+			this->lblTotal->Size = System::Drawing::Size(220, 25);
 			this->lblTotal->TabIndex = 8;
-			this->lblTotal->Text = L"Total del periodo: Q 0.00";
-			// 
-			// btnRegresar
-			// 
-			this->btnRegresar->BackColor = System::Drawing::Color::MediumSlateBlue;
-			this->btnRegresar->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->lblTotal->Text = L"Total del período: Q 0.00";
+
+			// BUTTON REGRESAR 
+			this->btnRegresar->BackColor = System::Drawing::Color::FromArgb(84, 153, 211);
+			this->btnRegresar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnRegresar->FlatAppearance->BorderSize = 0;
+			this->btnRegresar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Bold));
 			this->btnRegresar->ForeColor = System::Drawing::Color::White;
 			this->btnRegresar->Location = System::Drawing::Point(26, 385);
 			this->btnRegresar->Name = L"btnRegresar";
-			this->btnRegresar->Size = System::Drawing::Size(204, 55);
+			this->btnRegresar->Size = System::Drawing::Size(265, 55);
 			this->btnRegresar->TabIndex = 9;
 			this->btnRegresar->Text = L"Regresar al Menú";
 			this->btnRegresar->UseVisualStyleBackColor = false;
 			this->btnRegresar->Click += gcnew System::EventHandler(this, &frmHistorialVentas::btnRegresar_Click);
-			// 
-			// panel1
-			// 
-			this->panel1->BackColor = System::Drawing::Color::MediumSlateBlue;
-			this->panel1->ForeColor = System::Drawing::Color::White;
-			this->panel1->Location = System::Drawing::Point(461, 59);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(644, 22);
-			this->panel1->TabIndex = 10;
-			// 
-			// panel2
-			// 
-			this->panel2->BackColor = System::Drawing::Color::MediumSlateBlue;
-			this->panel2->ForeColor = System::Drawing::Color::White;
-			this->panel2->Location = System::Drawing::Point(0, 59);
-			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(83, 22);
-			this->panel2->TabIndex = 11;
-			// 
-			// frmHistorialVentas
-			// 
+
+			// FORM 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1091, 469);
+			this->BackColor = System::Drawing::Color::FromArgb(245, 247, 250);
+			this->ClientSize = System::Drawing::Size(1091, 480);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->btnRegresar);
@@ -305,75 +281,53 @@ namespace Supermercado {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvVentas))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
 		}
 #pragma endregion
 
 	private:
-		// ============================================================
-		// MÉTODO PRINCIPAL: Carga datos desde la DB al DataGridView
-		// ============================================================
 		void CargarVentas(DataTable^ datos) {
 			if (datos == nullptr || datos->Rows->Count == 0) {
 				dgvVentas->DataSource = nullptr;
-				lblTotal->Text = "Total del periodo: Q 0.00";
+				lblTotal->Text = "Total del período: Q 0.00";
 				MessageBox::Show("No se encontraron ventas.", "Información",
 					MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
 
-			// Asignar datos al DataGridView
 			dgvVentas->DataSource = datos;
 
-			// Calcular el total sumando la columna "total"
 			double totalPeriodo = 0.0;
 			for each (DataRow ^ fila in datos->Rows) {
 				totalPeriodo += Convert::ToDouble(fila["total"]);
 			}
 
-			// Mostrar total con formato Q ###.##
-			lblTotal->Text = String::Format("Total del periodo: Q {0:N2}", totalPeriodo);
+			lblTotal->Text = String::Format("Total del período: Q {0:N2}", totalPeriodo);
 		}
 
-		// ============================================================
-		// Al cargar el formulario, muestra todas las ventas
-		// ============================================================
 		System::Void frmHistorialVentas_Load(System::Object^ sender, System::EventArgs^ e) {
 			DataTable^ todasVentas = controlador->listarVentas();
 			CargarVentas(todasVentas);
 		}
 
-		// ============================================================
-		// Botón "Ver Todo" — recarga todas las ventas
-		// ============================================================
 		System::Void btnVerTodo_Click(System::Object^ sender, System::EventArgs^ e) {
 			DataTable^ todasVentas = controlador->listarVentas();
 			CargarVentas(todasVentas);
 		}
 
-		// ============================================================
-		// Botón "Filtrar" — ventas por rango de fechas
-		// ============================================================
 		System::Void btnFiltrar_Click(System::Object^ sender, System::EventArgs^ e) {
-			// Validar que la fecha "Desde" sea menor o igual a "Hasta"
 			if (dtpDesde->Value > dtpHasta->Value) {
 				MessageBox::Show("La fecha 'Desde' no puede ser mayor que 'Hasta'.",
 					"Error de validación", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 				return;
 			}
 
-			// Convertir fechas a formato MySQL: yyyy-MM-dd
 			String^ fechaDesde = dtpDesde->Value.ToString("yyyy-MM-dd");
 			String^ fechaHasta = dtpHasta->Value.ToString("yyyy-MM-dd");
 
-			// Consultar controlador
 			DataTable^ ventasFiltradas = controlador->listarVentasPorFecha(fechaDesde, fechaHasta);
 			CargarVentas(ventasFiltradas);
 		}
 
-		// ============================================================
-		// Botón "Regresar" — cierra el formulario
-		// ============================================================
 		System::Void btnRegresar_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->Close();
 		}
