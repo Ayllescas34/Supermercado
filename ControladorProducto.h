@@ -4,12 +4,11 @@
 // ============================================================
 //  ControladorProducto.h  —  Declaraciones del controlador
 //  Grupo 8
-//  REGLA: Los forms NO escriben SQL. Solo llaman al controlador.
 // ============================================================
 
 #include "ModeloProducto.h"
 #include "ModeloCategoria.h"
-#include "ConexionBD.h"          // <-- mismo header que usa el resto del proyecto
+#include "ConexionBD.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
