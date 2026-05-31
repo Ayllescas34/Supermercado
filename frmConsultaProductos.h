@@ -16,6 +16,8 @@ namespace Supermercado {
 	{
 	private:
 		Dictionary<String^, int>^ mapaCategorias;
+		Panel^ panel1;
+		Panel^ panel2;
 
 	public:
 		frmConsultaProductos(void)
@@ -60,91 +62,141 @@ namespace Supermercado {
 			this->dvgConsultaProductos = (gcnew System::Windows::Forms::DataGridView());
 			this->cmbCategoria = (gcnew System::Windows::Forms::ComboBox());
 			this->btnRegresar = (gcnew System::Windows::Forms::Button());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dvgConsultaProductos))->BeginInit();
 			this->SuspendLayout();
 
+			//  FRANJA IZQUIERDA 
+			this->panel2->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
+			this->panel2->Location = System::Drawing::Point(0, 52);
+			this->panel2->Size = System::Drawing::Size(57, 22);
+			this->panel2->TabIndex = 99;
+
+			//  FRANJA DERECHA 
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
+			this->panel1->Location = System::Drawing::Point(220, 52);
+			this->panel1->Size = System::Drawing::Size(570, 22);
+			this->panel1->TabIndex = 98;
+
+			// TITULO 
 			this->lblConsulta->AutoSize = true;
-			this->lblConsulta->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
-			this->lblConsulta->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 24, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->lblConsulta->Location = System::Drawing::Point(12, 21);
+			this->lblConsulta->BackColor = System::Drawing::Color::Transparent;
+			this->lblConsulta->Font = (gcnew System::Drawing::Font(L"Century Schoolbook", 20, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->lblConsulta->ForeColor = System::Drawing::Color::FromArgb(30, 30, 30);
+			this->lblConsulta->Location = System::Drawing::Point(70, 15);
 			this->lblConsulta->Name = L"lblConsulta";
 			this->lblConsulta->TabIndex = 0;
 			this->lblConsulta->Text = L"Consulta de Productos";
 
-			this->textBuscarProducto->Location = System::Drawing::Point(21, 129);
-			this->textBuscarProducto->Multiline = true;
+			//  LABEL BUSCAR 
+			this->lblBuscarProductos->AutoSize = true;
+			this->lblBuscarProductos->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->lblBuscarProductos->Location = System::Drawing::Point(18, 100);
+			this->lblBuscarProductos->Name = L"lblBuscarProductos";
+			this->lblBuscarProductos->TabIndex = 3;
+			this->lblBuscarProductos->Text = L"Buscar Producto:";
+
+			// TEXTBOX BUSCAR 
+			this->textBuscarProducto->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+			this->textBuscarProducto->Location = System::Drawing::Point(21, 125);
 			this->textBuscarProducto->Name = L"textBuscarProducto";
 			this->textBuscarProducto->Size = System::Drawing::Size(331, 28);
 			this->textBuscarProducto->TabIndex = 2;
 
-			this->lblBuscarProductos->AutoSize = true;
-			this->lblBuscarProductos->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 13.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->lblBuscarProductos->Location = System::Drawing::Point(18, 99);
-			this->lblBuscarProductos->Name = L"lblBuscarProductos";
-			this->lblBuscarProductos->TabIndex = 3;
-			this->lblBuscarProductos->Text = L"Buscar Producto";
-
-			this->btnBuscar->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->btnBuscar->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 10.2F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btnBuscar->Location = System::Drawing::Point(375, 129);
+			// BUTTON BUSCAR 
+			this->btnBuscar->BackColor = System::Drawing::Color::FromArgb(110, 181, 232);
+			this->btnBuscar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnBuscar->FlatAppearance->BorderSize = 0;
+			this->btnBuscar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+			this->btnBuscar->ForeColor = System::Drawing::Color::White;
+			this->btnBuscar->Location = System::Drawing::Point(375, 125);
 			this->btnBuscar->Name = L"btnBuscar";
-			this->btnBuscar->Size = System::Drawing::Size(75, 28);
+			this->btnBuscar->Size = System::Drawing::Size(85, 28);
 			this->btnBuscar->TabIndex = 4;
 			this->btnBuscar->Text = L"Buscar";
 			this->btnBuscar->UseVisualStyleBackColor = false;
 			this->btnBuscar->Click += gcnew System::EventHandler(this, &frmConsultaProductos::btnBuscar_Click);
 
-			this->btnVerTodo->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->btnVerTodo->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 10.2F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btnVerTodo->Location = System::Drawing::Point(467, 128);
+			// BUTTON VER TODO
+			this->btnVerTodo->BackColor = System::Drawing::Color::FromArgb(84, 153, 211);
+			this->btnVerTodo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnVerTodo->FlatAppearance->BorderSize = 0;
+			this->btnVerTodo->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+			this->btnVerTodo->ForeColor = System::Drawing::Color::White;
+			this->btnVerTodo->Location = System::Drawing::Point(475, 125);
 			this->btnVerTodo->Name = L"btnVerTodo";
-			this->btnVerTodo->Size = System::Drawing::Size(81, 29);
+			this->btnVerTodo->Size = System::Drawing::Size(85, 28);
 			this->btnVerTodo->TabIndex = 5;
 			this->btnVerTodo->Text = L"Ver Todo";
 			this->btnVerTodo->UseVisualStyleBackColor = false;
 			this->btnVerTodo->Click += gcnew System::EventHandler(this, &frmConsultaProductos::btnVerTodo_Click);
 
+			// LABEL CATEGORIA 
 			this->lblCategoria->AutoSize = true;
-			this->lblCategoria->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 13.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->lblCategoria->Location = System::Drawing::Point(18, 173);
+			this->lblCategoria->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->lblCategoria->Location = System::Drawing::Point(18, 170);
 			this->lblCategoria->Name = L"lblCategoria";
 			this->lblCategoria->TabIndex = 6;
-			this->lblCategoria->Text = L"Categoria";
+			this->lblCategoria->Text = L"Filtrar por Categoría:";
 
-			this->dvgConsultaProductos->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->dvgConsultaProductos->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dvgConsultaProductos->Location = System::Drawing::Point(21, 247);
-			this->dvgConsultaProductos->Name = L"dvgConsultaProductos";
-			this->dvgConsultaProductos->ReadOnly = true;
-			this->dvgConsultaProductos->RowHeadersWidth = 51;
-			this->dvgConsultaProductos->RowTemplate->Height = 24;
-			this->dvgConsultaProductos->Size = System::Drawing::Size(559, 200);
-			this->dvgConsultaProductos->TabIndex = 7;
-			this->dvgConsultaProductos->AllowUserToAddRows = false;
-
-			this->cmbCategoria->BackColor = System::Drawing::Color::Gainsboro;
-			this->cmbCategoria->FormattingEnabled = true;
-			this->cmbCategoria->Location = System::Drawing::Point(23, 203);
-			this->cmbCategoria->Name = L"cmbCategoria";
-			this->cmbCategoria->Size = System::Drawing::Size(329, 24);
-			this->cmbCategoria->TabIndex = 8;
+			// COMBOBOX CATEGORIA 
+			this->cmbCategoria->BackColor = System::Drawing::Color::White;
 			this->cmbCategoria->DropDownStyle = ComboBoxStyle::DropDownList;
+			this->cmbCategoria->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+			this->cmbCategoria->FormattingEnabled = true;
+			this->cmbCategoria->Location = System::Drawing::Point(21, 195);
+			this->cmbCategoria->Name = L"cmbCategoria";
+			this->cmbCategoria->Size = System::Drawing::Size(331, 28);
+			this->cmbCategoria->TabIndex = 8;
 			this->cmbCategoria->SelectedIndexChanged += gcnew System::EventHandler(this, &frmConsultaProductos::cmbCategoria_SelectedIndexChanged);
 
-			this->btnRegresar = (gcnew System::Windows::Forms::Button());
-			this->btnRegresar->BackColor = System::Drawing::SystemColors::ScrollBar;
-			this->btnRegresar->Font = (gcnew System::Drawing::Font(L"Monotype Corsiva", 10.2F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			this->btnRegresar->Location = System::Drawing::Point(375, 455);
+			//  DATAGRIDVIEW 
+			this->dvgConsultaProductos->AllowUserToAddRows = false;
+			this->dvgConsultaProductos->AllowUserToDeleteRows = false;
+			this->dvgConsultaProductos->BackgroundColor = System::Drawing::Color::White;
+			this->dvgConsultaProductos->ColumnHeadersHeight = 34;
+			this->dvgConsultaProductos->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dvgConsultaProductos->ColumnHeadersDefaultCellStyle->BackColor = System::Drawing::Color::FromArgb(84, 153, 211);
+			this->dvgConsultaProductos->ColumnHeadersDefaultCellStyle->ForeColor = System::Drawing::Color::White;
+			this->dvgConsultaProductos->ColumnHeadersDefaultCellStyle->Font = gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold);
+			this->dvgConsultaProductos->EnableHeadersVisualStyles = false;
+			this->dvgConsultaProductos->DefaultCellStyle->Font = gcnew System::Drawing::Font(L"Segoe UI", 10);
+			this->dvgConsultaProductos->DefaultCellStyle->SelectionBackColor = System::Drawing::Color::FromArgb(110, 181, 232);
+			this->dvgConsultaProductos->DefaultCellStyle->SelectionForeColor = System::Drawing::Color::White;
+			this->dvgConsultaProductos->AlternatingRowsDefaultCellStyle->BackColor = System::Drawing::Color::FromArgb(220, 233, 245);
+			this->dvgConsultaProductos->Location = System::Drawing::Point(21, 240);
+			this->dvgConsultaProductos->Name = L"dvgConsultaProductos";
+			this->dvgConsultaProductos->ReadOnly = true;
+			this->dvgConsultaProductos->RowHeadersVisible = false;
+			this->dvgConsultaProductos->RowHeadersWidth = 51;
+			this->dvgConsultaProductos->RowTemplate->Height = 28;
+			this->dvgConsultaProductos->Size = System::Drawing::Size(559, 220);
+			this->dvgConsultaProductos->TabIndex = 7;
+
+			//  BUTTON REGRESAR 
+			this->btnRegresar->BackColor = System::Drawing::Color::FromArgb(84, 153, 211);
+			this->btnRegresar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnRegresar->FlatAppearance->BorderSize = 0;
+			this->btnRegresar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Bold));
+			this->btnRegresar->ForeColor = System::Drawing::Color::White;
+			this->btnRegresar->Location = System::Drawing::Point(375, 475);
 			this->btnRegresar->Name = L"btnRegresar";
-			this->btnRegresar->Size = System::Drawing::Size(173, 29);
+			this->btnRegresar->Size = System::Drawing::Size(205, 35);
 			this->btnRegresar->TabIndex = 9;
 			this->btnRegresar->Text = L"Regresar al Menú";
 			this->btnRegresar->UseVisualStyleBackColor = false;
 			this->btnRegresar->Click += gcnew System::EventHandler(this, &frmConsultaProductos::btnRegresar_Click);
 
+			// FORM 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(604, 500);
+			this->BackColor = System::Drawing::Color::FromArgb(245, 247, 250);
+			this->ClientSize = System::Drawing::Size(610, 530);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
+			this->Controls->Add(this->panel2);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->btnRegresar);
 			this->Controls->Add(this->cmbCategoria);
 			this->Controls->Add(this->dvgConsultaProductos);
